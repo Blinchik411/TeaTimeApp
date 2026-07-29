@@ -1,0 +1,45 @@
+.button {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-alternate-white, var(--color-light-green));
+  box-sizing: border-box;
+  font-weight: 700;
+  color: var(--color-dark, var(--color-white));
+  border-radius: var(--border-radius);
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 1.4;
+  border: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button:focus,
+.button:active {
+  outline: none;
+}
+
+.cardButton,
+.heroButton {
+  font-size: clamp(15px, 0.804rem + 0.495vw, 20px);
+}
+
+.cardButton {
+  width: clamp(212px, 11.81rem + 5.347vw, 266px);
+  padding-block: clamp(14px, 0.715rem + 0.594vw, 20px);
+}
+
+.heroButton {
+  width: clamp(196px, 8.68rem + 13.267vw, 330px);
+  padding-block: clamp(14px, 0.661rem + 0.792vw, 22px);
+}
+
+.headerButton {
+  --color-dark: #131C0D;
+  --color-alternate-white: #EAEAEA;
+  width: clamp(94px, 2.656rem + 11.98vw, 215px);
+  font-size: clamp(14px, 0.715rem + 0.594vw, 20px);
+  padding: clamp(8.2px, 0.291rem + 0.822vw, 16.5px);
+}

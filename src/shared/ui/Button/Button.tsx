@@ -1,22 +1,25 @@
-import styles from './Button.module.css';
+import { Link } from '@tanstack/react-router';
+import styles from './Button.module.scss';
 
 export const Button = ({
                            children,
-                           href,
+                           to,
                            variant = 'heroButton',
                            onClick,
                            type = 'button'
                        }) => {
     const className = `${styles.button} ${styles[variant] || ''}`;
 
-    if (href) {
+    // Если передан проп 'to', рендерим ссылку для внутреннего роутинга
+    if (to) {
         return (
-            <a href={href} className={className}>
+            <Link to={to} className={className}>
                 {children}
-            </a>
+            </Link>
         );
     }
 
+    // Если 'to' нет, рендерим обычную кнопку (например, для форм или событий)
     return (
         <button type={type} onClick={onClick} className={className}>
             {children}

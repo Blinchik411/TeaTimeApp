@@ -1,5 +1,7 @@
 import { Button } from '@/shared/ui/Button/Button'
-import styles from './RoomCard.module.css';
+import {roomSelectorImage} from "@/shared/assets/images";
+import {Icon} from "@/shared/ui/Icon";
+import styles from './RoomCard.module.scss'
 
 export const RoomCard = () => {
     return (
@@ -7,7 +9,7 @@ export const RoomCard = () => {
             <div className={`${styles.cardContent} container`}>
                 <div className={styles.cardLeft}>
                     <img
-                        src="./images/room-selector-image.jpg"
+                        src={roomSelectorImage}
                         alt="The Ceremony Room"
                         className={styles.cardImage}
                         width="619"
@@ -26,10 +28,8 @@ export const RoomCard = () => {
                         <span className={styles.roomDuration}>75min</span>
                         <span className={styles.roomGuestCount}>
               3
-              <img
-                  src="./icons/guest-count.svg"
-                  alt="3 people holding hands"
-                  aria-hidden="true"
+              <Icon
+                  name="GuestCount"
                   className={styles.iconGuests}
               />
             </span>

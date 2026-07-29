@@ -1,10 +1,6 @@
-// src/components/layout/MobileMenu/MobileMenu.jsx
+import showTeaHouseLogo from '@/shared/assets/icons/SlowTeaHouse.svg'
 import styles from './MobileMenu.module.scss'
-import instagramIcon from '../../../shared/assets/icons/instagram.svg';
-import tiktokIcon from '../../../shared/assets/icons/tiktok-icon.svg';
-import facebookIcon from '../../../shared/assets/icons/facebook.svg';
-import telegramIcon from '../../../shared/assets/icons/telegram.svg';
-import showTeaHouseLogo from '../../../shared/assets/icons/SlowTeaHouse.svg'
+import {SocialLinks} from "@/shared/ui/SocialLinks/SocialLinks";
 
 
 export const MobileMenu = ({ isOpen, onClose }) => {
@@ -44,20 +40,7 @@ export const MobileMenu = ({ isOpen, onClose }) => {
                 </ul>
             </nav>
 
-            <div className={styles.mobileSocials}>
-                <a href="/" className={styles.socialLink} target="_blank" rel="noreferrer">
-                    <img src={instagramIcon} alt="Instagram" />
-                </a>
-                <a href="/" className={styles.socialLink} target="_blank" rel="noreferrer">
-                    <img src={tiktokIcon} alt="TikTok" />
-                </a>
-                <a href="/" className={styles.socialLink} target="_blank" rel="noreferrer">
-                    <img src={facebookIcon} alt="Facebook" />
-                </a>
-                <a href="/" className={styles.socialLink} target="_blank" rel="noreferrer">
-                    <img src={telegramIcon} alt="Telegram" />
-                </a>
-            </div>
+            <SocialLinks className={styles.mobileSocials} />
         </div>
     );
 };

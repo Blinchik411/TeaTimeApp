@@ -1,8 +1,7 @@
-import  { useState } from 'react';
-import { MobileMenu } from '../../MobileMenu';
-import styles from './Header.module.scss'
-import icon from '../../../shared/assets/icons/SlowTeaHouse.svg'
-import burgerIcon from '../../../shared/assets/icons/burger-menu.svg'
+import { useState } from 'react';
+import { MobileMenu } from '@/widgets/MobileMenu'
+import { Icon } from '@/shared/ui/Icon';
+import styles from './Header.module.scss';
 
 export const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,16 +18,15 @@ export const Header = () => {
                 aria-label="Открыть меню"
                 onClick={() => setIsMobileMenuOpen(true)}
             >
-                <img src={burgerIcon} alt="Menu" />
+                <Icon name="BurgerMenu" width={24} height={24} />
             </button>
 
             <a href="/" className={styles.logo}>
-                <img
-                    src={icon}
-                    alt="Slow Tea House Logo"
+                <Icon
+                    name="SlowTeaHouse"
                     className={styles.headerLogoImage}
-                    width="250"
-                    height="39"
+                    width={250}
+                    height={39}
                 />
             </a>
 
