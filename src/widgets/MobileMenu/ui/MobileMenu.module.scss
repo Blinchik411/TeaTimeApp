@@ -1,0 +1,96 @@
+/* src/components/layout/MobileMenu/MobileMenu.module.css */
+.mobileMenu {
+  border: none;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 313px;
+  height: 433px;
+  z-index: 12;
+  background-color: var(--color-white);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  border-bottom-right-radius: 12px;
+  --menu-link-color: var(--color-black);
+}
+
+.mobileMenu.isOpen {
+  transform: translateX(0);
+}
+
+.headerMobileMenu {
+  display: flex;
+  gap: 73px;
+}
+
+.mobileMenuLight {
+  --menu-text-color: var(--color-black);
+  --menu-icon-color: var(--color-black);
+}
+
+.closeMobileMenuButton {
+  color: var(--menu-icon-color, var(--color-black));
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.mobileLogo {
+  display: inline-flex;
+  filter: var(--footer-icon-filter, none);
+}
+
+.logo {
+  text-decoration: none;
+}
+
+.mobileLogoImage {
+  filter: invert(1);
+}
+
+.headerMenu {
+  width: 100%;
+}
+
+.mobileMenuList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  font-weight: 500;
+  font-size: 24px;
+  list-style: none;
+}
+
+.headerMenuLink {
+  text-decoration: none;
+  color: var(--menu-link-color, var(--color-black));
+  white-space: nowrap;
+}
+
+.mobileSocials {
+  display: flex;
+  align-items: center;
+  margin-inline: auto;
+  gap: 25px;
+  filter: brightness(0);
+}
+
+.socialLink {
+  width: clamp(1.9rem, 1.76rem + 0.51vw, 2.375rem);
+  aspect-ratio: 1;
+  object-fit: contain;
+  display: inline-block;
+}
+
+.socialLink img {
+  width: 100%;
+  height: 100%;
+}
