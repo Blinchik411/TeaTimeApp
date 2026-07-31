@@ -1,37 +1,27 @@
+import { Link } from '@tanstack/react-router';
+import showTeaHouseLogo from '@/shared/assets/icons/SlowTeaHouse.svg';
+import { SocialLinks } from '@/shared/ui/SocialLinks/SocialLinks';
 import styles from './Footer.module.scss';
-import {Icon} from "@/shared/ui/Icon";
-import {SocialLinks} from "@/shared/ui/SocialLinks/SocialLinks";
 
-export const Footer = () => {
+interface FooterProps {
+    theme?: 'dark' | 'light';
+}
+
+export const Footer = ({ theme = 'dark' }: FooterProps) => {
+    const footerClass = `${styles.footer} ${theme === 'light' ? styles.footerLight : ''}`;
+
     return (
-        <footer className={styles.footer}>
-            <div className={`${styles.footerContainer} container`}>
+        <footer className={footerClass}>
+            <div className={`container ${styles.footerContainer}`}>
                 <div className={styles.footerLeft}>
-                    <a href="/" className={styles.footerLogo}>
-                        <Icon
-                            name="SlowTeaHouse"
-                            className={styles.footerLogoImage}
-                            width={250}
-                            height={39}
-                        />
-                    </a>
+                    <Link to="/" className={styles.footerLogo}>
+                        <img src={showTeaHouseLogo} alt="Slow Tea House Logo" width="250" height="39" />
+                    </Link>
 
                     <address className={styles.footerContacts}>
                         <p className={styles.contactsTime}>Open daily: 10:00–21:00</p>
-                        <a
-                            className={`${styles.contactLink} ${styles.contactLinkUnderline} ${styles.contactLinkMap}`}
-                            href="https://maps.app.goo.gl/Zc22pPQFTCnotkg7A"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            12 Green Street, Lviv
-                        </a>
-                        <a
-                            className={`${styles.contactLink} ${styles.contactLinkGmail}`}
-                            href="mailto:SlowTeaHouse@gmail.com"
-                        >
-                            SlowTeaHouse@gmail.com
-                        </a>
+                        <a className={`${styles.contactLink} ${styles.contactLinkUnderline} ${styles.contactLinkMap}`} href="https://maps.app.goo.gl/..." target="_blank" rel="noreferrer">12 Green Street, Lviv</a>
+                        <a className={`${styles.contactLink} ${styles.contactLinkGmail}`} href="mailto:SlowTeaHouse@gmail.com">SlowTeaHouse@gmail.com</a>
                         <div className={`${styles.footerPhonesGroup} ${styles.contactLinkTelephone}`}>
                             <a className={styles.contactLink} href="tel:+380671234567">+380 67 123 4567</a>
                             <a className={styles.contactLink} href="tel:+380671234567">+380 67 123 4567</a>

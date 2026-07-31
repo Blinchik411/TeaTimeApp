@@ -5,6 +5,12 @@
   background-color: var(--footer-bg);
 }
 
+.footer-light {
+  --footer-text-color: var(--color-black);
+  --footer-bg: var(--color-white);
+  --footer-icon-filter: brightness(0);
+}
+
 .footerContainer {
   display: flex;
   justify-content: space-between;

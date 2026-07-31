@@ -1,0 +1,52 @@
+.experience {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  padding-top: clamp(3.438rem, 2.643rem + 2.953vw, 6.188rem);
+}
+
+.experienceRow {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: clamp(3rem, 2.495rem + 1.879vw, 4.75rem);
+
+  @media (max-width: 1475px) {
+    flex-direction: column;
+    gap: 49px;
+  }
+}
+
+.experienceSteps {
+  width: 100%;
+  max-width: 675px;
+}
+
+
+.experienceTitle,
+.experienceLead,
+.experienceList {
+  margin-bottom: clamp(1.25rem, 0.925rem + 1.208vw, 2.375rem);
+}
+
+.experienceLead,
+.experienceList,
+.experienceText,
+.includesList,
+.bookingText {
+  font-size: clamp(0.75rem, 0.61rem + 0.54vw, 1.25rem);
+}
+
+.experienceTitle {
+  font-family: var(--second-family);
+  font-size: clamp(1.25rem, 0.903rem + 1.29vw, 2.5rem);
+  font-weight: 500;
+}
+
+.experienceList,
+.includesList {
+  list-style-position: inside;
+}
+
+
+.experienceBooking {
+  margin-bottom: clamp(3rem, 2.341rem + 2.452vw, 5.375rem);
+}
