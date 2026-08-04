@@ -53,7 +53,7 @@ export const RoomHeader = ({ room }: RoomHeaderProps) => {
                 <Link
                     to="/booking"
                     search={{ roomId: room.id }}
-                    className="button" /* Предполагаю, что .button у вас глобальный класс */
+                    className="button"
                 >
                     Book now
                 </Link>

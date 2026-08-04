@@ -1,18 +1,18 @@
 import { Link } from '@tanstack/react-router';
-import { RoomExperience } from '@/entities/room/model/types';
-import styles from './ExperienceSection.module.scss'
+import { Room } from '@/entities/room/model/types';
+import styles from './ExperienceSection.module.scss';
 
 interface ExperienceSectionProps {
-    roomId: string;
-    experience: RoomExperience;
+    room: Room;
 }
 
-export const ExperienceSection = ({ roomId, experience }: ExperienceSectionProps) => {
+export const ExperienceSection = ({ room }: ExperienceSectionProps) => {
+    const { experience, id } = room;
+
     return (
         <section className={styles.experience}>
             <div className="container">
                 <div className={styles.experienceRow}>
-                    {/* Как всё проходит */}
                     <div className={styles.experienceSteps}>
                         <h2 className={styles.experienceTitle}>How It Goes</h2>
                         <p className={styles.experienceLead}>
@@ -28,7 +28,6 @@ export const ExperienceSection = ({ roomId, experience }: ExperienceSectionProps
                         </p>
                     </div>
 
-                    {/* Что включено */}
                     <div className={styles.experienceIncludes}>
                         <h2 className={styles.experienceTitle}>Included in the Experience</h2>
                         <ul className={styles.includesList}>
@@ -39,25 +38,25 @@ export const ExperienceSection = ({ roomId, experience }: ExperienceSectionProps
                     </div>
                 </div>
 
-                {/* Инфо о бронировании */}
                 <div className={styles.experienceBooking}>
                     <h2 className={styles.experienceTitle}>Booking Info</h2>
                     <p className={styles.bookingText}>
                         Tea ceremonies are available daily at{' '}
                         {experience.bookingTimes.map((time, idx) => (
                             <span key={time}>
-                <time dateTime={time}><strong>{time}</strong></time>
+                                <time dateTime={time}><strong>{time}</strong></time>
                                 {idx < experience.bookingTimes.length - 1 ? ', ' : ''}
-              </span>
+                            </span>
                         ))}.
                         <br />
                         Group size: <strong>{experience.groupSizeText}</strong>
                     </p>
                 </div>
 
-                <Link to="/booking" search={{ roomId }} className={`${styles.experienceButton} button`}>
+                <button
+                >
                     Book now
-                </Link>
+                </button>
             </div>
         </section>
     );
