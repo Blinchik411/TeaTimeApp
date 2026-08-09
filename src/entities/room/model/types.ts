@@ -1,3 +1,12 @@
+export interface Review {
+    id: string;
+    author: string;
+    date: string;
+    rating: number;
+    text: string;
+    avatarUrl: string;
+}
+
 export interface RoomExperience {
     durationText: string;
     steps: string[];
@@ -12,15 +21,9 @@ export interface Room {
     price: number;
     duration: string;
     maxGuests: number;
-    experience: RoomExperience;
-    reviews: Review[];
-}
-
-export interface Review {
-    id: string;
-    author: string;
-    date: string;
-    rating: number;
-    text: string;
-    avatarUrl: string;
+    description: string;
+    previewImageUrl: string;
+    detailImageUrl: string;
+    experience: RoomExperience; // ? означает, что поле может быть необязательным при загрузке
+    reviews?: Review[];
 }

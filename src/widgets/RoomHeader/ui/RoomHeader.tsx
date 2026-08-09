@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { MobileMenu } from '@/widgets/MobileMenu';
 import { Icon } from '@/shared/ui/Icon';
-import { Room } from '@/entities/room/model/types';
+import { type Room } from '@/entities/room/model/types';
 import guestIcon from '@/shared/assets/icons/guest-count.svg';
 import styles from './RoomHeader.module.scss';
 

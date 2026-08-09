@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.2",
     "@tanstack/react-router": "^1.170.18",
+    "embla-carousel": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },

@@ -1,16 +1,20 @@
-import { Button } from '@/shared/ui/Button/Button'
-import {roomSelectorImage} from "@/shared/assets/images";
-import {Icon} from "@/shared/ui/Icon";
-import styles from './RoomCard.module.scss'
+import { Button } from '@/shared/ui/Button/Button';
+import { Icon } from '@/shared/ui/Icon';
+import { type Room } from '@/entities/room/model/types';
+import styles from './RoomCard.module.scss';
 
-export const RoomCard = () => {
+interface RoomCardProps {
+    room: Room;
+}
+
+export const RoomCard = ({ room }: RoomCardProps) => {
     return (
         <section className={styles.roomCard}>
             <div className={`${styles.cardContent} container`}>
                 <div className={styles.cardLeft}>
                     <img
-                        src={roomSelectorImage}
-                        alt="The Ceremony Room"
+                        src={room.previewImageUrl}
+                        alt={room.title}
                         className={styles.cardImage}
                         width="619"
                         height="575"
@@ -19,22 +23,19 @@ export const RoomCard = () => {
                 </div>
 
                 <div className={styles.cardRight}>
-                    <h2 className={styles.cardTitle}>The Ceremony Room</h2>
-                    <p className={styles.cardText}>
-                        In this room, tea is not just a drink it’s a philosophy. Guided by a tea master, you will experience authentic ceremonies inspired by Chinese traditions. Each session reveals the meaning behind every movement the flow of water, the rhythm of breath, the warmth of the cup. The space is minimalist, illuminated by candlelight and natural textures, designed to quiet the mind and awaken the senses.
-                    </p>
+                    <h2 className={styles.cardTitle}>{room.title}</h2>
+                    <p className={styles.cardText}>{room.description}</p>
+
                     <div className={styles.cardInfo}>
-                        <span className={styles.roomPrice}>30$</span>
-                        <span className={styles.roomDuration}>75min</span>
+                        <span className={styles.roomPrice}>{room.price}$</span>
+                        <span className={styles.roomDuration}>{room.duration}</span>
                         <span className={styles.roomGuestCount}>
-              3
-              <Icon
-                  name="GuestCount"
-                  className={styles.iconGuests}
-              />
+              {room.maxGuests}
+                            <Icon name="GuestCount" className={styles.iconGuests} />
             </span>
                     </div>
-                    <Button href="booking.html" variant="cardButton">
+
+                    <Button href={`/booking/${room.id}`} variant="cardButton">
                         Book now
                     </Button>
                 </div>

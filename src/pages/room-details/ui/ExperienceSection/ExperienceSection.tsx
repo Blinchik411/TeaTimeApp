@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { Room } from '@/entities/room/model/types';
+import { type Room } from '@/entities/room/model/types';
 import styles from './ExperienceSection.module.scss';
 
 interface ExperienceSectionProps {
