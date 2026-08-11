@@ -1,6 +1,6 @@
 import showTeaHouseLogo from '@/shared/assets/icons/SlowTeaHouse.svg'
 import styles from './MobileMenu.module.scss'
-import {SocialLinks} from "@/shared/ui/SocialLinks/SocialLinks";
+import {SocialLinks} from "@/shared/ui/social-links/ui/SocialLinks";
 
 
 export const MobileMenu = ({ isOpen, onClose }) => {

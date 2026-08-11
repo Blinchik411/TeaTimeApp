@@ -1,4 +1,4 @@
-import {RouterButton} from '@/shared/ui/RouterButton/RouterButton';
+import {RouterButton} from '@/shared/ui/router-button/router-button';
 import { Icon } from '@/shared/ui/Icon';
 import { type RoomPreview} from '@/entities/room/model/types';
 import styles from './RoomCard.module.scss';

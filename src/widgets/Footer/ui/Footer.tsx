@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import showTeaHouseLogo from '@/shared/assets/icons/SlowTeaHouse.svg';
-import { SocialLinks } from '@/shared/ui/SocialLinks/SocialLinks';
+import { SocialLinks } from '@/shared/ui/social-links/ui/SocialLinks';
 import styles from './Footer.module.scss';
 
 interface FooterProps {

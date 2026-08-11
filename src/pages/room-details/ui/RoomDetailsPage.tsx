@@ -1,9 +1,9 @@
 import { Route } from '@/app/router/routes/room/$roomId';
 import { useRoom } from '@/entities/room/model/useRoom';
-import {RoomHeader} from "@/widgets/RoomHeader/ui/RoomHeader";
-import {ExperienceSection} from "@/pages/room-details/ui/ExperienceSection/ExperienceSection";
-import {Footer} from "@/widgets/Footer";
-import {ReviewsSection} from "@/pages/room-details/ui/ReviewSection/ReviewSection";
+import {RoomHeader} from "@/widgets/room-header/ui/RoomHeader";
+import {ExperienceSection} from "@/widgets/experience-section/ExperienceSection";
+import {Footer} from '@/widgets/footer'
+import {ReviewsSection} from "@/widgets/review-section/ReviewSection";
 
 
 export const RoomDetailsPage = () => {

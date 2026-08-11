@@ -15,7 +15,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
                                                                       ...props // Остальные пропсы (onClick и т.д.)
                                                                   }, ref) => {
 
-    // Объединяем внутренние стили с внешним className (например, от RouterButton)
+    // Объединяем внутренние стили с внешним className (например, от router-button)
     const combinedClassName = [
         styles.button,
         styles[variant],

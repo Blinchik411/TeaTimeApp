@@ -1,4 +1,4 @@
-import { Button } from '@/shared/ui/Button/Button'
+import {Button} from "@/shared/ui/button";
 import styles from './Hero.module.scss';
 
 export const Hero = () => {
