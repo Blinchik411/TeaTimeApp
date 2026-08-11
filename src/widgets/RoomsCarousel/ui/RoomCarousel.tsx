@@ -6,15 +6,17 @@ import {
     usePrevNextButtons
 } from './RoomCarouselArrowButtons'
 import { DotButton, useDotButton } from './RoomCarouselDotButton'
+import type { RoomPreview} from "@/entities/room/model/types";
+import {RoomCard} from "@/widgets/Room-card";
 import './embla-room.css'
 
 type PropType = {
-    slides: number[]
+    rooms: RoomPreview[]
     options?: EmblaOptionsType
 }
 
 const RoomCarousel = (props: PropType) => {
-    const { slides, options } = props
+    const { rooms, options } = props
     const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
     const { selectedIndex, scrollSnaps, onDotButtonClick } =
@@ -31,10 +33,10 @@ const RoomCarousel = (props: PropType) => {
         <div className="embla">
             <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">
-                    {slides.map((index) => (
-                        <div className="embla__slide" key={index}>
+                    {rooms.map((room) => (
+                        <div className="embla__slide" key={room.id}>
                             <div className="embla__slide__number">
-                                <span>{index + 1}</span>
+                                <RoomCard room={room}></RoomCard>
                             </div>
                         </div>
                     ))}

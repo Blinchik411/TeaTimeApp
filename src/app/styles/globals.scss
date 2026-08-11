@@ -1,3 +1,4 @@
+@use "@/shared/assets/fonts/fonts";
 
 :root {
   --color-dark-green: #131C0D;
@@ -5,8 +6,8 @@
   --color-light-green: #56783D;
   --color-white: #FFFFFF;
   --color-black: #000000;
-  --font-family: 'Inter', sans-serif;
-  --second-family: 'Cormorant Garamond', serif;
+  --font-family: "Montserrat", sans-serif;
+  --second-family: "Montserrat Alternates", sans-serif;
   --border-radius: 8px;
 }
 

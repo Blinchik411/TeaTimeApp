@@ -1,26 +1,28 @@
 import { Header } from "@/widgets/Header";
 import { MobileMenu } from "@/widgets/MobileMenu";
 import { Hero } from "@/widgets/Hero";
-import { RoomCard } from "@/widgets/Room-card";
 import { About } from "@/widgets/About";
 import { Footer } from "@/widgets/Footer";
-import {useRoom} from "@/entities/room/model/useRoom";
 import RoomCarousel from "@/widgets/RoomsCarousel/ui/RoomCarousel";
+import {useRooms} from "@/entities/room/model/useRooms";
 
 export const HomePage = () => {
+    const { rooms, loading, error } = useRooms();
 
-    // const { room, loading, error } = useRoom();
-    //
-    // if (loading) return <div>Загрузка данных...</div>;
-    // if (error || !room) return <div>Ошибка: {error || 'Не удалось загрузить данные'}</div>;
+    if (loading) {
+        return <div>Загрузка данных...</div>;
+    }
+
+    if (error || !rooms) {
+        return <div>Ошибка: {error || 'Не удалось загрузить данные'}</div>;
+    }
 
     return (
         <>
             <Header />
             <MobileMenu />
             <Hero />
-            <RoomCarousel slides={[1,2]}/>
-            {/*<RoomCard room={room} />*/}
+            <RoomCarousel rooms={rooms} />
             <About />
             <Footer />
         </>

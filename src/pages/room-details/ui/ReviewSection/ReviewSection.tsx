@@ -1,4 +1,4 @@
-import { Review } from '@/entities/room/model/types';
+import { type Review } from '@/entities/room/model/types';
 import { Button } from '@/shared/ui/Button/Button';
 import { Icon } from '@/shared/ui/Icon';
 import styles from './ReviewSection.module.scss';

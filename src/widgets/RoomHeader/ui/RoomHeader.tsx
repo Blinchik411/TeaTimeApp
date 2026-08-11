@@ -5,6 +5,7 @@ import { Icon } from '@/shared/ui/Icon';
 import { type Room } from '@/entities/room/model/types';
 import guestIcon from '@/shared/assets/icons/guest-count.svg';
 import styles from './RoomHeader.module.scss';
+import {RouterButton} from "@/shared/ui/RouterButton/RouterButton";
 
 interface RoomHeaderProps {
     room: Room;
@@ -50,13 +51,13 @@ export const RoomHeader = ({ room }: RoomHeaderProps) => {
                     />
         </span>
 
-                <Link
-                    to="/booking"
-                    search={{ roomId: room.id }}
-                    className="button"
+                <RouterButton
+                    to="/room/$roomId"
+                    params={{ roomId: room.id }}
+                    variant="headerButton"
                 >
                     Book now
-                </Link>
+                </RouterButton>
             </div>
         </header>
     );

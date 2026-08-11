@@ -24,6 +24,8 @@ export interface Room {
     description: string;
     previewImageUrl: string;
     detailImageUrl: string;
-    experience: RoomExperience; // ? означает, что поле может быть необязательным при загрузке
-    reviews?: Review[];
+    experience: RoomExperience;
+    reviews: Review[];
 }
+
+export type RoomPreview = Omit<Room, 'reviews' | 'experience' | 'detailImageUrl'>;

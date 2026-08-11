@@ -1,80 +1,18 @@
-.theme-light {
-    --brand-primary: rgb(47, 112, 193);
-    --brand-secondary: rgb(116, 97, 195);
-    --brand-alternative: rgb(19, 120, 134);
-    --background-site: rgb(249, 249, 249);
-    --background-code: rgb(244, 244, 244);
-    --text-body: rgb(54, 49, 61);
-    --text-comment: rgb(99, 94, 105);
-    --text-high-contrast: rgb(49, 49, 49);
-    --text-medium-contrast: rgb(99, 94, 105);
-    --text-low-contrast: rgb(116, 109, 118);
-    --detail-high-contrast: rgb(192, 192, 192);
-    --detail-medium-contrast: rgb(234, 234, 234);
-    --detail-low-contrast: rgb(240, 240, 242);
-    --admonition-note: rgb(46, 109, 188);
-    --admonition-warning: rgb(255, 196, 9);
-    --admonition-danger: rgb(220, 38, 38);
-    --brand-primary-rgb-value: 47, 112, 193;
-    --brand-secondary-rgb-value: 116, 97, 195;
-    --brand-alternative-rgb-value: 19, 120, 134;
-    --background-site-rgb-value: 249, 249, 249;
-    --background-code-rgb-value: 244, 244, 244;
-    --text-body-rgb-value: 54, 49, 61;
-    --text-comment-rgb-value: 99, 94, 105;
-    --text-high-contrast-rgb-value: 49, 49, 49;
-    --text-medium-contrast-rgb-value: 99, 94, 105;
-    --text-low-contrast-rgb-value: 116, 109, 118;
-    --admonition-note-rgb-value: 46, 109, 188;
-    --admonition-warning-rgb-value: 255, 196, 9;
-    --admonition-danger-rgb-value: 220, 38, 38;
-}
-
-.theme-dark {
-    --brand-primary: rgb(138, 180, 248);
-    --brand-secondary: rgb(193, 168, 226);
-    --brand-alternative: rgb(136, 186, 191);
-    --background-site: rgb(5, 5, 5);
-    --background-code: rgb(12, 12, 12);
-    --text-body: rgb(222, 222, 222);
-    --text-comment: rgb(170, 170, 170);
-    --text-high-contrast: rgb(230, 230, 230);
-    --text-medium-contrast: rgb(202, 202, 202);
-    --text-low-contrast: rgb(170, 170, 170);
-    --detail-high-contrast: rgb(101, 101, 101);
-    --detail-medium-contrast: rgb(25, 25, 25);
-    --detail-low-contrast: rgb(21, 21, 21);
-    --admonition-note: rgb(138, 180, 248);
-    --admonition-warning: rgb(253, 186, 116);
-    --admonition-danger: rgb(220, 38, 38);
-    --brand-primary-rgb-value: 138, 180, 248;
-    --brand-secondary-rgb-value: 193, 168, 226;
-    --brand-alternative-rgb-value: 136, 186, 191;
-    --background-site-rgb-value: 5, 5, 5;
-    --background-code-rgb-value: 12, 12, 12;
-    --text-body-rgb-value: 222, 222, 222;
-    --text-comment-rgb-value: 170, 170, 170;
-    --text-high-contrast-rgb-value: 230, 230, 230;
-    --text-medium-contrast-rgb-value: 202, 202, 202;
-    --text-low-contrast-rgb-value: 170, 170, 170;
-    --detail-high-contrast-rgb-value: 101, 101, 101;
-    --detail-medium-contrast-rgb-value: 25, 25, 25;
-    --detail-low-contrast-rgb-value: 21, 21, 21;
-    --admonition-note-rgb-value: 138, 180, 248;
-    --admonition-warning-rgb-value: 253, 186, 116;
-    --admonition-danger-rgb-value: 220, 38, 38;
-}
 
 .embla {
-    max-width: 48rem;
-    margin: auto;
-    --slide-height: 19rem;
-    --slide-spacing: 1rem;
+    --slide-spacing: 2rem;
     --slide-size: 100%;
+
+    width: 100%;
+    max-width: 1400px;
+    margin: clamp(55px, 6vw, 122px) auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .embla__viewport {
     overflow: hidden;
+    border-radius: var(--border-radius, 16px);
 }
 
 .embla__container {
@@ -90,64 +28,59 @@
     padding-left: var(--slide-spacing);
 }
 
-.embla__slide__number {
-    border: 0.2rem solid var(--detail-medium-contrast);
-    border-radius: 1.8rem;
-    font-size: 4rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: var(--slide-height);
-    user-select: none;
+
+.embla__slide > div,
+.embla__slide [class*="roomCard"] {
+    margin: 0;
+    height: 100%;
 }
 
+
 .embla__controls {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
     justify-content: space-between;
-    gap: 1.2rem;
-    margin-top: 1.8rem;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 0 10px;
 }
 
 .embla__buttons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+    display: flex;
+    gap: 12px;
     align-items: center;
 }
 
 .embla__button {
-    -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
-    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
     appearance: none;
-    background-color: transparent;
-    touch-action: manipulation;
-    display: inline-flex;
-    text-decoration: none;
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    border: 0.2rem solid var(--detail-medium-contrast);
-    width: 3.6rem;
-    height: 3.6rem;
-    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    color: var(--text-body);
-    display: flex;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    transform: rotate(0deg);
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease;
+}
+
+.embla__button:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
 }
 
 .embla__button--disabled {
-    color: var(--detail-high-contrast);
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 .embla__button__svg {
-    width: 35%;
-    height: 35%;
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
 }
 
 .embla__dots {
@@ -155,50 +88,43 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
-    margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
+    gap: 8px;
 }
 
 .embla__dot {
-    -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
-    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
     appearance: none;
     background-color: transparent;
-    touch-action: manipulation;
-    display: inline-flex;
-    text-decoration: none;
-    cursor: pointer;
     border: 0;
     padding: 0;
     margin: 0;
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    position: relative;
-}
-
-.embla__dot:before,
-.embla__dot:after {
-    width: 1.4rem;
-    height: 1.4rem;
-    border-radius: 50%;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    content: '';
+    cursor: pointer;
 }
 
 .embla__dot:before {
-    border: 0.2rem solid var(--detail-medium-contrast);
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: transparent;
+    transition: all 0.2s ease;
 }
 
-.embla__dot:after {
-    border: 0.2rem solid var(--text-body);
-    opacity: 0;
+.embla__dot--selected:before {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    transform: scale(1.2);
 }
 
-.embla__dot--selected:after {
-    opacity: 1;
+@media (max-width: 768px) {
+    .embla {
+        --slide-spacing: 1rem;
+        padding: 0 10px;
+    }
 }

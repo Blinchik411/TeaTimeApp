@@ -1,10 +1,10 @@
-import { Button } from '@/shared/ui/Button/Button';
+import {RouterButton} from '@/shared/ui/RouterButton/RouterButton';
 import { Icon } from '@/shared/ui/Icon';
-import { type Room } from '@/entities/room/model/types';
+import { type RoomPreview} from '@/entities/room/model/types';
 import styles from './RoomCard.module.scss';
 
 interface RoomCardProps {
-    room: Room;
+    room: RoomPreview;
 }
 
 export const RoomCard = ({ room }: RoomCardProps) => {
@@ -28,16 +28,20 @@ export const RoomCard = ({ room }: RoomCardProps) => {
 
                     <div className={styles.cardInfo}>
                         <span className={styles.roomPrice}>{room.price}$</span>
-                        <span className={styles.roomDuration}>{room.duration}</span>
+                        <span className={styles.roomDuration}>{room.duration}min</span>
                         <span className={styles.roomGuestCount}>
               {room.maxGuests}
                             <Icon name="GuestCount" className={styles.iconGuests} />
             </span>
                     </div>
 
-                    <Button href={`/booking/${room.id}`} variant="cardButton">
+                    <RouterButton
+                        to="/room/$roomId"
+                        params={{ roomId: room.id }}
+                        variant="cardButton"
+                    >
                         Book now
-                    </Button>
+                    </RouterButton>
                 </div>
             </div>
         </section>

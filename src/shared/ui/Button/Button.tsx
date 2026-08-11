@@ -1,35 +1,37 @@
+import React, { ReactNode, forwardRef } from 'react';
 import styles from './Button.module.scss';
-import { ReactNode } from 'react';
 
-interface ButtonProps {
+
+interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
     children: ReactNode;
     variant?: 'heroButton' | 'cardButton' | 'headerButton';
-    onClick?: () => void;
-    type?: 'button' | 'submit' | 'reset';
-    href?: string;
 }
 
-export const Button = ({
-                           children,
-                           variant = 'heroButton',
-                           onClick,
-                           type = 'button',
-                           href
-                       }: ButtonProps) => {
-    const className = `${styles.button} ${styles[variant] || ''}`;
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+                                                                      children,
+                                                                      variant = 'heroButton',
+                                                                      type = 'button',
+                                                                      className: externalClassName, // Извлекаем className из входящих пропсов
+                                                                      ...props // Остальные пропсы (onClick и т.д.)
+                                                                  }, ref) => {
 
-    // Если есть href, используем <a> вместо <button>
-    if (href) {
-        return (
-            <a href={href} className={className}>
-                {children}
-            </a>
-        );
-    }
+    // Объединяем внутренние стили с внешним className (например, от RouterButton)
+    const combinedClassName = [
+        styles.button,
+        styles[variant],
+        externalClassName
+    ].filter(Boolean).join(' '); // filter(Boolean) уберет undefined и пустые строки
 
     return (
-        <button type={type} onClick={onClick} className={className}>
+        <button
+            ref={ref}
+            type={type}
+            className={combinedClassName}
+            {...props}
+        >
             {children}
         </button>
     );
-};
+});
+
+Button.displayName = 'Button';

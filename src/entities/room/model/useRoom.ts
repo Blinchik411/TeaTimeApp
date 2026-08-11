@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { type Room } from './types';
-import { fetchRoom } from '@/entities/room/api/roomApi';
+import { fetchRoomById } from '@/entities/room/api/roomApi';
 
-export const useRoom = () => {
+export const useRoom = (roomId?: string) => {
     const [room, setRoom] = useState<Room | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -10,7 +10,18 @@ export const useRoom = () => {
     useEffect(() => {
         let isMounted = true;
 
-        fetchRoom()
+        // Если ID не передан, сбрасываем состояние и не делаем запрос
+        if (!roomId) {
+            setRoom(null);
+            setLoading(false);
+            setError(null);
+            return;
+        }
+
+        setLoading(true);
+        setError(null);
+
+        fetchRoomById(roomId)
             .then((data) => {
                 if (isMounted) {
                     if (data) {
@@ -23,7 +34,7 @@ export const useRoom = () => {
             })
             .catch((err) => {
                 if (isMounted) {
-                    setError(err.message);
+                    setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
                     setLoading(false);
                 }
             });
@@ -31,7 +42,7 @@ export const useRoom = () => {
         return () => {
             isMounted = false;
         };
-    }, []);
+    }, [roomId]); // Запрос будет перезапускаться каждый раз, когда меняется roomId
 
     return { room, loading, error };
 };
