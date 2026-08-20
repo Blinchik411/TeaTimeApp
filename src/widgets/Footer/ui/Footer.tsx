@@ -11,7 +11,7 @@ export const Footer = ({ theme = 'dark' }: FooterProps) => {
     const footerClass = `${styles.footer} ${theme === 'light' ? styles.footerLight : ''}`;
 
     return (
-        <footer className={footerClass}>
+        <footer  id={'contact'} className={footerClass}>
             <div className={`container ${styles.footerContainer}`}>
                 <div className={styles.footerLeft}>
                     <Link to="/" className={styles.footerLogo}>
@@ -20,7 +20,7 @@ export const Footer = ({ theme = 'dark' }: FooterProps) => {
 
                     <address className={styles.footerContacts}>
                         <p className={styles.contactsTime}>Open daily: 10:00–21:00</p>
-                        <a className={`${styles.contactLink} ${styles.contactLinkUnderline} ${styles.contactLinkMap}`} href="https://maps.app.goo.gl/..." target="_blank" rel="noreferrer">12 Green Street, Lviv</a>
+                        <a className={`${styles.contactLink} ${styles.contactLinkUnderline} ${styles.contactLinkMap}`} href="https://maps.app.goo.gl/yd8SoGkCGjK5QSvn7" target="_blank" rel="noreferrer">12 Green Street, Lviv</a>
                         <a className={`${styles.contactLink} ${styles.contactLinkGmail}`} href="mailto:SlowTeaHouse@gmail.com">SlowTeaHouse@gmail.com</a>
                         <div className={`${styles.footerPhonesGroup} ${styles.contactLinkTelephone}`}>
                             <a className={styles.contactLink} href="tel:+380671234567">+380 67 123 4567</a>

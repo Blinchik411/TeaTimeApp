@@ -3,7 +3,7 @@ import styles from './Hero.module.scss';
 
 export const Hero = () => {
     return (
-        <section className={styles.hero}>
+        <section  id="#" className={styles.hero}>
             <div className={`${styles.heroContent} container`}>
                 <h1 className={styles.heroTitle}>Where time flows slower</h1>
                 <p className={styles.heroText}>

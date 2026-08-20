@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MobileMenu } from '@/widgets/MobileMenu'
+import {MobileMenu} from "@/features/mobileMenu";
 import { Icon } from '@/shared/ui/Icon';
 import styles from './Header.module.scss';
 
@@ -32,10 +32,10 @@ export const Header = () => {
 
             <nav className={styles.headerMenu}>
                 <ul className={styles.headerMenuList}>
-                    <li><a href="/" className={styles.headerMenuLink}>Home</a></li>
-                    <li><a href="/" className={styles.headerMenuLink}>About Us</a></li>
-                    <li><a href="/" className={styles.headerMenuLink}>Rooms</a></li>
-                    <li><a href="/" className={styles.headerMenuLink}>Contact</a></li>
+                    <li><a href="#" className={styles.headerMenuLink}>Home</a></li>
+                    <li><a href="#about" className={styles.headerMenuLink}>About Us</a></li>
+                    <li><a href="#rooms" className={styles.headerMenuLink}>Rooms</a></li>
+                    <li><a href="#contact" className={styles.headerMenuLink}>Contact</a></li>
                 </ul>
             </nav>
         </header>

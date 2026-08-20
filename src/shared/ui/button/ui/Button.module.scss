@@ -41,6 +41,16 @@
   --color-dark: #131C0D;
   --color-alternate-white: #EAEAEA;
   width: clamp(94px, 2.656rem + 11.98vw, 215px);
-  font-size: clamp(14px, 0.715rem + 0.594vw, 20px);
   padding: clamp(8.2px, 0.291rem + 0.822vw, 16.5px);
+}
+
+.experienceButton {
+  width: clamp(8rem, 4.537rem + 12.886vw, 20rem);
+  padding-block: clamp(0.594rem, 0.438rem + 0.581vw, 1.100rem);
+  margin-bottom: clamp(4.875rem, 4.32rem + 2.065vw, 6.875rem);
+}
+
+
+.headerButton, .experienceButton {
+  font-size: clamp(14px, 0.715rem + 0.594vw, 20px);
 }

@@ -1,9 +1,10 @@
 import { Route } from '@/app/router/routes/room/$roomId';
 import { useRoom } from '@/entities/room/model/useRoom';
-import {RoomHeader} from "@/widgets/room-header/ui/RoomHeader";
-import {ExperienceSection} from "@/widgets/experience-section/ExperienceSection";
+import {RoomHeader} from "@/widgets/room-header";
+import {ExperienceSection} from "@/widgets/experience-section";
 import {Footer} from '@/widgets/footer'
-import {ReviewsSection} from "@/widgets/review-section/ReviewSection";
+import {ReviewSection} from "@/widgets/review-section";
+import {ImageSlider} from "@/widgets/image-slider/ui/imageSlider";
 
 
 export const RoomDetailsPage = () => {
@@ -17,8 +18,9 @@ export const RoomDetailsPage = () => {
     return (
 <>
     <RoomHeader room={room}/>
+    <ImageSlider room={room}/>
     <ExperienceSection room={room}/>
-    <ReviewsSection reviews={room.reviews}/>
+    <ReviewSection reviews={room.reviews}/>
     <Footer theme={'light'}/>
 </>
     );

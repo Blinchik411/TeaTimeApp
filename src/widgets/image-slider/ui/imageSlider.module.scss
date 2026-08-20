@@ -1,0 +1,101 @@
+.sliderContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: clamp(460px, 85vh, 1200px);
+  border-radius: var(--border-radius, 8px);
+  background-color: #000;
+}
+
+.slideImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Сохраняет пропорции фото и аккуратно подрезает края */
+}
+
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 100%);
+  pointer-events: none;
+}
+
+/* Кнопки переключения */
+.arrowButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+  cursor: pointer;
+  padding: 16px;
+  z-index: 2;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  user-select: none;
+
+  &:hover {
+    opacity: 0.7;
+    transform: translateY(-50%) scale(1.15);
+  }
+}
+
+.prevArrow {
+  left: 12px;
+}
+
+.nextArrow {
+  right: 12px;
+}
+
+/* Нижний блок с заголовком и пагинацией */
+.contentOverlay {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+
+.slideTitle {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.activeDot {
+  /* Зеленоватый цвет активной точки как на вашем скриншоте */
+  background-color: #7a9a60;
+  transform: scale(1.25);
+}

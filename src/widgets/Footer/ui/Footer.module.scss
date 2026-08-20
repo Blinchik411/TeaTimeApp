@@ -86,10 +86,10 @@
   filter: var(--footer-icon-filter);
 }
 
-.contactsTime::before { background-image: url("/icons/clock.svg"); }
-.contactLinkMap::before { background-image: url("/icons/map-mark.svg"); }
-.contactLinkGmail::before { background-image: url("/icons/gmail.svg"); }
-.contactLinkTelephone::before { background-image: url("/icons/telephone.svg"); }
+.contactsTime::before { background-image: url("@/shared/assets/icons/clock.svg"); }
+.contactLinkMap::before { background-image: url("@/shared/assets/icons/map-mark.svg"); }
+.contactLinkGmail::before { background-image: url("@/shared/assets/icons/gmail.svg"); }
+.contactLinkTelephone::before { background-image: url("@/shared/assets/icons/telephone.svg"); }
 
 .footerSocials {
   gap: 34px;

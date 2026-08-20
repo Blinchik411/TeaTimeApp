@@ -23,7 +23,7 @@ export interface Room {
     maxGuests: number;
     description: string;
     previewImageUrl: string;
-    detailImageUrl: string;
+    detailImageUrl: string[]
     experience: RoomExperience;
     reviews: Review[];
 }
