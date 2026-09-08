@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import {MobileMenu} from "@/features/mobileMenu";
 import { Icon } from '@/shared/ui/Icon';
+import {Link} from "@tanstack/react-router";
+import {Button} from "@/shared/ui/button";
 import styles from './Header.module.scss';
 
 export const Header = () => {
@@ -13,22 +15,23 @@ export const Header = () => {
                 onClose={() => setIsMobileMenuOpen(false)}
             />
 
-            <button
+            <Button
+                variant="openMobileMenuButton"
                 className={styles.menuButton}
                 aria-label="Открыть меню"
                 onClick={() => setIsMobileMenuOpen(true)}
             >
                 <Icon name="BurgerMenu" width={24} height={24} />
-            </button>
+            </Button>
 
-            <a href="/" className={styles.logo}>
+            <Link to="/" className={styles.logo}>
                 <Icon
                     name="SlowTeaHouse"
                     className={styles.headerLogoImage}
                     width={250}
                     height={39}
                 />
-            </a>
+            </Link>
 
             <nav className={styles.headerMenu}>
                 <ul className={styles.headerMenuList}>

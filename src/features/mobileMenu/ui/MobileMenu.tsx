@@ -1,33 +1,32 @@
-import showTeaHouseLogo from '@/shared/assets/icons/SlowTeaHouse.svg'
-import styles from './MobileMenu.module.scss'
 import {SocialLinks} from "@/shared/ui/social-links/ui/SocialLinks";
+import styles from './MobileMenu.module.scss'
+import {Icon} from "@/shared/ui/Icon";
+import {Link} from "@tanstack/react-router";
+import { Button } from "@/shared/ui/button";
 
 
-export const MobileMenu = ({ isOpen, onClose }) => {
+interface MobileMenuProps {
+    isOpen: boolean,
+    onClose:() => void,
+}
+
+export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
     return (
         <div className={`${styles.mobileMenu} ${isOpen ? styles.isOpen : ''}`}>
             <div className={`${styles.headerMobileMenu} ${styles.mobileMenuLight}`}>
-                <button
+                <Button
+                    variant='closeMobileMenuButton'
                     className={styles.closeMobileMenuButton}
                     type="button"
                     onClick={onClose}
                     aria-label="Закрыть меню"
                 >
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect y="18.3333" width="25.9272" height="2.35702" rx="1.17851" transform="rotate(-45 0 18.3333)" fill="black" />
-                        <rect x="1.66699" width="25.9272" height="2.35702" rx="1.17851" transform="rotate(45 1.66699 0)" fill="black" />
-                    </svg>
-                </button>
+                    <Icon name="CloseButton" width={20} height={20} />
+                </Button>
                 <div className={styles.mobileLogo}>
-                    <a href="/" className={styles.logo}>
-                        <img
-                            src={showTeaHouseLogo}
-                            alt="Slow Tea House Logo"
-                            className={styles.mobileLogoImage}
-                            width="194"
-                            height="17"
-                        />
-                    </a>
+                    <Link to="/" className={styles.logo}>
+                        <Icon  className={styles.mobileLogoImage} height={17} name="SlowTeaHouse" width={194}/>
+                    </Link>
                 </div>
             </div>
 

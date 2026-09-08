@@ -13,6 +13,8 @@ import Symbols from './symbols.svg?react';
 import Telegram from './telegram.svg?react';
 import Telephone from './telephone.svg?react';
 import TikTok from './tiktok.svg?react';
+import FilledStar from './filled-star.svg?react'
+import EmptyStar from './empty-star.svg?react'
 
 export {
     AvatarDefault,
@@ -30,4 +32,6 @@ export {
     Telegram,
     Telephone,
     TikTok,
+    FilledStar,
+    EmptyStar,
 };

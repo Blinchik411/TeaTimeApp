@@ -3,7 +3,7 @@ export const formatDate = (dateStr: string): string => {
 
     const date = new Date(dateStr);
 
-    // Проверка на валидность даты
+
     if (isNaN(date.getTime())) return '';
 
   

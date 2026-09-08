@@ -18,7 +18,10 @@ export const RoomDetailsPage = () => {
     return (
 <>
     <RoomHeader room={room}/>
-    <ImageSlider room={room}/>
+    <ImageSlider
+        images={room.detailImageUrl}
+        title={room.title}
+    />
     <ExperienceSection room={room}/>
     <ReviewSection reviews={room.reviews}/>
     <Footer theme={'light'}/>

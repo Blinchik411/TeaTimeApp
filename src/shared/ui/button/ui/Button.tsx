@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 
 interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
     children: ReactNode;
-    variant?: 'heroButton' | 'cardButton' | 'headerButton' | 'experienceButton';
+    variant?: 'heroButton' | 'cardButton' | 'headerButton' | 'experienceButton' | 'openMobileMenuButton' | 'closeMobileMenuButton';
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({

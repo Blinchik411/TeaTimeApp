@@ -10,7 +10,6 @@ export const useRoom = (roomId?: string) => {
     useEffect(() => {
         let isMounted = true;
 
-        // Если ID не передан, сбрасываем состояние и не делаем запрос
         if (!roomId) {
             setRoom(null);
             setLoading(false);
@@ -42,7 +41,7 @@ export const useRoom = (roomId?: string) => {
         return () => {
             isMounted = false;
         };
-    }, [roomId]); // Запрос будет перезапускаться каждый раз, когда меняется roomId
+    }, [roomId]);
 
     return { room, loading, error };
 };

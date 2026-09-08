@@ -18,7 +18,7 @@
 }
 
 .heroTitle {
-  font-family: var(--second-family);
+  font-family: var(--second-family), sans-serif;
   font-weight: 400;
   font-size: clamp(83px, 6vw + 1rem, 103px);
   color: var(--color-white);

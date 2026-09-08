@@ -1,27 +1,24 @@
 import { useState } from 'react';
 import styles from './ImageSlider.module.scss';
-import type { Room } from "@/entities/room/model/types";
 
 interface ImageSliderProps {
-    room: Room;
+    images: string[];
+    title?: string;
 }
 
-export const ImageSlider = ({ room }: ImageSliderProps) => {
+export const ImageSlider = ({ images, title }: ImageSliderProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    if (!images || images.length === 0) return null;
 
-    const photosArray = room.detailImageUrl
-
-    if (!photosArray || photosArray.length === 0) return null;
-
-    const currentPhotoUrl = photosArray[currentIndex];
+    const currentPhotoUrl = images[currentIndex];
 
     const handlePrev = () => {
-        setCurrentIndex((prev) => (prev === 0 ? photosArray.length - 1 : prev - 1));
+        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
 
     const handleNext = () => {
-        setCurrentIndex((prev) => (prev === photosArray.length - 1 ? 0 : prev + 1));
+        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
     };
 
     const handleSelectSlide = (index: number) => {
@@ -30,17 +27,14 @@ export const ImageSlider = ({ room }: ImageSliderProps) => {
 
     return (
         <div className={styles.sliderContainer}>
-            {/* Текущая фотография */}
             <img
                 src={currentPhotoUrl}
-                alt={`${room.title} - фото ${currentIndex + 1}`}
+                alt={title ? `${title} - фото ${currentIndex + 1}` : `Фото ${currentIndex + 1}`}
                 className={styles.slideImage}
             />
 
-            {/* Затемнение снизу */}
             <div className={styles.overlay} />
 
-            {/* Стрелка Влево */}
             <button
                 type="button"
                 className={`${styles.arrowButton} ${styles.prevArrow}`}
@@ -50,7 +44,6 @@ export const ImageSlider = ({ room }: ImageSliderProps) => {
                 &#8249;
             </button>
 
-            {/* Стрелка Вправо */}
             <button
                 type="button"
                 className={`${styles.arrowButton} ${styles.nextArrow}`}
@@ -60,12 +53,10 @@ export const ImageSlider = ({ room }: ImageSliderProps) => {
                 &#8250;
             </button>
 
-            {/* Контент: Название комнаты и Пагинация */}
             <div className={styles.contentOverlay}>
-                <h3 className={styles.slideTitle}>{room.title}</h3>
-
+                {title && <h3 className={styles.slideTitle}>{title}</h3>}
                 <div className={styles.pagination}>
-                    {photosArray.map((_, index) => (
+                    {images.map((_, index) => (
                         <button
                             key={index}
                             type="button"

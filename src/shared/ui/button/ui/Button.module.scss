@@ -54,3 +54,20 @@
 .headerButton, .experienceButton {
   font-size: clamp(14px, 0.715rem + 0.594vw, 20px);
 }
+
+
+.openMobileMenuButton {
+  display: flex;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.closeMobileMenuButton {
+  color: var(--menu-icon-color, var(--color-black));
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}

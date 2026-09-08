@@ -1,8 +1,9 @@
 .sliderContainer {
   position: relative;
   width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 80dvh;
   overflow: hidden;
-  height: clamp(460px, 85vh, 1200px);
   border-radius: var(--border-radius, 8px);
   background-color: #000;
 }
