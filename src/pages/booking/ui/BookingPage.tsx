@@ -1,13 +1,12 @@
-import {Logo} from "@/shared/ui/logo/Logo";
+import {BookingHeader} from "@/widgets/booking-header"; // или из вашего пути
 
-
- export const BookingPage = () => {
-
-    // <BookingHeader/>
-    // <MobileMenu/>
-    // <RoomBoking></RoomBoking>
-
+export const BookingPage = () => {
     return (
-      <Logo/>
-    )
-}
+        <div className="booking-page">
+            <BookingHeader />
+            <main>
+                {/* Содержимое страницы */}
+            </main>
+        </div>
+    );
+};

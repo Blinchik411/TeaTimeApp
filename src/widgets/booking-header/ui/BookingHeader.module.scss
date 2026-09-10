@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: clamp(0.75rem, 0.443rem + 1.53vw, 2.563rem);
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.headerLogoImage {
+  display: block;
+}

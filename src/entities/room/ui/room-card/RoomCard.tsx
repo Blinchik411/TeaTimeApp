@@ -30,7 +30,7 @@ export const RoomCard = ({ room }: RoomCardProps) => {
                         params={{ roomId: room.id }}
                         variant="cardButton"
                     >
-                        Book now
+                        Explore Room
                     </RouterButton>
                 </div>
             </div>
