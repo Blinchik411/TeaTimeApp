@@ -1,7 +1,7 @@
 import styles from './RoomSummary.module.scss';
 
 
-const RoomSummaryProps: {
+interface RoomSummaryProps: {
 
 }
 
