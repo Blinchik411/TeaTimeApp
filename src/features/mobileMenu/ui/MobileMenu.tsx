@@ -6,8 +6,8 @@ import { Button } from "@/shared/ui/button";
 
 
 interface MobileMenuProps {
-    isOpen: boolean,
-    onClose:() => void,
+    isOpen?: boolean,
+    onClose?:() => void,
 }
 
 export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {

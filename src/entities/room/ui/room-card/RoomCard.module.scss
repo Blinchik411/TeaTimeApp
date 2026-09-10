@@ -1,4 +1,3 @@
-
 .roomCard {
   margin: clamp(55px, 6vw, 122px) clamp(11px, -2.266rem + 10.99vw, 122px);
 }
@@ -28,48 +27,6 @@
   flex-direction: column;
 }
 
-.cardTitle {
-  color: #282828;
-  font-family: var(--second-family);
-  font-weight: 500;
-  margin-bottom: 38px;
-  font-size: clamp(20px, 0.893rem + 1.786vw, 40px);
-}
-
-.cardText {
-  color: #353535;
-  font-size: clamp(13px, 0.6875rem + 0.625vw, 20px);
-  margin-bottom: clamp(70px, 8vw, 191px);
-}
-
-.cardInfo {
-  display: flex;
-  gap: 30px;
-  margin-bottom: 24px;
-  align-items: center;
-}
-
-.roomPrice,
-.roomDuration,
-.roomGuestCount {
-  color: var(--info-color, #2E2E2E);
-  font-weight: 600;
-  font-size: clamp(20px, 1.125rem + 0.625vw, 33px);
-}
-
-.roomGuestCount {
-  display: inline-flex;
-  gap: 7px;
-  align-items: center;
-  white-space: nowrap;
-  filter: var(--info-icon-filter, none);
-}
-
-.iconGuests {
-  width: auto;
-  height: auto;
-}
-
 @media (max-width: 1475px) {
   .cardContent {
     flex-direction: column;
@@ -77,13 +34,5 @@
     padding: clamp(21px, 1.07rem + 0.89vw, 30px);
     text-align: center;
     max-width: 997px;
-  }
-
-  .cardInfo {
-    justify-content: center;
-  }
-
-  .cardTitle {
-    margin-bottom: 25px;
   }
 }

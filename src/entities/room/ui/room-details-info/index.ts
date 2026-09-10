@@ -1,0 +1,1 @@
+export { RoomDetailsInfo } from './RoomDetailsInfo'
