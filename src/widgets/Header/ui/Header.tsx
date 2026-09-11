@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import {MobileMenu} from "@/features/mobileMenu";
 import { Icon } from '@/shared/ui/Icon';
-import {Link} from "@tanstack/react-router";
 import {Button} from "@/shared/ui/button";
-import styles from './Header.module.scss';
 import {Logo} from "@/shared/ui/logo";
+import styles from './Header.module.scss';
 
 export const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
