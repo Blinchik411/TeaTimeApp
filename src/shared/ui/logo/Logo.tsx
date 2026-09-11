@@ -1,43 +1,31 @@
-import {Link} from "@tanstack/react-router";
-import {Icon} from "@/shared/ui/Icon";
-import styles from './Logo.module.scss'
-
+import { Link } from '@tanstack/react-router';
+import { Icon } from '@/shared/ui/Icon';
 
 interface LogoProps {
     to?: string;
-    className?: string;
+    className?: string;       // Класс для ссылки (напр. styles.footerLogo, styles.mobileLogo)
+    iconClassName?: string;   // Класс для SVG-иконки (напр. styles.mobileLogoImage)
     width?: number;
     height?: number;
+    onClick?: () => void;
 }
 
 export const Logo = ({
-    to='/',
-    className= '',
-    width=250,
-    height=39,
-                     }:LogoProps) => {
+                         to = '/',
+                         className = '',
+                         iconClassName = '',
+                         width = 250,
+                         height = 39,
+                         onClick,
+                     }: LogoProps) => {
     return (
-        <Link to={to} className={`${styles.headerLogo} ${className}`}>
+        <Link to={to} className={className} onClick={onClick}>
             <Icon
                 name="SlowTeaHouse"
-                className={styles.headerLogoImage}
+                className={iconClassName}
                 width={width}
                 height={height}
             />
         </Link>
-    )
-}
-
-
-
-
-// <div className={styles.headerLogo}>
-//     <Link to="/" className={styles.logo}>
-//         <Icon
-//             name="SlowTeaHouse"
-//             className={styles.headerLogoImage}
-//             width={250}
-//             height={39}
-//         />
-//     </Link>
-// </div>
+    );
+};

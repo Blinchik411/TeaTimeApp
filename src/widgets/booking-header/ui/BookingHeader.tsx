@@ -15,7 +15,10 @@ export const BookingHeader = () => {
     return (
         <header className={`${styles.header} container`}>
             <Logo/>
-            <ProgressBar steps={BOOKING_STEPS} activeStepIndex={0}/>
+            <ProgressBar
+                steps={BOOKING_STEPS}
+                activeStepIndex={0}
+            />
         </header>
 
     )

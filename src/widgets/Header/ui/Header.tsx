@@ -4,6 +4,7 @@ import { Icon } from '@/shared/ui/Icon';
 import {Link} from "@tanstack/react-router";
 import {Button} from "@/shared/ui/button";
 import styles from './Header.module.scss';
+import {Logo} from "@/shared/ui/logo";
 
 export const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,14 +25,12 @@ export const Header = () => {
                 <Icon name="BurgerMenu" width={24} height={24} />
             </Button>
 
-            <Link to="/" className={styles.logo}>
-                <Icon
-                    name="SlowTeaHouse"
-                    className={styles.headerLogoImage}
-                    width={250}
-                    height={39}
-                />
-            </Link>
+            <Logo
+                className={styles.logo}
+                iconClassName={styles.headerLogoImage}
+                width={250}
+                height={39}
+            />
 
             <nav className={styles.headerMenu}>
                 <ul className={styles.headerMenuList}>

@@ -1,7 +1,6 @@
-import { Link } from '@tanstack/react-router';
-import showTeaHouseLogo from '@/shared/assets/icons/SlowTeaHouse.svg';
-import { SocialLinks } from '@/shared/ui/social-links/ui/SocialLinks';
+import { SocialLinks } from '@/shared/ui/social-links';
 import styles from './Footer.module.scss';
+import {Logo} from "@/shared/ui/logo";
 
 interface FooterProps {
     theme?: 'dark' | 'light';
@@ -14,10 +13,11 @@ export const Footer = ({ theme = 'dark' }: FooterProps) => {
         <footer  id={'contact'} className={footerClass}>
             <div className={`container ${styles.footerContainer}`}>
                 <div className={styles.footerLeft}>
-                    <Link to="/" className={styles.footerLogo}>
-                        <img src={showTeaHouseLogo} alt="Slow Tea House Logo" width="250" height="39" />
-                    </Link>
-
+                    <Logo
+                        className={styles.footerLogo}
+                        width={250}
+                        height={39}
+                    />
                     <address className={styles.footerContacts}>
                         <p className={styles.contactsTime}>Open daily: 10:00–21:00</p>
                         <a className={`${styles.contactLink} ${styles.contactLinkUnderline} ${styles.contactLinkMap}`} href="https://maps.app.goo.gl/yd8SoGkCGjK5QSvn7" target="_blank" rel="noreferrer">12 Green Street, Lviv</a>
