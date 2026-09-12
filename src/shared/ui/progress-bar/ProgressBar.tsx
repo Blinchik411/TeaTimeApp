@@ -1,4 +1,5 @@
 import styles from './ProgressBar.module.scss';
+import clsx from "clsx";
 
 export type StepItem = {
     id: string;
@@ -11,19 +12,22 @@ interface ProgressBarProps {
     className?: string;
 }
 
+const STEP_PERCENTAGES = ['0', '33', '70', '100'];
+
 export const ProgressBar = ({ steps, activeStepIndex, className = '' }: ProgressBarProps) => {
-    const progressPercent = steps.length > 1
-        ? (activeStepIndex / (steps.length - 1)) * 100
-        : 0;
+
+
+    const currentPercent = STEP_PERCENTAGES[activeStepIndex] ?? '0';
+
+    const containerClassName = `${styles.bookingProgressBar} ${className}`.trim();
 
     return (
-        <nav className={`${styles.bookingProgressBar} ${className}`.trim()}>
+        <nav className={containerClassName}>
             <ul className={styles.progressSteps}>
-                {/* Полоса прогресса позиционируется внутри списка */}
                 <div className={styles.progressBar}>
                     <div
                         className={styles.progressFill}
-                        style={{ width: `${progressPercent}%` }}
+                        style={{ width: `${currentPercent}%` }}
                     />
                 </div>
 
@@ -31,11 +35,10 @@ export const ProgressBar = ({ steps, activeStepIndex, className = '' }: Progress
                     const isCompleted = index < activeStepIndex;
                     const isActive = index === activeStepIndex;
 
-                    const stepClasses = [
-                        styles.progressStep,
-                        isCompleted ? styles.completed : '',
-                        isActive ? styles.active : '',
-                    ].filter(Boolean).join(' ');
+                    const stepClasses = clsx(styles.progressStep, {
+                        [styles.completed]: isCompleted,
+                        [styles.active]: isActive,
+                    });
 
                     return (
                         <li key={step.id} className={stepClasses}>

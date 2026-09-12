@@ -1,6 +1,6 @@
 import { SocialLinks } from '@/shared/ui/social-links';
-import styles from './Footer.module.scss';
 import {Logo} from "@/shared/ui/logo";
+import styles from './Footer.module.scss';
 
 interface FooterProps {
     theme?: 'dark' | 'light';

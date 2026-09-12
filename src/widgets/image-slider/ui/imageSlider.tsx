@@ -3,7 +3,7 @@ import styles from './ImageSlider.module.scss';
 
 interface ImageSliderProps {
     images: string[];
-    title?: string;
+    title: string;
 }
 
 export const ImageSlider = ({ images, title }: ImageSliderProps) => {
@@ -29,7 +29,7 @@ export const ImageSlider = ({ images, title }: ImageSliderProps) => {
         <div className={styles.sliderContainer}>
             <img
                 src={currentPhotoUrl}
-                alt={title ? `${title} - фото ${currentIndex + 1}` : `Фото ${currentIndex + 1}`}
+                alt={`${title} - фото ${currentIndex + 1}`}
                 className={styles.slideImage}
             />
 

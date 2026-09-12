@@ -8,12 +8,10 @@
 .starFilled {
   color: #f59e0b;
   fill: currentColor;
-  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .starEmpty {
   color: #d1d5db;
   fill: currentColor;
   opacity: 0.5;
-  transition: color 0.2s ease;
 }

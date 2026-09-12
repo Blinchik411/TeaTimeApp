@@ -1,9 +1,8 @@
 import { Header } from "@/widgets/header";
-import { MobileMenu } from '@/features/mobileMenu'
 import { Hero } from "@/widgets/hero";
 import { About } from "@/widgets/about";
 import {Footer} from "@/widgets/footer";
-import { RoomCarousel } from "@/widgets/rooms-carousel/ui/RoomCarousel";
+import { RoomCarousel } from "@/widgets/rooms-carousel";
 import {useRooms} from "@/entities/room/model/useRooms";
 
 export const HomePage = () => {
@@ -20,7 +19,6 @@ export const HomePage = () => {
     return (
         <>
             <Header />
-            <MobileMenu />
             <Hero />
             <RoomCarousel rooms={rooms} />
             <About />
