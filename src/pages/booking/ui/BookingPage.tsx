@@ -1,6 +1,8 @@
 import {BookingHeader} from "@/widgets/booking-header";
 import {Route} from "@/app/router/routes/booking";
 import {RoomDetailsInfo, useRoom} from "@/entities/room";
+import {DatePicker} from "@/shared/ui/date-picker";
+
 
 export const BookingPage = () => {
 
@@ -15,6 +17,7 @@ export const BookingPage = () => {
             <BookingHeader />
             <main>
                 <RoomDetailsInfo room={room}/>
+                <DatePicker/>
             </main>
         </div>
     );
