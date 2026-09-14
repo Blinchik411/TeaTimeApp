@@ -1,5 +1,5 @@
-import styles from './ProgressBar.module.scss';
 import clsx from "clsx";
+import styles from './ProgressBar.module.scss';
 
 export type StepItem = {
     id: string;
@@ -15,11 +15,8 @@ interface ProgressBarProps {
 const STEP_PERCENTAGES = ['0', '33', '70', '100'];
 
 export const ProgressBar = ({ steps, activeStepIndex, className = '' }: ProgressBarProps) => {
-
-
     const currentPercent = STEP_PERCENTAGES[activeStepIndex] ?? '0';
-
-    const containerClassName = `${styles.bookingProgressBar} ${className}`.trim();
+    const containerClassName = clsx(styles.bookingProgressBar, className);
 
     return (
         <nav className={containerClassName}>
@@ -33,11 +30,9 @@ export const ProgressBar = ({ steps, activeStepIndex, className = '' }: Progress
 
                 {steps.map((step, index) => {
                     const isCompleted = index < activeStepIndex;
-                    const isActive = index === activeStepIndex;
 
                     const stepClasses = clsx(styles.progressStep, {
                         [styles.completed]: isCompleted,
-                        [styles.active]: isActive,
                     });
 
                     return (
