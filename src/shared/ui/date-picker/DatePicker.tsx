@@ -1,5 +1,6 @@
 import { DayPicker } from "@daypicker/react";
 import "@daypicker/react/style.css";
+import styles from "./DatePicker.module.scss";
 
 interface DatePickerProps {
     selectedDate?: Date;
@@ -8,18 +9,16 @@ interface DatePickerProps {
 }
 
 export function DatePicker({ selectedDate, onSelectDate, className }: DatePickerProps) {
-
-    const today = new Date();
-
     return (
-        <DayPicker
-            animate
-            mode="single"
-            navLayout="around"
-            selected={selectedDate}
-            onSelect={onSelectDate}
-            disabled={{ before: today }}
-            className={className}
-        />
+        <div className={`${styles.datePickerContainer} ${className || ''}`}>
+            <DayPicker
+                animate
+                mode="single"
+                navLayout="around"
+                selected={selectedDate}
+                onSelect={onSelectDate}
+                disabled={{ before: new Date() }}
+            />
+        </div>
     );
 }

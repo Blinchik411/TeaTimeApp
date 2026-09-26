@@ -1,0 +1,15 @@
+.wizardLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  padding: 60px 90px;
+  border-radius: 26px;
+}
+
+.wizardLayoutContent {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}

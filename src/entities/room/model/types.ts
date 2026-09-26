@@ -28,4 +28,4 @@ export interface Room {
     reviews: Review[];
 }
 
-export type RoomPreview = Omit<Room, 'reviews' | 'experience' | 'detailImageUrl'>;
+export type RoomPreview = Omit<Room, 'reviews' | 'detailImageUrl'>;

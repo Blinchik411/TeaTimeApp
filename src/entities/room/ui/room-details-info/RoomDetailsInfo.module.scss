@@ -1,3 +1,4 @@
+
 .infoWrapper {
   display: flex;
   flex-direction: column;
@@ -52,5 +53,33 @@
 
   .cardTitle {
     margin-bottom: 25px;
+  }
+}
+
+.roomBooking {
+  .cardText {
+    margin-bottom: clamp(8px, 0.4rem + 0.3vw, 11px);
+  }
+
+  .cardInfo {
+    justify-content: flex-start;
+  }
+
+  .roomPrice,
+  .roomDuration,
+  .roomGuestCount {
+    font-size: clamp(13px, 0.6875rem + 0.625vw, 20px);
+  }
+
+  @media (max-width: 1475px) {
+    .cardInfo {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .cardInfo {
+      gap: 15px;
+    }
   }
 }
