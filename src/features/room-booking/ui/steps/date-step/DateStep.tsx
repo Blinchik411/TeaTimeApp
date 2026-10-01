@@ -4,6 +4,7 @@ import { DatePicker } from '@/shared/ui/date-picker';
 import { TimePicker } from '@/shared/ui/time-picker';
 import { type RoomPreview} from '@/entities/room';
 import { format } from 'date-fns';
+import styles from './DateStep.module.scss'
 
 interface DateStepProps {
     room: RoomPreview;
@@ -34,9 +35,16 @@ export const DateStep = ({ room }: DateStepProps) => {
     };
 
     return (
-        <div>
-            <h2>Reserve your date</h2>
+        <div
+            className={styles.dateLayout}
+        >
+            <h2
+                className={styles.bookingTitle}
+            >
+                Reserve your date
+            </h2>
             <DatePicker
+                className={styles.calendar}
                 selectedDate={selectedDate}
                 onSelectDate={handleSelectDate}
             />

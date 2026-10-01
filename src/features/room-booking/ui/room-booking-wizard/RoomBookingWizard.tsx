@@ -1,9 +1,10 @@
 import { DateStep } from '@/features/room-booking/ui/steps/date-step';
-// import { ContactStep } from '@/features/room-booking/ui/steps/contact-step';
+import { ContactStep } from '@/features/room-booking/ui/steps/contact-step';
 // import { PaymentStep } from '@/features/room-booking/ui/steps/payment-step';
 import { RoomDetailsInfo, type RoomPreview } from '@/entities/room';
 import { Button } from '@/shared/ui/button';
 import styles from './RoomBookingWizard.module.scss';
+import {PaymentStep} from "@/features/room-booking/ui/steps/payment-step/PaymentStep";
 
 interface RoomBookingWizardProps {
     room: RoomPreview;

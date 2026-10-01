@@ -1,6 +1,4 @@
 .timeSection {
-  border: 1px solid #bfbfbf;
-  border-radius: var(--border-radius);
   padding: 20px;
   max-width: 395px;
   width: 100%;
@@ -8,6 +6,8 @@
 
 .timeSectionText {
   margin-bottom: 17px;
+  font-family: var(--second-family), sans-serif;
+  font-weight: 600;
 }
 
 .timeSlotsGrid {
@@ -37,8 +37,8 @@
 
 
   &.selected {
-    background-color: #dbdbdb;
-    border-color: #999999;
+    background-color: #FFFFFF;
+    border-color: #56783D;
     font-weight: 500;
   }
 }

@@ -9,7 +9,26 @@
 }
 
 .wizardLayoutContent {
-  display: flex;
+  display: grid;
+  grid-template-columns: 4fr 6fr;
   gap: 20px;
   width: 100%;
+}
+
+.wizardMain {
+  min-width: 0;
+}
+
+.wizardSidebar {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 215px;
+}
+
+.wizardControls {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
