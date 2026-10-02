@@ -12,3 +12,21 @@
 .headerLogoImage {
   display: block;
 }
+
+
+
+@media (max-width: 1000px) {
+  .header {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

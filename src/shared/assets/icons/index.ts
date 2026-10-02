@@ -15,6 +15,12 @@ import Telephone from './telephone.svg?react';
 import TikTok from './tiktok.svg?react';
 import FilledStar from './filled-star.svg?react'
 import EmptyStar from './empty-star.svg?react'
+import Visa from './visa-payment.svg?react'
+import GooglePay from './google-pay-payment.svg?react'
+import PayPal from './paypal-payment.svg?react'
+import Stripe from './stripe-payment.svg?react'
+import MasterCard from './mastercard-payment.svg?react'
+
 
 export {
     AvatarDefault,
@@ -34,4 +40,9 @@ export {
     TikTok,
     FilledStar,
     EmptyStar,
+    Visa,
+    GooglePay,
+    PayPal,
+    Stripe,
+    MasterCard,
 };

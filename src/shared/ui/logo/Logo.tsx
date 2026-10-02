@@ -3,8 +3,8 @@ import { Icon } from '@/shared/ui/Icon';
 
 interface LogoProps {
     to?: string;
-    className?: string;       // Класс для ссылки (напр. styles.footerLogo, styles.mobileLogo)
-    iconClassName?: string;   // Класс для SVG-иконки (напр. styles.mobileLogoImage)
+    className?: string;
+    iconClassName?: string;
     width?: number;
     height?: number;
     onClick?: () => void;

@@ -1,15 +1,16 @@
-import { useState, type FormEvent } from 'react';
+import {useState, type SyntheticEvent} from 'react';
 import { paymentSchema, type PaymentFormData} from '@/features/room-booking/model';
 import styles from './PaymentStep.module.scss';
+import {Icon} from "@/shared/ui/Icon";
 
 interface PaymentStepProps {
-    onPay: (data: PaymentFormData) => void;
+    onPay?: (data: PaymentFormData) => void;
 }
 
 export const PaymentStep = ({ onPay }: PaymentStepProps) => {
     const [errors, setErrors] = useState<Record<string, string>>({});
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
@@ -96,6 +97,23 @@ export const PaymentStep = ({ onPay }: PaymentStepProps) => {
                             <span className={styles.errorMessage}>{errors.cvc}</span>
                         )}
                     </div>
+                </div>
+                <div className={styles.paymentMethods}>
+                    <Icon
+                        name={"Visa"}
+                    />
+                    <Icon
+                        name={"Stripe"}
+                    />
+                    <Icon
+                        name={"PayPal"}
+                    />
+                    <Icon
+                    name={"MasterCard"}
+                    />
+                    <Icon
+                        name={"GooglePay"}
+                    />
                 </div>
             </form>
         </section>
