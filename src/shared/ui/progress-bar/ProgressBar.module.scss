@@ -1,24 +1,31 @@
 .bookingProgressBar {
   display: block;
+  width: 100%;
 }
 
 .progressSteps {
   display: flex;
-  width: 675px;
+  width: 100%;
+  max-width: 675px;
+  margin-left: auto;
+  margin-right: 0;
   position: relative;
   justify-content: space-between;
-  padding-right: 150px;
   list-style: none;
-  margin: 0;
-  padding-left: 0;
+  padding: 0;
+
+  @media (max-width: 1000px) {
+    margin: 0 auto;
+  }
 }
 
 .progressStep {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
   position: relative;
+  z-index: 2;
 }
 
 .progressBar {
@@ -27,7 +34,7 @@
   right: 0;
   height: 4px;
   background-color: #C9C9C9;
-  top: 32px;
+  top: 30px;
   border-radius: var(--border-radius, 4px);
   z-index: 1;
 }
@@ -52,4 +59,10 @@
 
 .stepLabel {
   font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 }
