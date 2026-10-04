@@ -1,40 +1,14 @@
-import {useState, type SyntheticEvent} from 'react';
-import { paymentSchema, type PaymentFormData} from '@/features/room-booking/model';
+import {paymentSchema, type PaymentFormData} from '@/features/room-booking/model';
 import styles from './PaymentStep.module.scss';
 import {Icon} from "@/shared/ui/Icon";
+import {useZodForm} from "@/shared/lib/hooks/useZodForm";
 
 interface PaymentStepProps {
     onPay?: (data: PaymentFormData) => void;
 }
 
 export const PaymentStep = ({ onPay }: PaymentStepProps) => {
-    const [errors, setErrors] = useState<Record<string, string>>({});
-
-    const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        const formData = new FormData(e.currentTarget);
-        const rawData = Object.fromEntries(formData.entries());
-
-        const result = paymentSchema.safeParse(rawData);
-
-        if (!result.success) {
-            const fieldErrors: Record<string, string> = {};
-
-            result.error.issues.forEach((issue) => {
-                const fieldName = issue.path[0]?.toString();
-                if (fieldName && !fieldErrors[fieldName]) {
-                    fieldErrors[fieldName] = issue.message;
-                }
-            });
-
-            setErrors(fieldErrors);
-            return;
-        }
-
-        setErrors({});
-        onPay(result.data);
-    };
+    const { errors, handleSubmit } = useZodForm(paymentSchema, onPay);
 
     return (
         <section>

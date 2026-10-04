@@ -1,45 +1,23 @@
-import { useState, type FormEvent } from 'react';
-import { contactSchema} from '@/features/room-booking/model/contact.schema'
+import { contactSchema } from '@/features/room-booking/model/contact.schema';
+import { useZodForm } from '@/shared/lib/hooks/useZodForm';
 import styles from './ContactStep.module.scss';
 
+interface ContactStepProps {
+    onSuccess: () => void;
+}
 
-export const ContactStep = () => {
-
-    const [errors, setErrors] = useState<Record<string, string>>({});
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-
-        const formData = new FormData(e.currentTarget);
-        const rawData = Object.fromEntries(formData.entries());
-
-
-        const result = contactSchema.safeParse(rawData);
-
-        if (!result.success) {
-
-            const fieldErrors: Record<string, string> = {};
-
-            result.error.issues.forEach((issue) => {
-                const fieldName = issue.path[0]?.toString();
-                if (fieldName && !fieldErrors[fieldName]) {
-                    fieldErrors[fieldName] = issue.message;
-                }
-            });
-
-            setErrors(fieldErrors);
-            return;
-        }
-
-        setErrors({});
-    };
+export const ContactStep = ({ onSuccess }: ContactStepProps) => {
+    const { errors, handleSubmit } = useZodForm(contactSchema, onSuccess);
 
     return (
         <section>
             <h1 className={styles.bookingTitle}>Contact details</h1>
-            <form className={styles.contactForm} onSubmit={handleSubmit} noValidate>
-
+            <form
+                id="contact-form"
+                className={styles.contactForm}
+                onSubmit={handleSubmit}
+                noValidate
+            >
                 <div className={styles.formRow}>
                     <div className={styles.field}>
                         <input
@@ -89,7 +67,6 @@ export const ContactStep = () => {
                         <span className={styles.errorMessage}>{errors.email}</span>
                     )}
                 </div>
-
             </form>
         </section>
     );

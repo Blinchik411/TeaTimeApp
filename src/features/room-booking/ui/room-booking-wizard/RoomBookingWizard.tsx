@@ -1,4 +1,4 @@
-import { Route } from '@/app/router/routes/booking'; // 1. Импортируем Route
+import { Route } from '@/app/router/routes/booking';
 import { DateStep } from '@/features/room-booking/ui/steps/date-step';
 import { ContactStep } from '@/features/room-booking/ui/steps/contact-step';
 import { PaymentStep } from "@/features/room-booking/ui/steps/payment-step/PaymentStep";
@@ -13,13 +13,11 @@ interface RoomBookingWizardProps {
 }
 
 export const RoomBookingWizard = ({ room, step, onStepChange }: RoomBookingWizardProps) => {
-
     const { date, time } = Route.useSearch();
 
     const isNextDisabled = step === 1 && (!date || !time);
 
-    const handleNext = () => {
-        if (isNextDisabled) return;
+    const handleNextStep = () => {
         if (step < 3) onStepChange((step + 1) as 1 | 2 | 3);
     };
 
@@ -27,13 +25,25 @@ export const RoomBookingWizard = ({ room, step, onStepChange }: RoomBookingWizar
         if (step > 1) onStepChange((step - 1) as 1 | 2 | 3);
     };
 
+    const handlePaymentSubmit = (data: unknown) => {
+        console.log('Payment data:', data);
+    };
+
+    const isSubmitStep = step === 2 || step === 3;
+
+    const formId = step === 2
+        ? 'contact-form'
+        : step === 3
+            ? 'payment-form'
+            : undefined;
+
     return (
         <div className={`${styles.wizardLayout} container`}>
             <div className={styles.wizardLayoutContent}>
                 <div className={styles.wizardMain}>
                     {step === 1 && <DateStep room={room} />}
-                    {step === 2 && <ContactStep />}
-                    {step === 3 && <PaymentStep />}
+                    {step === 2 && <ContactStep onSuccess={handleNextStep} />}
+                    {step === 3 && <PaymentStep onPay={handlePaymentSubmit} />}
                 </div>
 
                 <aside className={styles.wizardSidebar}>
@@ -55,9 +65,11 @@ export const RoomBookingWizard = ({ room, step, onStepChange }: RoomBookingWizar
                         )}
 
                         <Button
-                            type="button"
+                            key={step}
+                            type={isSubmitStep ? 'submit' : 'button'}
+                            form={formId}
                             variant="bookingButton"
-                            onClick={handleNext}
+                            onClick={isSubmitStep ? undefined : handleNextStep}
                             disabled={isNextDisabled}
                         >
                             {step === 2
