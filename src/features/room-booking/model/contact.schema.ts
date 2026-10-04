@@ -8,8 +8,7 @@ export const contactSchema = z.object({
         .trim()
         .min(7, 'Phone number is too short')
         .regex(/^[+\d\s()-]+$/, 'Invalid phone number format'),
-    email: z.string().trim().email('Invalid email address'),
+    email: z.email('Invalid email address').trim(),
 });
-
 
 export type ContactFormData = z.infer<typeof contactSchema>;

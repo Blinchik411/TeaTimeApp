@@ -15,6 +15,6 @@ const bookingSearchSchema = z.object({
 });
 
 export const Route = createFileRoute('/booking')({
-    validateSearch: (search) => bookingSearchSchema.parse(search),
+    validateSearch: bookingSearchSchema,
     component: BookingPage,
 });

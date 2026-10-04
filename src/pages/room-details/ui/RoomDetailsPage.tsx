@@ -23,7 +23,7 @@ export const RoomDetailsPage = () => {
         title={room.title}
     />
     <ExperienceSection room={room}/>
-    <ReviewSection reviews={room.reviews}/>
+    <ReviewSection reviews={room.reviews} roomId={roomId}/>
     <Footer theme={'light'}/>
 </>
     );
