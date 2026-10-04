@@ -19,7 +19,7 @@
   width: 100%;
 
   .field {
-    flex: 1; // Поля Name и Surname делят ширину поровну
+    flex: 1;
   }
 }
 
@@ -51,14 +51,14 @@
       border-color: #999999;
     }
 
-    /* Подсветка инпута красным при ошибке */
+
     &.inputError {
       border-color: #e53e3e;
     }
   }
 }
 
-/* Текст ошибки под инпутом */
+
 .errorMessage {
   font-size: 12px;
   color: #e53e3e;

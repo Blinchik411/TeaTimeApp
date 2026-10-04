@@ -1,6 +1,7 @@
+import { Route } from '@/app/router/routes/booking'; // 1. Импортируем Route
 import { DateStep } from '@/features/room-booking/ui/steps/date-step';
 import { ContactStep } from '@/features/room-booking/ui/steps/contact-step';
-import {PaymentStep} from "@/features/room-booking/ui/steps/payment-step/PaymentStep";
+import { PaymentStep } from "@/features/room-booking/ui/steps/payment-step/PaymentStep";
 import { RoomDetailsInfo, type RoomPreview } from '@/entities/room';
 import { Button } from '@/shared/ui/button';
 import styles from './RoomBookingWizard.module.scss';
@@ -13,7 +14,12 @@ interface RoomBookingWizardProps {
 
 export const RoomBookingWizard = ({ room, step, onStepChange }: RoomBookingWizardProps) => {
 
+    const { date, time } = Route.useSearch();
+
+    const isNextDisabled = step === 1 && (!date || !time);
+
     const handleNext = () => {
+        if (isNextDisabled) return;
         if (step < 3) onStepChange((step + 1) as 1 | 2 | 3);
     };
 
@@ -41,7 +47,7 @@ export const RoomBookingWizard = ({ room, step, onStepChange }: RoomBookingWizar
                         {step > 1 && (
                             <Button
                                 type="button"
-                                variant="heroButton"
+                                variant="bookingButton"
                                 onClick={handleBack}
                             >
                                 Back
@@ -50,8 +56,9 @@ export const RoomBookingWizard = ({ room, step, onStepChange }: RoomBookingWizar
 
                         <Button
                             type="button"
-                            variant="heroButton"
+                            variant="bookingButton"
                             onClick={handleNext}
+                            disabled={isNextDisabled}
                         >
                             {step === 2
                                 ? 'Go to Payment'

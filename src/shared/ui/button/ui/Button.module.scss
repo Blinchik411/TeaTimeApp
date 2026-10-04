@@ -15,11 +15,29 @@
   border: none;
   white-space: nowrap;
   cursor: pointer;
-}
+  user-select: none;
 
-.button:focus,
-.button:active {
-  outline: none;
+  transition: filter 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
+
+  &:hover {
+    filter: brightness(0.92);
+  }
+
+  &:active {
+    transform: translateY(1px) scale(0.99);
+    filter: brightness(0.85);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-light-green, #9be664);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }
 
 .cardButton,
@@ -37,11 +55,27 @@
   padding-block: clamp(14px, 0.661rem + 0.792vw, 22px);
 }
 
+.bookingButton {
+  width: 215px;
+  height: 61px;
+  font-size: 18px;
+
+  @media (max-width: 430px) {
+    width: 195px;
+    height: 48px;
+    font-size: 15px;
+  }
+}
+
 .headerButton {
   --color-dark: #131C0D;
   --color-alternate-white: #EAEAEA;
   width: clamp(94px, 2.656rem + 11.98vw, 215px);
   padding: clamp(8.2px, 0.291rem + 0.822vw, 16.5px);
+
+  &:hover {
+    filter: invert(0.10);
+  }
 }
 
 .experienceButton {
@@ -50,24 +84,29 @@
   margin-bottom: clamp(4.875rem, 4.32rem + 2.065vw, 6.875rem);
 }
 
-
 .headerButton, .experienceButton {
   font-size: clamp(14px, 0.715rem + 0.594vw, 20px);
 }
 
-
-.openMobileMenuButton {
+/* Кнопки мобильного меню (иконки без фона) */
+.openMobileMenuButton,
+.closeMobileMenuButton {
   display: flex;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
+
+  &:hover {
+    filter: none;
+    opacity: 0.75;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .closeMobileMenuButton {
   color: var(--menu-icon-color, var(--color-black));
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
 }
