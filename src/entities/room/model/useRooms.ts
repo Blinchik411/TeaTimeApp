@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { type RoomPreview} from './types';
+import { type RoomPreview } from './types';
 import { fetchRooms } from '../api/roomApi';
 
 export const useRooms = () => {
@@ -9,6 +9,9 @@ export const useRooms = () => {
 
     useEffect(() => {
         let isMounted = true;
+
+        setLoading(true);
+        setError(null);
 
         fetchRooms()
             .then((data) => {
