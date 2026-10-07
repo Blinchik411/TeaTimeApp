@@ -1,22 +1,21 @@
-import { Icon } from '@/shared/ui/icon';
+import clsx from 'clsx';
 import type { RoomPreview } from '../../model/types';
+import { RoomMeta } from '../room-meta';
 import styles from './RoomDetailsInfo.module.scss';
-import clsx from "clsx";
 
 interface RoomDetailsInfoProps {
     room: RoomPreview;
     showPrice?: boolean;
-    variant?: 'roomCarousel' | 'roomBooking'
+    variant?: 'roomCarousel' | 'roomBooking';
     className?: string;
 }
 
 export const RoomDetailsInfo = ({
-                                    room,
-                                    showPrice = true,
-                                    variant='roomCarousel',
-                                    className = ''
-                                }: RoomDetailsInfoProps) => {
-
+    room,
+    showPrice = true,
+    variant = 'roomCarousel',
+    className = '',
+}: RoomDetailsInfoProps) => {
     const containerClasses = clsx(
         styles.infoWrapper,
         styles[variant],
@@ -28,14 +27,12 @@ export const RoomDetailsInfo = ({
             <h2 className={styles.cardTitle}>{room.title}</h2>
             <p className={styles.cardText}>{room.description}</p>
 
-            <div className={styles.cardInfo}>
-                {showPrice && <span className={styles.roomPrice}>{room.price}$</span>}
-                <span className={styles.roomDuration}>{room.duration} min</span>
-                <span className={styles.roomGuestCount}>
-                    {room.maxGuests}
-                    <Icon name="GuestCount" className={styles.iconGuests} />
-                </span>
-            </div>
+            <RoomMeta
+                room={room}
+                showPrice={showPrice}
+                variant={variant}
+                className={styles.cardInfo}
+            />
         </div>
     );
 };

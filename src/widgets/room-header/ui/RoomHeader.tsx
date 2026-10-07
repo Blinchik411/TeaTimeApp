@@ -1,9 +1,8 @@
 import { Icon } from '@/shared/ui/icon';
-import { type Room } from '@/entities/room';
-import guestIcon from '@/shared/assets/icons/guest-count.svg';
-import styles from './RoomHeader.module.scss';
+import { type Room, RoomMeta } from '@/entities/room';
 import { RouterButton } from '@/shared/ui/router-button';
 import { Logo } from "@/shared/ui/logo";
+import styles from './RoomHeader.module.scss';
 
 interface RoomHeaderProps {
     room: Room;
@@ -21,27 +20,14 @@ export const RoomHeader = ({ room, onOpenMenu }: RoomHeaderProps) => {
                 <Icon name="BurgerMenu" width={24} height={24} />
             </button>
 
-            <Logo
-                className={styles.headerLogo}
-            />
+            <Logo className={styles.headerLogo} />
 
-            <div className={`${styles.cardInfo} ${styles.headerInfo}`}>
-                <span className={styles.roomPrice}>{room.price}$</span>
-                <span className={styles.roomDuration}>{room.duration}min</span>
-
-                <span className={styles.roomGuestCount}>
-          {room.maxGuests}
-                    <img
-                        src={guestIcon}
-                        alt={`${room.maxGuests} guests`}
-                        aria-hidden="true"
-                        className={styles.iconGuests}
-                    />
-        </span>
+            <div className={styles.headerInfo}>
+                <RoomMeta room={room} variant="roomHeader" />
 
                 <RouterButton
-                    to="/room/$roomId"
-                    params={{ roomId: room.id }}
+                    to={'/booking'}
+                    search={{ roomId: room.id }}
                     variant="headerButton"
                 >
                     Book now

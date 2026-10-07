@@ -1,0 +1,73 @@
+.roomMeta {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  min-width: 0;
+}
+
+.roomPrice,
+.roomDuration,
+.roomGuestCount {
+  color: var(--info-color, #2E2E2E);
+  font-weight: 600;
+  font-size: clamp(20px, 1.125rem + 0.625vw, 33px);
+  white-space: nowrap;
+}
+
+.roomGuestCount {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  white-space: nowrap;
+  filter: var(--info-icon-filter, none);
+}
+
+.iconGuests {
+  width: auto;
+  height: auto;
+  filter: var(--info-icon-filter, none);
+}
+
+@media (max-width: 1475px) {
+  .roomMeta {
+    justify-content: center;
+  }
+}
+
+.roomBooking {
+  justify-content: flex-start;
+  margin-bottom: 0;
+
+  .roomPrice,
+  .roomDuration,
+  .roomGuestCount {
+    font-size: clamp(13px, 0.6875rem + 0.625vw, 20px);
+  }
+
+  @media (max-width: 1475px) {
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 460px) {
+    gap: 15px;
+  }
+}
+
+.roomHeader {
+  --info-color: #ffffff;
+  --info-icon-filter: brightness(0) invert(1);
+  gap: clamp(8px, 2vw, 15px);
+  flex-wrap: wrap;
+
+  .roomPrice,
+  .roomDuration,
+  .roomGuestCount {
+    color: var(--info-color);
+    font-weight: 500;
+    font-size: clamp(14px, 4vw, 22px);
+  }
+
+  .roomGuestCount {
+    gap: 4px;
+  }
+}
