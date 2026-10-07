@@ -1,37 +1,32 @@
-import { useNavigate } from '@tanstack/react-router';
-import { Route } from '@/app/router/routes/booking';
+
 import { DatePicker } from '@/shared/ui/date-picker';
 import { TimePicker } from '@/shared/ui/time-picker';
-import { type RoomPreview} from '@/entities/room';
+import { type RoomPreview } from '@/entities/room';
 import { format } from 'date-fns';
-import styles from './DateStep.module.scss'
+import styles from './DateStep.module.scss';
 
 interface DateStepProps {
     room: RoomPreview;
+    date?: string;
+    time?: string;
+    onSelectDate: (date: string) => void;
+    onSelectTime: (time: string) => void;
 }
 
-export const DateStep = ({ room }: DateStepProps) => {
-    const navigate = useNavigate({ from: '/booking' });
-    const { date, time } = Route.useSearch();
-
+export const DateStep = ({
+    room,
+    date,
+    time,
+    onSelectDate,
+    onSelectTime,
+}: DateStepProps) => {
     const selectedDate = date ? new Date(date) : undefined;
-
     const bookingTimes = room?.experience.bookingTimes ?? [];
 
     const handleSelectDate = (newDate: Date | undefined) => {
         if (!newDate) return;
-
         const formattedDate = format(newDate, 'yyyy-MM-dd');
-
-        navigate({
-            search: (prev) => ({ ...prev, date: formattedDate }),
-        });
-    };
-
-    const handleSelectTime = (selectedTime: string) => {
-        navigate({
-            search: (prev) => ({ ...prev, time: selectedTime }),
-        });
+        onSelectDate(formattedDate);
     };
 
     return (
@@ -51,7 +46,7 @@ export const DateStep = ({ room }: DateStepProps) => {
             <TimePicker
                 slots={bookingTimes}
                 selectedTime={time}
-                onSelectTime={handleSelectTime}
+                onSelectTime={onSelectTime}
             />
 
         </div>

@@ -1,4 +1,3 @@
-import { Route } from '@/app/router/routes/booking';
 import { DateStep } from '@/features/room-booking/ui/steps/date-step';
 import { ContactStep } from '@/features/room-booking/ui/steps/contact-step';
 import { PaymentStep } from "@/features/room-booking/ui/steps/payment-step/PaymentStep";
@@ -10,11 +9,21 @@ interface RoomBookingWizardProps {
     room: RoomPreview;
     step: 1 | 2 | 3;
     onStepChange: (step: 1 | 2 | 3) => void;
+    date?: string;
+    time?: string;
+    onDateChange: (date: string) => void;
+    onTimeChange: (time: string) => void;
 }
 
-export const RoomBookingWizard = ({ room, step, onStepChange }: RoomBookingWizardProps) => {
-    const { date, time } = Route.useSearch();
-
+export const RoomBookingWizard = ({
+    room,
+    step,
+    onStepChange,
+    date,
+    time,
+    onDateChange,
+    onTimeChange,
+}: RoomBookingWizardProps) => {
     const isNextDisabled = step === 1 && (!date || !time);
 
     const handleNextStep = () => {
@@ -41,7 +50,15 @@ export const RoomBookingWizard = ({ room, step, onStepChange }: RoomBookingWizar
         <div className={`${styles.wizardLayout} container`}>
             <div className={styles.wizardLayoutContent}>
                 <div className={styles.wizardMain}>
-                    {step === 1 && <DateStep room={room} />}
+                    {step === 1 && (
+                        <DateStep
+                            room={room}
+                            date={date}
+                            time={time}
+                            onSelectDate={onDateChange}
+                            onSelectTime={onTimeChange}
+                        />
+                    )}
                     {step === 2 && <ContactStep onSuccess={handleNextStep} />}
                     {step === 3 && <PaymentStep onPay={handlePaymentSubmit} />}
                 </div>

@@ -1,0 +1,83 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: clamp(0.75rem, 0.443rem + 1.53vw, 2.563rem);
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 860px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (max-width: 430px) {
+    flex-direction: row;
+    flex-wrap: wrap; /* 🌟 КРИТИЧНО: разрешаем перенос на новую строку */
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  @media (max-width: 430px) {
+    display: block;
+  }
+}
+
+.headerLogo {
+  flex-shrink: 0;
+
+  @media (max-width: 430px) {
+    display: none;
+  }
+}
+
+.cardInfo {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex-wrap: wrap;
+
+  @media (max-width: 1475px) {
+    justify-content: center;
+  }
+}
+
+.headerInfo {
+  --info-color: #ffffff;
+  --info-icon-filter: brightness(0) invert(1);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(8px, 2vw, 15px);
+  margin-bottom: 0;
+  min-width: 0;
+}
+
+.roomPrice,
+.roomDuration,
+.roomGuestCount {
+  color: var(--info-color);
+  font-weight: 500;
+  font-size: clamp(14px, 4vw, 22px);
+  white-space: nowrap;
+}
+
+.roomGuestCount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iconGuests {
+  filter: var(--info-icon-filter);
+}

@@ -1,11 +1,11 @@
 import { BookingHeader } from "@/widgets/booking-header";
-import { Route } from "@/app/router/routes/booking";
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useRoom } from "@/entities/room";
 import { RoomBookingWizard } from "@/features/room-booking/ui/room-booking-wizard/RoomBookingWizard";
 
 export const BookingPage = () => {
-    const { roomId, step = 1 } = Route.useSearch();
-    const navigate = Route.useNavigate();
+    const { roomId, step = 1, date, time } = useSearch({ from: '/booking' });
+    const navigate = useNavigate({ from: '/booking' });
     const { room, loading, error } = useRoom(roomId);
 
     const handleStepChange = (newStep: 1 | 2 | 3) => {
@@ -13,6 +13,24 @@ export const BookingPage = () => {
             search: (oldSearch) => ({
                 ...oldSearch,
                 step: newStep,
+            }),
+        });
+    };
+
+    const handleDateChange = (newDate: string) => {
+        navigate({
+            search: (oldSearch) => ({
+                ...oldSearch,
+                date: newDate,
+            }),
+        });
+    };
+
+    const handleTimeChange = (newTime: string) => {
+        navigate({
+            search: (oldSearch) => ({
+                ...oldSearch,
+                time: newTime,
             }),
         });
     };
@@ -31,6 +49,10 @@ export const BookingPage = () => {
                     room={room}
                     step={currentStep}
                     onStepChange={handleStepChange}
+                    date={date}
+                    time={time}
+                    onDateChange={handleDateChange}
+                    onTimeChange={handleTimeChange}
                 />
             </main>
         </div>
