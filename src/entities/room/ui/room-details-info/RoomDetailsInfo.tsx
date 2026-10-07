@@ -1,5 +1,5 @@
-import { Icon } from '@/shared/ui/Icon';
-import type { RoomPreview } from '@/entities/room';
+import { Icon } from '@/shared/ui/icon';
+import type { RoomPreview } from '../../model/types';
 import styles from './RoomDetailsInfo.module.scss';
 import clsx from "clsx";
 

@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { Header } from "@/widgets/header";
+import { MobileMenu } from "@/widgets/mobile-menu";
 import { Hero } from "@/widgets/hero";
 import { About } from "@/widgets/about";
-import {Footer} from "@/widgets/footer";
+import { Footer } from "@/widgets/footer";
 import { RoomCarousel } from "@/widgets/rooms-carousel";
-import {useRooms} from "@/entities/room/model/useRooms";
+import { useRooms } from "@/entities/room";
 
 export const HomePage = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { rooms, loading, error } = useRooms();
 
     if (loading) {
@@ -18,7 +21,8 @@ export const HomePage = () => {
 
     return (
         <>
-            <Header />
+            <Header onOpenMenu={() => setIsMenuOpen(true)} />
+            <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
             <Hero />
             <RoomCarousel rooms={rooms} />
             <About />

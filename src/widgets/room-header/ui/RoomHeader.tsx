@@ -1,26 +1,21 @@
-import { useState } from 'react';
-import { MobileMenu } from '@/features/mobileMenu'
-import { Icon } from '@/shared/ui/Icon';
-import { type Room } from '@/entities/room/model/types';
+import { Icon } from '@/shared/ui/icon';
+import { type Room } from '@/entities/room';
 import guestIcon from '@/shared/assets/icons/guest-count.svg';
 import styles from './RoomHeader.module.scss';
-import {RouterButton} from '@/shared/ui/router-button'
-import {Logo} from "@/shared/ui/logo/Logo";
+import { RouterButton } from '@/shared/ui/router-button';
+import { Logo } from "@/shared/ui/logo";
 
 interface RoomHeaderProps {
     room: Room;
+    onOpenMenu?: () => void;
 }
 
-export const RoomHeader = ({ room }: RoomHeaderProps) => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+export const RoomHeader = ({ room, onOpenMenu }: RoomHeaderProps) => {
     return (
         <header className={`${styles.header} container`}>
-            <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
-
             <button
                 className={styles.menuButton}
-                onClick={() => setIsMobileMenuOpen(true)}
+                onClick={onOpenMenu}
                 aria-label="Открыть меню"
             >
                 <Icon name="BurgerMenu" width={24} height={24} />

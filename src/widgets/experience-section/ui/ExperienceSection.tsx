@@ -1,4 +1,4 @@
-import { type Room } from '@/entities/room/model/types';
+import { type Room } from '@/entities/room';
 import styles from './ExperienceSection.module.scss';
 import {RouterButton} from "@/shared/ui/router-button";
 

@@ -1,25 +1,20 @@
-import { useState } from 'react';
-import {MobileMenu} from "@/features/mobileMenu";
-import { Icon } from '@/shared/ui/Icon';
-import {Button} from "@/shared/ui/button";
-import {Logo} from "@/shared/ui/logo";
+import { Icon } from '@/shared/ui/icon';
+import { Button } from "@/shared/ui/button";
+import { Logo } from "@/shared/ui/logo";
 import styles from './Header.module.scss';
 
-export const Header = () => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+interface HeaderProps {
+    onOpenMenu?: () => void;
+}
 
+export const Header = ({ onOpenMenu }: HeaderProps) => {
     return (
         <header className={`${styles.header} container`}>
-            <MobileMenu
-                isOpen={isMobileMenuOpen}
-                onClose={() => setIsMobileMenuOpen(false)}
-            />
-
             <Button
                 variant="openMobileMenuButton"
                 className={styles.menuButton}
                 aria-label="Открыть меню"
-                onClick={() => setIsMobileMenuOpen(true)}
+                onClick={onOpenMenu}
             >
                 <Icon name="BurgerMenu" width={24} height={24} />
             </Button>

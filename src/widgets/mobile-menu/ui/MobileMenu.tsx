@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { SocialLinks } from "@/shared/ui/social-links";
-import { Icon } from "@/shared/ui/Icon";
+import { Icon } from "@/shared/ui/icon";
 import { Button } from "@/shared/ui/button";
 import { Logo } from "@/shared/ui/logo";
 import styles from './MobileMenu.module.scss';

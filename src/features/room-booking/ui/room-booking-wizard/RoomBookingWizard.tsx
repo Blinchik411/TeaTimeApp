@@ -1,6 +1,6 @@
-import { DateStep } from '@/features/room-booking/ui/steps/date-step';
-import { ContactStep } from '@/features/room-booking/ui/steps/contact-step';
-import { PaymentStep } from "@/features/room-booking/ui/steps/payment-step/PaymentStep";
+import { DateStep } from '../steps/date-step';
+import { ContactStep } from '../steps/contact-step';
+import { PaymentStep } from '../steps/payment-step';
 import { RoomDetailsInfo, type RoomPreview } from '@/entities/room';
 import { Button } from '@/shared/ui/button';
 import styles from './RoomBookingWizard.module.scss';

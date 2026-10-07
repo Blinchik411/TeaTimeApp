@@ -1,4 +1,4 @@
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '../../icon';
 import { Link } from "@tanstack/react-router";
 import styles from './SocialLinks.module.scss';
 

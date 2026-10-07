@@ -1,4 +1,4 @@
-import { Icon } from "@/shared/ui/Icon"
+import { Icon } from "../../icon";
 import styles from './StarRating.module.scss'
 
 

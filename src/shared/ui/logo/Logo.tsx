@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '../icon';
 
 interface LogoProps {
     to?: string;

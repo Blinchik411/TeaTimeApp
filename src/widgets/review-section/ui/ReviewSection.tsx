@@ -1,9 +1,9 @@
-import {useState} from 'react';
-import {type Review} from '@/entities/room/model/types';
-import {Button} from '@/shared/ui/button/ui/Button';
-import {StarRating} from "@/shared/ui/starRating";
-import {format, parseISO} from "date-fns";
-import {ReviewModal} from '@/features/leave-review/ui/ReviewModal';
+import { useState } from 'react';
+import { type Review } from '@/entities/room';
+import { Button } from '@/shared/ui/button';
+import { StarRating } from "@/shared/ui/star-rating";
+import { format, parseISO } from "date-fns";
+import { ReviewModal } from '@/features/leave-review';
 import styles from './ReviewSection.module.scss';
 
 interface ReviewSectionProps {

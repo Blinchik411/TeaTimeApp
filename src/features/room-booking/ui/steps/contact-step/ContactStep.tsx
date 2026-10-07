@@ -1,4 +1,4 @@
-import { contactSchema } from '@/features/room-booking/model/contact.schema';
+import { contactSchema } from '../../../model';
 import { useZodForm } from '@/shared/lib/hooks/useZodForm';
 import styles from './ContactStep.module.scss';
 

@@ -1,7 +1,8 @@
 import { RouterButton } from "@/shared/ui/router-button";
-import { type RoomPreview} from '@/entities/room/model/types';
+import type { RoomPreview } from '../../model/types';
+import { RoomDetailsInfo } from '../room-details-info';
 import styles from './RoomCard.module.scss';
-import {RoomDetailsInfo} from "@/entities/room";
+
 
 interface RoomCardProps {
     room: RoomPreview;

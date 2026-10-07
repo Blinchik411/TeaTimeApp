@@ -1,14 +1,15 @@
+import { useState } from 'react';
 import { useParams } from '@tanstack/react-router';
-import { useRoom } from '@/entities/room/model/useRoom';
-import {RoomHeader} from "@/widgets/room-header";
-import {ExperienceSection} from "@/widgets/experience-section";
-import {Footer} from '@/widgets/footer'
-import {ReviewSection} from "@/widgets/review-section";
-import {ImageSlider} from "@/widgets/image-slider/ui/imageSlider";
-
+import { useRoom } from '@/entities/room';
+import { RoomHeader } from "@/widgets/room-header";
+import { MobileMenu } from "@/widgets/mobile-menu";
+import { ExperienceSection } from "@/widgets/experience-section";
+import { Footer } from '@/widgets/footer';
+import { ReviewSection } from "@/widgets/review-section";
+import { ImageSlider } from "@/widgets/image-slider";
 
 export const RoomDetailsPage = () => {
-
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { roomId } = useParams({ from: '/room/$roomId' });
     const { room, loading, error } = useRoom(roomId);
 
@@ -16,15 +17,16 @@ export const RoomDetailsPage = () => {
     if (error || !room) return <div>Ошибка: {error || 'Комната не найдена'}</div>;
 
     return (
-<>
-    <RoomHeader room={room}/>
-    <ImageSlider
-        images={room.detailImageUrl}
-        title={room.title}
-    />
-    <ExperienceSection room={room}/>
-    <ReviewSection reviews={room.reviews} roomId={roomId}/>
-    <Footer theme={'light'}/>
-</>
+        <>
+            <RoomHeader room={room} onOpenMenu={() => setIsMenuOpen(true)} />
+            <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+            <ImageSlider
+                images={room.detailImageUrl}
+                title={room.title}
+            />
+            <ExperienceSection room={room} />
+            <ReviewSection reviews={room.reviews} roomId={roomId} />
+            <Footer theme={'light'} />
+        </>
     );
 };

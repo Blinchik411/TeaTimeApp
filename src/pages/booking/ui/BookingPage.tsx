@@ -1,7 +1,7 @@
 import { BookingHeader } from "@/widgets/booking-header";
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useRoom } from "@/entities/room";
-import { RoomBookingWizard } from "@/features/room-booking/ui/room-booking-wizard/RoomBookingWizard";
+import { RoomBookingWizard } from "@/features/room-booking";
 
 export const BookingPage = () => {
     const { roomId, step = 1, date, time } = useSearch({ from: '/booking' });

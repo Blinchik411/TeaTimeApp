@@ -1,6 +1,6 @@
-import {paymentSchema, type PaymentFormData} from '@/features/room-booking/model';
+import { paymentSchema, type PaymentFormData } from '../../../model';
 import styles from './PaymentStep.module.scss';
-import {Icon} from "@/shared/ui/Icon";
+import { Icon } from "@/shared/ui/icon";
 import {useZodForm} from "@/shared/lib/hooks/useZodForm";
 
 interface PaymentStepProps {

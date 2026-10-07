@@ -1,5 +1,6 @@
 import { supabase } from '@/shared/api/supabase';
-import type {Room, RoomPreview} from '@/entities/room/model/types';
+import type { Room, RoomPreview } from '../model/types';
+
 
 export const fetchRoomById = async (roomId: string): Promise<Room | null> => {
     const { data, error } = await supabase

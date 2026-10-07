@@ -1,5 +1,5 @@
 import { Logo } from "@/shared/ui/logo";
-import { ProgressBar, type StepItem } from "@/shared/ui/progress-bar/ProgressBar";
+import { ProgressBar, type StepItem } from "@/shared/ui/progress-bar";
 import styles from './BookingHeader.module.scss';
 
 const BOOKING_STEPS: StepItem[] = [

@@ -1,14 +1,12 @@
-import { type EmblaOptionsType } from 'embla-carousel'
-import useEmblaCarousel from 'embla-carousel-react'
-import {
-    NextButton,
-    PrevButton,
-    usePrevNextButtons
-} from './RoomCarouselArrowButtons'
-import { DotButton, useDotButton } from './RoomCarouselDotButton'
+import { type EmblaOptionsType } from 'embla-carousel';
+import useEmblaCarousel from 'embla-carousel-react';
+import { NextButton, PrevButton } from './RoomCarouselArrowButtons';
+import { DotButton } from './RoomCarouselDotButton';
+import { usePrevNextButtons } from '../model/usePrevNextButtons';
+import { useDotButton } from '../model/useDotButton';
 import { RoomCard, type RoomPreview } from '@/entities/room';
 import './embla-room.css';
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 type PropType = {
     rooms: RoomPreview[]
