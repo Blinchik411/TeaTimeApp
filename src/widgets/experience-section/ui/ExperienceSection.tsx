@@ -1,6 +1,6 @@
 import { type Room } from '@/entities/room';
 import styles from './ExperienceSection.module.scss';
-import {RouterButton} from "@/shared/ui/router-button";
+import { RouterButton } from "@/shared/ui/router-button";
 
 
 interface ExperienceSectionProps {
@@ -54,13 +54,13 @@ export const ExperienceSection = ({ room }: ExperienceSectionProps) => {
                     </p>
                 </div>
 
-               <RouterButton
-                   to={'/booking'}
-                   search={{ roomId: room.id }}
-                   variant="experienceButton"
-               >
-                   Book now
-               </RouterButton>
+                <RouterButton
+                    to={'/booking'}
+                    search={{ roomId: room.id }}
+                    variant="experienceButton"
+                >
+                    Book now
+                </RouterButton>
             </div>
         </section>
     );
