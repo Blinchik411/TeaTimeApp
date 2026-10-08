@@ -8,6 +8,14 @@
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
     "types": ["vite/client"],
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "goToDefinition": true
+        }
+      }
+    ],
     "allowArbitraryExtensions": true,
     "skipLibCheck": true,
 

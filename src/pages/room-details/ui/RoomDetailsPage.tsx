@@ -25,7 +25,7 @@ export const RoomDetailsPage = () => {
                 title={room.title}
             />
             <ExperienceSection room={room} />
-            <ReviewSection reviews={room.reviews} roomId={roomId} />
+            <ReviewSection reviews={room.reviews} roomId={room.id} />
             <Footer theme={'light'} />
         </>
     );

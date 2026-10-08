@@ -56,7 +56,7 @@
 .roomHeader {
   --info-color: #ffffff;
   --info-icon-filter: brightness(0) invert(1);
-  gap: clamp(8px, 2vw, 15px);
+  gap: clamp(8px, 2vw, 17px);
   flex-wrap: wrap;
 
   .roomPrice,
@@ -64,7 +64,7 @@
   .roomGuestCount {
     color: var(--info-color);
     font-weight: 500;
-    font-size: clamp(14px, 4vw, 22px);
+    font-size: clamp(14px, 4vw, 26px);
   }
 
   .roomGuestCount {

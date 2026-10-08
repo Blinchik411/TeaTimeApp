@@ -43,25 +43,34 @@ export const ReviewModal = ({ roomId, isOpen, onClose, onSuccess }: ReviewModalP
     return (
         <div className={styles.overlay} onClick={onClose}>
             <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-                <header className={styles.header}>
-                    <h2 className={styles.modalTitle}>Leave a Review</h2>
-                    <button type="button" onClick={onClose} className={styles.closeBtn}>×</button>
-                </header>
-
                 <form onSubmit={handleSubmit} className={styles.form} noValidate>
-                    {submitError && <div className={styles.error}>{submitError}</div>}
-
+                    {submitError && <div className={styles.error
+                    }>{submitError}</div>}
+                
+                    <div className={styles.header}>
+                        <p className={styles.title}>Add New Review </p>
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            className={styles.closeBtn}
+                            aria-label="Close modal"
+                        >
+                            ×
+                        </button>
+                    </div>
                     <div className={styles.field}>
                         <label>Rating</label>
-                        <input
-                            type="number"
-                            name="rating"
-                            min="1"
-                            max="5"
-                            defaultValue="5"
-                            disabled={isSubmitting}
-                            className={errors.rating ? styles.inputError : ''}
-                        />
+                        <div className={styles.ratingInputWrapper}>
+                            <input
+                                type="number"
+                                name="rating"
+                                min="1"
+                                max="5"
+                                defaultValue="5"
+                                disabled={isSubmitting}
+                                className={errors.rating ? styles.inputError : ''}
+                            />
+                        </div>
                         {errors.rating && <span className={styles.error}>{errors.rating}</span>}
                     </div>
 
