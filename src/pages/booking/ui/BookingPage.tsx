@@ -8,7 +8,7 @@ export const BookingPage = () => {
     const navigate = useNavigate({ from: '/booking' });
     const { room, loading, error } = useRoom(roomId);
 
-    const handleStepChange = (newStep: 1 | 2 | 3) => {
+    const handleStepChange = (newStep: 1 | 2 | 3 | 4) => {
         navigate({
             search: (oldSearch) => ({
                 ...oldSearch,
@@ -38,7 +38,7 @@ export const BookingPage = () => {
     if (loading) return <div>Загрузка информации о комнате...</div>;
     if (error || !room) return <div>Ошибка: {error || 'Комната не найдена'}</div>;
 
-    const currentStep = (step >= 1 && step <= 3 ? step : 1) as 1 | 2 | 3;
+    const currentStep = (step >= 1 && step <= 4 ? step : 1) as 1 | 2 | 3 | 4;
 
     return (
         <div className="booking-page">

@@ -5,9 +5,10 @@ import {useZodForm} from "@/shared/lib/hooks/useZodForm";
 
 interface PaymentStepProps {
     onPay?: (data: PaymentFormData) => void;
+    isProcessing?: boolean;
 }
 
-export const PaymentStep = ({ onPay }: PaymentStepProps) => {
+export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) => {
     const { errors, handleSubmit } = useZodForm(paymentSchema, onPay);
 
     return (
@@ -20,11 +21,21 @@ export const PaymentStep = ({ onPay }: PaymentStepProps) => {
                 onSubmit={handleSubmit}
                 noValidate
             >
+                {isProcessing && (
+                    <div className={styles.processingContainer}>
+                        <div className={styles.processingBar}>
+                            <div className={styles.processingBarFill} />
+                        </div>
+                        <p className={styles.processingText}>Processing payment securely...</p>
+                    </div>
+                )}
+
                 <div className={styles.field}>
                     <input
                         type="text"
                         name="cardholderName"
                         placeholder="Cardholder's name"
+                        disabled={isProcessing}
                         className={errors.cardholderName ? styles.inputError : ''}
                     />
                     {errors.cardholderName && (
@@ -38,6 +49,7 @@ export const PaymentStep = ({ onPay }: PaymentStepProps) => {
                         name="cardNumber"
                         placeholder="Card number (16 digits)"
                         maxLength={19}
+                        disabled={isProcessing}
                         className={errors.cardNumber ? styles.inputError : ''}
                     />
                     {errors.cardNumber && (
@@ -52,6 +64,7 @@ export const PaymentStep = ({ onPay }: PaymentStepProps) => {
                             name="expiry"
                             placeholder="MM/YY"
                             maxLength={5}
+                            disabled={isProcessing}
                             className={errors.expiry ? styles.inputError : ''}
                         />
                         {errors.expiry && (
@@ -65,6 +78,7 @@ export const PaymentStep = ({ onPay }: PaymentStepProps) => {
                             name="cvc"
                             placeholder="CVC"
                             maxLength={4}
+                            disabled={isProcessing}
                             className={errors.cvc ? styles.inputError : ''}
                         />
                         {errors.cvc && (

@@ -9,7 +9,7 @@ const bookingSearchSchema = z.object({
     step: z.coerce
         .number()
         .min(1)
-        .max(3)
+        .max(4)
         .catch(1)
         .default(1),
 });

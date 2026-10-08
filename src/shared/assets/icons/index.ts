@@ -20,6 +20,7 @@ import GooglePay from './google-pay-payment.svg?react'
 import PayPal from './paypal-payment.svg?react'
 import Stripe from './stripe-payment.svg?react'
 import MasterCard from './mastercard-payment.svg?react'
+import Check from './check.svg?react'
 
 
 export {
@@ -45,4 +46,5 @@ export {
     PayPal,
     Stripe,
     MasterCard,
+    Check,
 };
