@@ -21,6 +21,8 @@ import PayPal from './paypal-payment.svg?react'
 import Stripe from './stripe-payment.svg?react'
 import MasterCard from './mastercard-payment.svg?react'
 import Check from './check.svg?react'
+import Eye from './eye.svg?react';
+import EyeOff from './eye-off.svg?react';
 
 
 export {
@@ -47,4 +49,6 @@ export {
     Stripe,
     MasterCard,
     Check,
+    Eye,
+    EyeOff,
 };
