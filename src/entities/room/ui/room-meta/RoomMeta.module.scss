@@ -28,7 +28,7 @@
   filter: var(--info-icon-filter, none);
 }
 
-@media (max-width: 1475px) {
+@media (width <= 1475px) {
   .roomMeta {
     justify-content: center;
   }
@@ -44,18 +44,19 @@
     font-size: clamp(13px, 0.6875rem + 0.625vw, 20px);
   }
 
-  @media (max-width: 1475px) {
+  @media (width <= 1475px) {
     justify-content: flex-start;
   }
 
-  @media (max-width: 460px) {
+  @media (width <= 460px) {
     gap: 15px;
   }
 }
 
 .roomHeader {
-  --info-color: #ffffff;
+  --info-color: #fff;
   --info-icon-filter: brightness(0) invert(1);
+
   gap: clamp(8px, 2vw, 17px);
   flex-wrap: wrap;
 

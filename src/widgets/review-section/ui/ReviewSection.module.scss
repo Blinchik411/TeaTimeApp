@@ -4,10 +4,11 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  @media (max-width: 1595px) {
+  @media (width <= 1595px) {
     min-height: 75vh;
   }
-  @media (max-width: 1190px) {
+
+  @media (width <= 1190px) {
     min-height: 60vh;
   }
 }
@@ -36,7 +37,7 @@
 }
 
 .reviewItem {
-  background-color: #ffffff;
+  background-color: #fff;
   display: flex;
   gap: 34px;
   border-radius: 8px;

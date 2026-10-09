@@ -13,7 +13,8 @@
 .headerLogoImage {
   display: block;
 }
-@media (max-width: 1000px) {
+
+@media (width <= 1000px) {
   .header {
     flex-direction: column;
     align-items: center;

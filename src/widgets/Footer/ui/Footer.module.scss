@@ -2,6 +2,7 @@
   --footer-text-color: var(--color-white);
   --footer-bg: transparent;
   --footer-icon-filter: brightness(1);
+
   background-color: var(--footer-bg);
 }
 
@@ -123,7 +124,7 @@
   height: clamp(149px, -0.738rem + 37.426vw, 527px);
 }
 
-@media (max-width: 1190px) {
+@media (width <= 1190px) {
   .footerContainer {
     flex-direction: column;
     align-items: center;

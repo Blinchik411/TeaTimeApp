@@ -15,7 +15,7 @@ export const useDotButton = (
 
     const onDotButtonClick = useCallback(
         (index: number) => {
-            if (!emblaApi) return;
+            if (!emblaApi) {return;}
             emblaApi.scrollTo(index);
         },
         [emblaApi]
@@ -30,7 +30,7 @@ export const useDotButton = (
     }, []);
 
     useEffect(() => {
-        if (!emblaApi) return;
+        if (!emblaApi) {return;}
 
         queueMicrotask(() => {
             onInit(emblaApi);

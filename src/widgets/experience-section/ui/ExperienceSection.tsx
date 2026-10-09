@@ -21,7 +21,7 @@ export const ExperienceSection = ({ room }: ExperienceSectionProps) => {
                         </p>
                         <ol className={styles.experienceList}>
                             {experience.steps.map((step, idx) => (
-                                <li key={idx} className={styles.experienceItem}>{step}</li>
+                                <li key={idx}>{step}</li>
                             ))}
                         </ol>
                         <p className={styles.experienceText}>
@@ -29,11 +29,11 @@ export const ExperienceSection = ({ room }: ExperienceSectionProps) => {
                         </p>
                     </div>
 
-                    <div className={styles.experienceIncludes}>
+                    <div>
                         <h2 className={styles.experienceTitle}>Included in the Experience</h2>
                         <ul className={styles.includesList}>
                             {experience.includes.map((item, idx) => (
-                                <li key={idx} className={styles.includesItem}>{item}</li>
+                                <li key={idx} >{item}</li>
                             ))}
                         </ul>
                     </div>

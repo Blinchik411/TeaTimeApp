@@ -4,7 +4,7 @@
 
 .cardContent {
   display: flex;
-  background-color: #ffffff;
+  background-color: #fff;
   gap: 60px;
   align-items: center;
   padding: 60px;
@@ -27,7 +27,7 @@
   flex-direction: column;
 }
 
-@media (max-width: 1475px) {
+@media (width <= 1475px) {
   .cardContent {
     flex-direction: column;
     gap: 30px;

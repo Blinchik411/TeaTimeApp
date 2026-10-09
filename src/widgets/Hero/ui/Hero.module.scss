@@ -30,13 +30,13 @@
   color: #fcffea;
 }
 
-@media (max-width: 1595px) {
+@media (width <= 1595px) {
   .hero {
     min-height: 75vh;
   }
 }
 
-@media (max-width: 1190px) {
+@media (width <= 1190px) {
   .hero {
     min-height: 60vh;
   }
@@ -51,7 +51,7 @@
   }
 }
 
-@media (max-width: 860px) {
+@media (width <= 860px) {
   .hero {
     min-height: 60vh;
     background-position: 85% bottom;
@@ -62,7 +62,7 @@
   }
 }
 
-@media (max-width: 430px) {
+@media (width <= 430px) {
   .heroText {
     max-width: 30ch;
   }

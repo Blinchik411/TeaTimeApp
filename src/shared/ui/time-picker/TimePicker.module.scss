@@ -20,11 +20,11 @@
 
 .timeSlotBtn {
   background-color: #f2f2f2;
-  color: #000000;
+  color: #000;
   font-family: inherit;
   font-size: 16px;
   padding: 7px 23px;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -37,7 +37,7 @@
 
 
   &.selected {
-    background-color: #FFFFFF;
+    background-color: #FFF;
     border-color: #56783D;
     font-weight: 500;
   }

@@ -9,7 +9,7 @@
   justify-content: space-between;
   padding-bottom: clamp(3rem, 2.495rem + 1.879vw, 4.75rem);
 
-  @media (max-width: 1475px) {
+  @media (width <= 1475px) {
     flex-direction: column;
     gap: 49px;
   }
@@ -50,3 +50,5 @@
 .experienceBooking {
   margin-bottom: clamp(3rem, 2.341rem + 2.452vw, 5.375rem);
 }
+
+

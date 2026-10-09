@@ -35,8 +35,8 @@ export const BookingPage = () => {
         });
     };
 
-    if (loading) return <div>Загрузка информации о комнате...</div>;
-    if (error || !room) return <div>Ошибка: {error || 'Комната не найдена'}</div>;
+    if (loading) {return <div>Загрузка информации о комнате...</div>;}
+    if (error || !room) {return <div>Ошибка: {error || 'Комната не найдена'}</div>;}
 
     const currentStep = (step >= 1 && step <= 4 ? step : 1) as 1 | 2 | 3 | 4;
 

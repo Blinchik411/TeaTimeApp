@@ -13,8 +13,8 @@ export const RoomDetailsPage = () => {
     const { roomId } = useParams({ from: '/room/$roomId' });
     const { room, loading, error } = useRoom(roomId);
 
-    if (loading) return <div>Загрузка информации о комнате...</div>;
-    if (error || !room) return <div>Ошибка: {error || 'Комната не найдена'}</div>;
+    if (loading) {return <div>Загрузка информации о комнате...</div>;}
+    if (error || !room) {return <div>Ошибка: {error || 'Комната не найдена'}</div>;}
 
     return (
         <>

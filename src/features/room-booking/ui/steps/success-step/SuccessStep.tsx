@@ -19,7 +19,7 @@ export const SuccessStep = ({
     onGoHome,
 }: SuccessStepProps) => {
     const formattedDate = useMemo(() => {
-        if (!date) return 'Selected Date';
+        if (!date) {return 'Selected Date';}
         try {
             return format(parseISO(date), 'MMMM dd, yyyy');
         } catch {

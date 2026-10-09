@@ -33,11 +33,11 @@ export const RoomBookingWizard = ({
     const isNextDisabled = step === 1 && (!date || !time);
 
     const handleNextStep = () => {
-        if (step < 4) onStepChange((step + 1) as 1 | 2 | 3 | 4);
+        if (step < 4) {onStepChange((step + 1) as 1 | 2 | 3 | 4);}
     };
 
     const handleBack = () => {
-        if (step > 1 && step < 4) onStepChange((step - 1) as 1 | 2 | 3 | 4);
+        if (step > 1 && step < 4) {onStepChange((step - 1) as 1 | 2 | 3 | 4);}
     };
 
     const handlePaymentSubmit = (data: unknown) => {
@@ -132,4 +132,4 @@ export const RoomBookingWizard = ({
             )}
         </div>
     );
-};
+};

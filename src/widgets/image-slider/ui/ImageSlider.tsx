@@ -9,7 +9,7 @@ interface ImageSliderProps {
 export const ImageSlider = ({ images, title }: ImageSliderProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    if (!images || images.length === 0) return null;
+    if (!images || images.length === 0) {return null;}
 
     const currentPhotoUrl = images[currentIndex];
 

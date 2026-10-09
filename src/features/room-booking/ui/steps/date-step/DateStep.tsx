@@ -24,7 +24,7 @@ export const DateStep = ({
     const bookingTimes = room?.experience.bookingTimes ?? [];
 
     const handleSelectDate = (newDate: Date | undefined) => {
-        if (!newDate) return;
+        if (!newDate) {return;}
         const formattedDate = format(newDate, 'yyyy-MM-dd');
         onSelectDate(formattedDate);
     };

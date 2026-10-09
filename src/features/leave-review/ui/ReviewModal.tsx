@@ -38,7 +38,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose, onSuccess }: ReviewModalP
 
     const { errors, handleSubmit } = useZodForm(reviewSchema, handleSuccess);
 
-    if (!isOpen) return null;
+    if (!isOpen) {return null;}
 
     return (
         <div className={styles.overlay} onClick={onClose}>
