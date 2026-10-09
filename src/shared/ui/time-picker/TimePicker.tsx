@@ -25,9 +25,7 @@ export const TimePicker = ({
             <button
               key={slot}
               type="button"
-              className={clsx(styles.timeSlotBtn, {
-                [styles.selected]: isSelected,
-              })}
+              className={clsx(styles.timeSlotBtn, isSelected && styles.selected)}
               onClick={() => onSelectTime(slot)}
             >
               {slot}

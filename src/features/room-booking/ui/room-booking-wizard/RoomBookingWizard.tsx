@@ -4,14 +4,15 @@ import { DateStep } from '../steps/date-step'
 import { ContactStep } from '../steps/contact-step'
 import { PaymentStep } from '../steps/payment-step'
 import { SuccessStep } from '../steps/success-step'
-import { RoomDetailsInfo, type RoomPreview } from '@/entities/room'
+import { type BookingStep, getNextStep, getPrevStep } from '../../model'
+import { RoomDetailsInfo, type Room } from '@/entities/room'
 import { Button } from '@/shared/ui/button'
 import styles from './RoomBookingWizard.module.scss'
 
 interface RoomBookingWizardProps {
-  room: RoomPreview
-  step: 1 | 2 | 3 | 4
-  onStepChange: (step: 1 | 2 | 3 | 4) => void
+  room: Room
+  step: BookingStep
+  onStepChange: (step: BookingStep) => void
   date?: string
   time?: string
   onDateChange: (date: string) => void
@@ -33,19 +34,20 @@ export const RoomBookingWizard = ({
   const isNextDisabled = step === 1 && (!date || !time)
 
   const handleNextStep = () => {
-    if (step < 4) {
-      onStepChange((step + 1) as 1 | 2 | 3 | 4)
+    const nextStep = getNextStep(step)
+    if (nextStep) {
+      onStepChange(nextStep)
     }
   }
 
   const handleBack = () => {
-    if (step > 1 && step < 4) {
-      onStepChange((step - 1) as 1 | 2 | 3 | 4)
+    const prevStep = getPrevStep(step)
+    if (prevStep) {
+      onStepChange(prevStep)
     }
   }
 
-  const handlePaymentSubmit = (data: unknown) => {
-    console.log('Payment data:', data)
+  const handlePaymentSubmit = () => {
     setIsProcessing(true)
     setTimeout(() => {
       setIsProcessing(false)

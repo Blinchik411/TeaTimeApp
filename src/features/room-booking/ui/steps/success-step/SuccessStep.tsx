@@ -2,11 +2,11 @@ import { useMemo } from 'react'
 import { format, parseISO } from 'date-fns'
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
-import type { RoomPreview } from '@/entities/room'
+import type { Room } from '@/entities/room'
 import styles from './SuccessStep.module.scss'
 
 interface SuccessStepProps {
-  room: RoomPreview
+  room: Room
   date?: string
   time?: string
   onGoHome?: () => void

@@ -1,14 +1,14 @@
 import { BookingHeader } from '@/widgets/booking-header'
 import { useNavigate, useSearch } from '@tanstack/react-router'
 import { useRoom } from '@/entities/room'
-import { RoomBookingWizard } from '@/features/room-booking'
+import { RoomBookingWizard, type BookingStep } from '@/features/room-booking'
 
 export const BookingPage = () => {
-  const { roomId, step = 1, date, time } = useSearch({ from: '/booking' })
+  const { roomId, step, date, time } = useSearch({ from: '/booking' })
   const navigate = useNavigate({ from: '/booking' })
   const { room, loading, error } = useRoom(roomId)
 
-  const handleStepChange = (newStep: 1 | 2 | 3 | 4) => {
+  const handleStepChange = (newStep: BookingStep) => {
     navigate({
       search: (oldSearch) => ({
         ...oldSearch,
@@ -42,16 +42,14 @@ export const BookingPage = () => {
     return <div>Ошибка: {error || 'Комната не найдена'}</div>
   }
 
-  const currentStep = (step >= 1 && step <= 4 ? step : 1) as 1 | 2 | 3 | 4
-
   return (
     <div className="booking-page">
-      <BookingHeader activeStepIndex={currentStep - 1} />
+      <BookingHeader activeStepIndex={step - 1} />
 
       <main>
         <RoomBookingWizard
           room={room}
-          step={currentStep}
+          step={step}
           onStepChange={handleStepChange}
           date={date}
           time={time}

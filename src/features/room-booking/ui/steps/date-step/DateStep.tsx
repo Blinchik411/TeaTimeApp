@@ -1,11 +1,11 @@
 import { DatePicker } from '@/shared/ui/date-picker'
 import { TimePicker } from '@/shared/ui/time-picker'
-import { type RoomPreview } from '@/entities/room'
+import { type Room } from '@/entities/room'
 import { format } from 'date-fns'
 import styles from './DateStep.module.scss'
 
 interface DateStepProps {
-  room: RoomPreview
+  room: Room
   date?: string
   time?: string
   onSelectDate: (date: string) => void

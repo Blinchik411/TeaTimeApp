@@ -28,9 +28,7 @@ export const ProgressBar = ({ steps, activeStepIndex, className = '' }: Progress
         {steps.map((step, index) => {
           const isCompleted = index < activeStepIndex
 
-          const stepClasses = clsx(styles.progressStep, {
-            [styles.completed]: isCompleted,
-          })
+          const stepClasses = clsx(styles.progressStep, isCompleted && styles.completed)
 
           return (
             <li key={step.id} className={stepClasses}>

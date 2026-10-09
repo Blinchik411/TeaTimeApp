@@ -22,12 +22,18 @@
   font-weight: 400;
   font-size: clamp(83px, 6vw + 1rem, 103px);
   color: var(--color-white);
+  text-shadow:
+    0 4px 24px rgb(0 0 0 / 75%),
+    0 2px 6px rgb(0 0 0 / 50%);
 }
 
 .heroText {
   font-weight: 500;
   font-size: clamp(16px, 0.782rem + 0.792vw, 24px);
   color: #fcffea;
+  text-shadow:
+    0 2px 12px rgb(0 0 0 / 75%),
+    0 1px 4px rgb(0 0 0 / 60%);
 }
 
 @media (width <= 1595px) {

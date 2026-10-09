@@ -29,6 +29,8 @@
 
     /* Linting */
     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
