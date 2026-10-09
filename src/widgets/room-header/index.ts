@@ -1,1 +1,1 @@
-export {RoomHeader} from './ui/RoomHeader'
+export { RoomHeader } from './ui/RoomHeader'

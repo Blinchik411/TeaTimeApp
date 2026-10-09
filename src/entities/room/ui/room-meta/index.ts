@@ -1,2 +1,2 @@
-export { RoomMeta } from './RoomMeta';
-export type { RoomMetaProps } from './RoomMeta';
+export { RoomMeta } from './RoomMeta'
+export type { RoomMetaProps } from './RoomMeta'

@@ -1,32 +1,32 @@
-import { useState } from 'react';
-import { Header } from "@/widgets/header";
-import { MobileMenu } from "@/widgets/mobile-menu";
-import { Hero } from "@/widgets/hero";
-import { About } from "@/widgets/about";
-import { Footer } from "@/widgets/footer";
-import { RoomCarousel } from "@/widgets/rooms-carousel";
-import { useRooms } from "@/entities/room";
+import { useState } from 'react'
+import { Header } from '@/widgets/header'
+import { MobileMenu } from '@/widgets/mobile-menu'
+import { Hero } from '@/widgets/hero'
+import { About } from '@/widgets/about'
+import { Footer } from '@/widgets/footer'
+import { RoomCarousel } from '@/widgets/rooms-carousel'
+import { useRooms } from '@/entities/room'
 
 export const HomePage = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { rooms, loading, error } = useRooms();
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { rooms, loading, error } = useRooms()
 
-    if (loading) {
-        return <div>Загрузка данных...</div>;
-    }
+  if (loading) {
+    return <div>Загрузка данных...</div>
+  }
 
-    if (error || !rooms) {
-        return <div>Ошибка: {error || 'Не удалось загрузить данные'}</div>;
-    }
+  if (error || !rooms) {
+    return <div>Ошибка: {error || 'Не удалось загрузить данные'}</div>
+  }
 
-    return (
-        <>
-            <Header onOpenMenu={() => setIsMenuOpen(true)} />
-            <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-            <Hero />
-            <RoomCarousel rooms={rooms} />
-            <About />
-            <Footer />
-        </>
-    );
-};
+  return (
+    <>
+      <Header onOpenMenu={() => setIsMenuOpen(true)} />
+      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <Hero />
+      <RoomCarousel rooms={rooms} />
+      <About />
+      <Footer />
+    </>
+  )
+}

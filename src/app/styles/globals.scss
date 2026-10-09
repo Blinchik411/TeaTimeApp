@@ -1,17 +1,19 @@
-@use "@/shared/assets/fonts/fonts";
+@use '@/shared/assets/fonts/fonts';
 
 :root {
-  --color-dark-green: #131C0D;
-  --color-haki: #4E5531;
-  --color-light-green: #56783D;
-  --color-white: #FFF;
+  --color-dark-green: #131c0d;
+  --color-haki: #4e5531;
+  --color-light-green: #56783d;
+  --color-white: #fff;
   --color-black: #000;
-  --font-family: "Montserrat", sans-serif;
-  --second-family: "Montserrat Alternates", sans-serif;
+  --font-family: 'Montserrat', sans-serif;
+  --second-family: 'Montserrat Alternates', sans-serif;
   --border-radius: 8px;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;

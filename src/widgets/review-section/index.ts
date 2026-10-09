@@ -1,4 +1,3 @@
-export {ReviewSection} from './ui/ReviewSection'
+export { ReviewSection } from './ui/ReviewSection'
 
-export class ReviewsSection {
-}
+export class ReviewsSection {}

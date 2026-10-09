@@ -1,1 +1,1 @@
-export  {type ReviewFormData} from './review.schema'
+export { type ReviewFormData } from './review.schema'

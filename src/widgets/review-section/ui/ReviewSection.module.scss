@@ -1,5 +1,5 @@
 .reviews {
-  background-image: url("@/shared/assets/images/reviews-image.jpg");
+  background-image: url('@/shared/assets/images/reviews-image.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -70,9 +70,9 @@
 
 .reviewMeta {
   display: flex;
-  gap: clamp(0.9375rem, 0.78rem + 0.60vw, 1.5rem);
+  gap: clamp(0.9375rem, 0.78rem + 0.6vw, 1.5rem);
   align-items: baseline;
-  font-size: clamp(0.625rem, 0.52rem + 0.40vw, 1rem);
+  font-size: clamp(0.625rem, 0.52rem + 0.4vw, 1rem);
 }
 
 .reviewTime {

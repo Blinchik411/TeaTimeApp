@@ -1,25 +1,22 @@
-import { Logo } from "@/shared/ui/logo";
-import { ProgressBar, type StepItem } from "@/shared/ui/progress-bar";
-import styles from './BookingHeader.module.scss';
+import { Logo } from '@/shared/ui/logo'
+import { ProgressBar, type StepItem } from '@/shared/ui/progress-bar'
+import styles from './BookingHeader.module.scss'
 
 const BOOKING_STEPS: StepItem[] = [
-    { id: 'date', label: 'date' },
-    { id: 'contact', label: 'contact' },
-    { id: 'payment', label: 'payment' },
-];
+  { id: 'date', label: 'date' },
+  { id: 'contact', label: 'contact' },
+  { id: 'payment', label: 'payment' },
+]
 
 interface BookingHeaderProps {
-    activeStepIndex: number;
+  activeStepIndex: number
 }
 
 export const BookingHeader = ({ activeStepIndex }: BookingHeaderProps) => {
-    return (
-        <header className={`${styles.header} container`}>
-            <Logo />
-            <ProgressBar
-                steps={BOOKING_STEPS}
-                activeStepIndex={activeStepIndex}
-            />
-        </header>
-    );
-};
+  return (
+    <header className={`${styles.header} container`}>
+      <Logo />
+      <ProgressBar steps={BOOKING_STEPS} activeStepIndex={activeStepIndex} />
+    </header>
+  )
+}

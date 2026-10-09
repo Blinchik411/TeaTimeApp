@@ -1,1 +1,1 @@
-export { ProgressBar, type StepItem } from './ProgressBar';
+export { ProgressBar, type StepItem } from './ProgressBar'

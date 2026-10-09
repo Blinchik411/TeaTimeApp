@@ -1,5 +1,5 @@
 .cardTitle {
-  font-family: var(--second-family),sans-serif;
+  font-family: var(--second-family), sans-serif;
   font-weight: 500;
   font-size: clamp(20px, 0.893rem + 1.786vw, 40px);
   margin-bottom: 20px;
@@ -28,7 +28,6 @@
   gap: 15px;
 }
 
-
 .field {
   display: flex;
   flex-direction: column;
@@ -45,7 +44,9 @@
     background-color: #fff;
     color: #000;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
 
     &::placeholder {
       color: #999;
@@ -87,7 +88,9 @@
   cursor: pointer;
   color: #71717a;
   border-radius: 6px;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 
   &:hover:not(:disabled) {
     color: #18181b;
@@ -110,7 +113,6 @@
   }
 }
 
-
 .errorMessage {
   font-size: 12px;
   color: #e53e3e;
@@ -132,8 +134,8 @@
   flex-direction: column;
   gap: 10px;
   padding: 14px 16px;
-  background: #F4F8EE;
-  border: 1px solid #CDE2B8;
+  background: #f4f8ee;
+  border: 1px solid #cde2b8;
   border-radius: 12px;
   margin-bottom: 8px;
   animation: fadeIn 0.3s ease-out;
@@ -154,14 +156,14 @@
 .processingBar {
   width: 100%;
   height: 6px;
-  background: #D8E0D2;
+  background: #d8e0d2;
   border-radius: 4px;
   overflow: hidden;
 }
 
 .processingBarFill {
   height: 100%;
-  background: #9BE664;
+  background: #9be664;
   border-radius: inherit;
   width: 0%;
   animation: fillProgress 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -188,7 +190,7 @@
 .processingText {
   font-size: 13px;
   font-weight: 500;
-  color: #3B5F22;
+  color: #3b5f22;
   margin: 0;
   text-align: center;
 }

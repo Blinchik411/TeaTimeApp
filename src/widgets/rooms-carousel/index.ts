@@ -1,1 +1,1 @@
-export  { RoomCarousel } from './ui/RoomCarousel'
+export { RoomCarousel } from './ui/RoomCarousel'

@@ -1,11 +1,11 @@
-import { supabase } from '@/shared/api/supabase';
-import type { Room, RoomPreview } from '../model/types';
-
+import { supabase } from '@/shared/api/supabase'
+import type { Room, RoomPreview } from '../model/types'
 
 export const fetchRoomById = async (roomId: string): Promise<Room | null> => {
-    const { data, error } = await supabase
-        .from('tea_rooms')
-        .select(`
+  const { data, error } = await supabase
+    .from('tea_rooms')
+    .select(
+      `
           id,
           title,
           price,
@@ -23,21 +23,20 @@ export const fetchRoomById = async (roomId: string): Promise<Room | null> => {
             text,
             avatarUrl: avatar_url
           )
-        `)
-        .eq('id', roomId)
-        .maybeSingle();
+        `,
+    )
+    .eq('id', roomId)
+    .maybeSingle()
 
-    if (error) {
-        throw new Error(`Supabase error: ${error.message}`);
-    }
+  if (error) {
+    throw new Error(`Supabase error: ${error.message}`)
+  }
 
-    return data as Room | null;
-};
+  return data as Room | null
+}
 
 export const fetchRooms = async (): Promise<RoomPreview[]> => {
-    const { data, error } = await supabase
-        .from('tea_rooms')
-        .select(`
+  const { data, error } = await supabase.from('tea_rooms').select(`
             id,
             title,
             price,
@@ -45,11 +44,11 @@ export const fetchRooms = async (): Promise<RoomPreview[]> => {
             maxGuests: max_guests,
             description,
             previewImageUrl: preview_image_url
-        `);
+        `)
 
-    if (error) {
-        throw new Error(`Ошибка Supabase: ${error.message}`);
-    }
+  if (error) {
+    throw new Error(`Ошибка Supabase: ${error.message}`)
+  }
 
-    return (data as RoomPreview[]) || [];
-};
+  return (data as RoomPreview[]) || []
+}

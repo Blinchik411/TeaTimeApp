@@ -1,13 +1,13 @@
-import { type ComponentPropsWithRef } from 'react';
+import { type ComponentPropsWithRef } from 'react'
 
-type PropType = ComponentPropsWithRef<'button'>;
+type PropType = ComponentPropsWithRef<'button'>
 
 export const DotButton = (props: PropType) => {
-    const { children, ...restProps } = props;
+  const { children, ...restProps } = props
 
-    return (
-        <button type="button" {...restProps}>
-            {children}
-        </button>
-    );
-};
+  return (
+    <button type="button" {...restProps}>
+      {children}
+    </button>
+  )
+}

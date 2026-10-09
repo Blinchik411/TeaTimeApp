@@ -1,32 +1,33 @@
-import { useState } from 'react';
-import { useParams } from '@tanstack/react-router';
-import { useRoom } from '@/entities/room';
-import { RoomHeader } from "@/widgets/room-header";
-import { MobileMenu } from "@/widgets/mobile-menu";
-import { ExperienceSection } from "@/widgets/experience-section";
-import { Footer } from '@/widgets/footer';
-import { ReviewSection } from "@/widgets/review-section";
-import { ImageSlider } from "@/widgets/image-slider";
+import { useState } from 'react'
+import { useParams } from '@tanstack/react-router'
+import { useRoom } from '@/entities/room'
+import { RoomHeader } from '@/widgets/room-header'
+import { MobileMenu } from '@/widgets/mobile-menu'
+import { ExperienceSection } from '@/widgets/experience-section'
+import { Footer } from '@/widgets/footer'
+import { ReviewSection } from '@/widgets/review-section'
+import { ImageSlider } from '@/widgets/image-slider'
 
 export const RoomDetailsPage = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { roomId } = useParams({ from: '/room/$roomId' });
-    const { room, loading, error } = useRoom(roomId);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { roomId } = useParams({ from: '/room/$roomId' })
+  const { room, loading, error } = useRoom(roomId)
 
-    if (loading) {return <div>Загрузка информации о комнате...</div>;}
-    if (error || !room) {return <div>Ошибка: {error || 'Комната не найдена'}</div>;}
+  if (loading) {
+    return <div>Загрузка информации о комнате...</div>
+  }
+  if (error || !room) {
+    return <div>Ошибка: {error || 'Комната не найдена'}</div>
+  }
 
-    return (
-        <>
-            <RoomHeader room={room} onOpenMenu={() => setIsMenuOpen(true)} />
-            <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-            <ImageSlider
-                images={room.detailImageUrl}
-                title={room.title}
-            />
-            <ExperienceSection room={room} />
-            <ReviewSection reviews={room.reviews} roomId={room.id} />
-            <Footer theme={'light'} />
-        </>
-    );
-};
+  return (
+    <>
+      <RoomHeader room={room} onOpenMenu={() => setIsMenuOpen(true)} />
+      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <ImageSlider images={room.detailImageUrl} title={room.title} />
+      <ExperienceSection room={room} />
+      <ReviewSection reviews={room.reviews} roomId={room.id} />
+      <Footer theme={'light'} />
+    </>
+  )
+}

@@ -1,31 +1,31 @@
 export interface Review {
-    id: string;
-    author: string;
-    date: string;
-    rating: number;
-    text: string;
-    avatarUrl: string;
+  id: string
+  author: string
+  date: string
+  rating: number
+  text: string
+  avatarUrl: string
 }
 
 export interface RoomExperience {
-    durationText: string;
-    steps: string[];
-    includes: string[];
-    bookingTimes: string[];
-    groupSizeText: string;
+  durationText: string
+  steps: string[]
+  includes: string[]
+  bookingTimes: string[]
+  groupSizeText: string
 }
 
 export interface Room {
-    id: string;
-    title: string;
-    price: number;
-    duration: string;
-    maxGuests: number;
-    description: string;
-    previewImageUrl: string;
-    detailImageUrl: string[]
-    experience: RoomExperience;
-    reviews: Review[];
+  id: string
+  title: string
+  price: number
+  duration: string
+  maxGuests: number
+  description: string
+  previewImageUrl: string
+  detailImageUrl: string[]
+  experience: RoomExperience
+  reviews: Review[]
 }
 
-export type RoomPreview = Omit<Room, 'reviews' | 'detailImageUrl'>;
+export type RoomPreview = Omit<Room, 'reviews' | 'detailImageUrl'>

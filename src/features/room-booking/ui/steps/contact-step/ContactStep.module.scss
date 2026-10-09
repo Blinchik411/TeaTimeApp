@@ -1,5 +1,5 @@
 .bookingTitle {
-  font-family: var(--second-family),sans-serif;
+  font-family: var(--second-family), sans-serif;
   font-weight: 500;
   font-size: clamp(20px, 0.893rem + 1.786vw, 40px);
   margin-bottom: 20px;
@@ -23,7 +23,6 @@
   }
 }
 
-
 .field {
   display: flex;
   flex-direction: column;
@@ -40,7 +39,9 @@
     background-color: #fff;
     color: #000;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
 
     &::placeholder {
       color: #999;
@@ -51,13 +52,11 @@
       border-color: #999;
     }
 
-
     &.inputError {
       border-color: #e53e3e;
     }
   }
 }
-
 
 .errorMessage {
   font-size: 12px;

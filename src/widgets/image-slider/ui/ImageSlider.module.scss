@@ -14,7 +14,6 @@
   object-fit: cover; /* Сохраняет пропорции фото и аккуратно подрезает края */
 }
 
-
 .overlay {
   position: absolute;
   inset: 0;
@@ -35,7 +34,9 @@
   cursor: pointer;
   padding: 16px;
   z-index: 2;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
   user-select: none;
 
   &:hover {
@@ -88,7 +89,9 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 
   &:hover {
     background-color: rgb(255 255 255 / 80%);

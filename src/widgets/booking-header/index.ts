@@ -1,1 +1,1 @@
-export {BookingHeader} from './ui/BookingHeader'
+export { BookingHeader } from './ui/BookingHeader'
