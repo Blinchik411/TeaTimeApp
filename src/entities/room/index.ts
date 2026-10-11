@@ -1,4 +1,4 @@
-export { RoomCard } from './ui/room-card'
+export { RoomCard, RoomCardSkeleton } from './ui/room-card'
 export { RoomDetailsInfo } from './ui/room-details-info'
 export { RoomMeta, type RoomMetaProps } from './ui/room-meta'
 

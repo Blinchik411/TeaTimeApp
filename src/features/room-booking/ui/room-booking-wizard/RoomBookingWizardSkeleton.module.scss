@@ -1,0 +1,135 @@
+.bookingTitle {
+  height: clamp(24px, 2.5vw, 40px);
+  width: clamp(220px, 60%, 320px);
+  margin-bottom: 20px;
+}
+
+.calendarWrapper {
+  width: 100%;
+  max-width: 340px;
+  min-height: 343px;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendarNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.navArrow {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.navTitle {
+  width: 140px;
+  height: 22px;
+  border-radius: 4px;
+}
+
+.weekdaysRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.weekdayCell {
+  height: 16px;
+  border-radius: 4px;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.dayCell {
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.timeSection {
+  padding-top: 20px;
+  max-width: 395px;
+  width: 100%;
+}
+
+.timeTitle {
+  width: 140px;
+  height: 22px;
+  margin-bottom: 17px;
+}
+
+.timeSlotsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  max-width: 300px;
+}
+
+.timeSlot {
+  height: 40px;
+  border-radius: var(--border-radius);
+}
+
+.sidebarInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.roomTitle {
+  height: clamp(24px, 2.5vw, 40px);
+  width: clamp(220px, 65%, 360px);
+  margin-bottom: 38px;
+
+  @include mq-down('desktop') {
+    margin-bottom: 25px;
+  }
+}
+
+.descriptionLines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: clamp(14px, 1.2vw, 20px);
+  width: 100%;
+}
+
+.textLine {
+  height: 18px;
+  width: 100%;
+
+  &.shortTextLine {
+    width: 65%;
+  }
+}
+
+.metaRow {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 24px;
+}
+
+.metaPill {
+  height: 24px;
+  width: 80px;
+  border-radius: 6px;
+}
+
+.nextButton {
+  width: 215px;
+  height: 61px;
+  border-radius: var(--border-radius);
+
+  @include mq-down('mobile-sm') {
+    width: 195px;
+    height: 48px;
+  }
+}

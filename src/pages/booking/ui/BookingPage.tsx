@@ -1,12 +1,17 @@
 import { BookingHeader } from '@/widgets/booking-header'
-import { useNavigate, useSearch } from '@tanstack/react-router'
+import { Link, useNavigate, useSearch } from '@tanstack/react-router'
 import { useRoom } from '@/entities/room'
-import { RoomBookingWizard, type BookingStep } from '@/features/room-booking'
+import {
+  RoomBookingWizard,
+  RoomBookingWizardSkeleton,
+  type BookingStep,
+} from '@/features/room-booking'
+import styles from './BookingPage.module.scss'
 
 export const BookingPage = () => {
   const { roomId, step, date, time } = useSearch({ from: '/booking' })
   const navigate = useNavigate({ from: '/booking' })
-  const { room, loading, error } = useRoom(roomId)
+  const { room, loading, error, refetch } = useRoom(roomId)
 
   const handleStepChange = (newStep: BookingStep) => {
     navigate({
@@ -35,27 +40,46 @@ export const BookingPage = () => {
     })
   }
 
-  if (loading) {
-    return <div>Загрузка информации о комнате...</div>
-  }
-  if (error || !room) {
-    return <div>Ошибка: {error || 'Комната не найдена'}</div>
-  }
-
   return (
-    <div className="booking-page">
+    <div className={styles.bookingPage}>
       <BookingHeader activeStepIndex={step - 1} />
 
-      <main>
-        <RoomBookingWizard
-          room={room}
-          step={step}
-          onStepChange={handleStepChange}
-          date={date}
-          time={time}
-          onDateChange={handleDateChange}
-          onTimeChange={handleTimeChange}
-        />
+      <main className={styles.mainContent}>
+        {loading ? (
+          <RoomBookingWizardSkeleton />
+        ) : error || !room ? (
+          <div className={`container ${styles.errorWrapper}`}>
+            <div className={styles.errorCard} role="alert">
+              <span className={styles.errorIcon} aria-hidden="true">
+                🍵
+              </span>
+              <h2 className={styles.errorTitle}>Комната не найдена</h2>
+              <p className={styles.errorText}>
+                {error || 'К сожалению, запрашиваемая комната недоступна для бронирования.'}
+              </p>
+              <div className={styles.actions}>
+                {refetch && (
+                  <button type="button" onClick={refetch} className={styles.retryButton}>
+                    Попробовать снова
+                  </button>
+                )}
+                <Link to="/" className={styles.homeButton}>
+                  На главную
+                </Link>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <RoomBookingWizard
+            room={room}
+            step={step}
+            onStepChange={handleStepChange}
+            date={date}
+            time={time}
+            onDateChange={handleDateChange}
+            onTimeChange={handleTimeChange}
+          />
+        )}
       </main>
     </div>
   )

@@ -4,27 +4,25 @@ import { MobileMenu } from '@/widgets/mobile-menu'
 import { Hero } from '@/widgets/hero'
 import { About } from '@/widgets/about'
 import { Footer } from '@/widgets/footer'
-import { RoomCarousel } from '@/widgets/rooms-carousel'
+import { RoomCarousel, RoomCarouselSkeleton, RoomCarouselError } from '@/widgets/rooms-carousel'
 import { useRooms } from '@/entities/room'
 
 export const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { rooms, loading, error } = useRooms()
-
-  if (loading) {
-    return <div>Загрузка данных...</div>
-  }
-
-  if (error || !rooms) {
-    return <div>Ошибка: {error || 'Не удалось загрузить данные'}</div>
-  }
+  const { rooms, loading, error, refetch } = useRooms()
 
   return (
     <>
       <Header onOpenMenu={() => setIsMenuOpen(true)} />
       <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       <Hero />
-      <RoomCarousel rooms={rooms} />
+      {loading ? (
+        <RoomCarouselSkeleton />
+      ) : error ? (
+        <RoomCarouselError error={error} onRetry={refetch} />
+      ) : (
+        <RoomCarousel rooms={rooms} />
+      )}
       <About />
       <Footer />
     </>

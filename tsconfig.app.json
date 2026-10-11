@@ -12,7 +12,13 @@
       {
         "name": "typescript-plugin-css-modules",
         "options": {
-          "goToDefinition": true
+          "goToDefinition": true,
+          "additionalData": "@use \"shared/styles\" as *;\n",
+          "rendererOptions": {
+            "sass": {
+              "loadPaths": ["src"]
+            }
+          }
         }
       }
     ],

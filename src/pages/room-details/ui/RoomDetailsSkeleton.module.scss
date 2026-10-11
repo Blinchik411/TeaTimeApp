@@ -1,0 +1,90 @@
+.detailsSkeleton {
+  display: flex;
+  flex-direction: column;
+}
+
+.sliderContainer {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 80dvh;
+  border-radius: var(--border-radius, 8px);
+  overflow: hidden;
+  background-color: var(--color-black);
+}
+
+.sliderSkeleton {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.experienceSection {
+  background-color: var(--color-white);
+  padding-top: clamp(3.438rem, 2.643rem + 2.953vw, 6.188rem);
+  padding-bottom: clamp(3.438rem, 2.643rem + 2.953vw, 6.188rem);
+}
+
+.experienceRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: clamp(3rem, 2.495rem + 1.879vw, 4.75rem);
+
+  @include mq-down('desktop') {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+
+.leftColumn {
+  width: 100%;
+  max-width: 675px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rightColumn {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.titleSkeleton {
+  width: 240px;
+  height: clamp(28px, 3vw, 40px);
+}
+
+.linesGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.line {
+  width: 100%;
+  height: 18px;
+
+  &.short {
+    width: 65%;
+  }
+
+  &.medium {
+    width: 85%;
+  }
+}
+
+.bookingBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: clamp(2.5rem, 2vw, 4rem);
+}
+
+.buttonSkeleton {
+  width: 220px;
+  height: 52px;
+  border-radius: 8px;
+}
