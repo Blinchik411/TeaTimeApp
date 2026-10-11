@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { Link } from '@tanstack/react-router'
+import clsx from 'clsx'
 import { SocialLinks } from '@/shared/ui/social-links'
 import { Icon } from '@/shared/ui/icon'
 import { Button } from '@/shared/ui/button'
@@ -10,55 +12,99 @@ interface MobileMenuProps {
   onClose: () => void
 }
 
+interface NavItem {
+  label: string
+  to: string
+  hash?: string
+}
+
+const NAV_ITEMS: NavItem[] = [
+  { label: 'Home', to: '/' },
+  { label: 'About Us', to: '/', hash: 'about' },
+  { label: 'Rooms', to: '/', hash: 'rooms' },
+  { label: 'Contact', to: '/', hash: 'contact' },
+]
+
 export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
+  const handleLinkClick = (hash?: string) => {
+    onClose()
+
+    if (hash) {
+      setTimeout(() => {
+        const targetElement = document.getElementById(hash)
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
-    <div className={`${styles.mobileMenu} ${isOpen ? styles.isOpen : ''}`.trim()}>
-      <div className={`${styles.headerMobileMenu} ${styles.mobileMenuLight}`}>
-        <Button
-          variant="closeMobileMenuButton"
-          className={styles.closeMobileMenuButton}
-          type="button"
-          onClick={onClose}
-          aria-label="Закрыть меню"
-        >
-          <Icon name="CloseButton" width={20} height={20} />
-        </Button>
+    <>
+      <div
+        className={clsx(styles.backdrop, isOpen && styles.isOpen)}
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
-        <Logo
-          className={styles.mobileLogo}
-          iconClassName={styles.mobileLogoImage}
-          width={194}
-          height={17}
-          onClick={onClose}
-        />
-      </div>
+      <aside
+        className={clsx(styles.mobileMenu, isOpen && styles.isOpen)}
+        aria-label="Мобильное меню"
+        aria-hidden={!isOpen}
+      >
+        <div className={clsx(styles.headerMobileMenu, styles.mobileMenuLight)}>
+          <Button
+            variant="closeMobileMenuButton"
+            className={styles.closeMobileMenuButton}
+            type="button"
+            onClick={onClose}
+            aria-label="Закрыть меню"
+          >
+            <Icon name="CloseButton" width={20} height={20} />
+          </Button>
 
-      <nav className={styles.headerMenu}>
-        <ul className={styles.mobileMenuList}>
-          <li>
-            <Link to="/" className={styles.headerMenuLink} onClick={onClose}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className={styles.headerMenuLink} onClick={onClose}>
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className={styles.headerMenuLink} onClick={onClose}>
-              Rooms
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className={styles.headerMenuLink} onClick={onClose}>
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </nav>
+          <Logo
+            className={styles.mobileLogo}
+            iconClassName={styles.mobileLogoImage}
+            width={194}
+            height={17}
+            onClick={onClose}
+          />
+        </div>
 
-      <SocialLinks className={styles.mobileSocials} />
-    </div>
+        <nav className={styles.headerMenu} aria-label="Навигация по сайту">
+          <ul className={styles.mobileMenuList}>
+            {NAV_ITEMS.map((item) => (
+              <li key={item.label}>
+                <Link
+                  to={item.to}
+                  hash={item.hash}
+                  className={styles.headerMenuLink}
+                  onClick={() => handleLinkClick(item.hash)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <SocialLinks className={styles.mobileSocials} />
+      </aside>
+    </>
   )
 }
