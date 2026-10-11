@@ -98,20 +98,17 @@
   filter: var(--footer-icon-filter);
 }
 
-.contactsTime::before {
-  background-image: url('@/shared/assets/icons/clock.svg');
-}
+$contact-icons: (
+  'contactsTime': 'clock',
+  'contactLinkMap': 'map-mark',
+  'contactLinkGmail': 'gmail',
+  'contactLinkTelephone': 'telephone',
+);
 
-.contactLinkMap::before {
-  background-image: url('@/shared/assets/icons/map-mark.svg');
-}
-
-.contactLinkGmail::before {
-  background-image: url('@/shared/assets/icons/gmail.svg');
-}
-
-.contactLinkTelephone::before {
-  background-image: url('@/shared/assets/icons/telephone.svg');
+@each $class, $icon in $contact-icons {
+  .#{$class}::before {
+    background-image: url('@/shared/assets/icons/#{$icon}.svg');
+  }
 }
 
 .footerSocials {

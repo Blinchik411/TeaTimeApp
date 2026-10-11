@@ -12,7 +12,7 @@ $breakpoints: (
   'desktop-lg': 1595px,
 );
 
-// Миксин для медиавыражений (max-width / width <= $width)
+// Миксин для медиавыражений Desktop First
 @mixin mq-down($breakpoint) {
   $width: map.get($breakpoints, $breakpoint);
 
@@ -25,7 +25,7 @@ $breakpoints: (
   }
 }
 
-// Миксин для медиавыражений (min-width / width > $width)
+// Миксин для медиавыражений Mobile First
 @mixin mq-up($breakpoint) {
   $width: map.get($breakpoints, $breakpoint);
 
