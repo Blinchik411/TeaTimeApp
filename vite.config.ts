@@ -9,6 +9,10 @@ export default defineConfig(({ mode }: ConfigEnv) => {
 
   return {
     base: isProd ? '/tea-time-app/' : '/',
+    server: {
+      host: '127.0.0.1',
+      port: 5173,
+    },
     plugins: [
       TanStackRouterVite({
         target: 'react',

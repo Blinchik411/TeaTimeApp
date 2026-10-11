@@ -1,39 +1,30 @@
-import { useState } from 'react'
 import { useZodForm } from '@/shared/lib/hooks/useZodForm'
 import { reviewSchema, type ReviewFormData } from '../model/review.schema'
 import { createReview } from '../api/leaveReviewApi'
 import { Button } from '@/shared/ui/button'
 import styles from './ReviewModal.module.scss'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 interface ReviewModalProps {
   roomId: string
   isOpen: boolean
   onClose: () => void
-  onSuccess?: () => void
 }
 
-export const ReviewModal = ({ roomId, isOpen, onClose, onSuccess }: ReviewModalProps) => {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitError, setSubmitError] = useState<string | null>(null)
+export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
+  const queryClient = useQueryClient()
 
-  const handleSuccess = async (data: ReviewFormData) => {
-    setIsSubmitting(true)
-    setSubmitError(null)
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: (data: ReviewFormData) => createReview({ ...data, roomId }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['room', roomId] })
 
-    try {
-      await createReview({
-        ...data,
-        roomId,
-      })
-
-      onSuccess?.()
       onClose()
-    } catch (error) {
-      console.error('Ошибка отправки отзыва:', error)
-      setSubmitError(error instanceof Error ? error.message : 'Не удалось отправить отзыв')
-    } finally {
-      setIsSubmitting(false)
-    }
+    },
+  })
+
+  const handleSuccess = (data: ReviewFormData) => {
+    mutate(data)
   }
 
   const { errors, handleSubmit } = useZodForm(reviewSchema, handleSuccess)
@@ -46,7 +37,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose, onSuccess }: ReviewModalP
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <form onSubmit={handleSubmit} className={styles.form} noValidate>
-          {submitError && <div className={styles.error}>{submitError}</div>}
+          {error && <div className={styles.error}>{error.message}</div>}
 
           <div className={styles.header}>
             <p className={styles.title}>Add New Review </p>
@@ -68,7 +59,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose, onSuccess }: ReviewModalP
                 min="1"
                 max="5"
                 defaultValue="5"
-                disabled={isSubmitting}
+                disabled={isPending}
                 className={errors.rating ? styles.inputError : ''}
               />
             </div>
@@ -81,7 +72,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose, onSuccess }: ReviewModalP
               type="text"
               name="authorName"
               placeholder="Enter your name"
-              disabled={isSubmitting}
+              disabled={isPending}
               className={errors.authorName ? styles.inputError : ''}
             />
             {errors.authorName && <span className={styles.error}>{errors.authorName}</span>}
@@ -93,15 +84,15 @@ export const ReviewModal = ({ roomId, isOpen, onClose, onSuccess }: ReviewModalP
               name="text"
               placeholder="Share your experience..."
               rows={4}
-              disabled={isSubmitting}
+              disabled={isPending}
               className={errors.text ? styles.inputError : ''}
             />
             {errors.text && <span className={styles.error}>{errors.text}</span>}
           </div>
 
           <div className={styles.actions}>
-            <Button type="submit" variant="bookingButton" disabled={isSubmitting}>
-              {isSubmitting ? 'Submitting...' : 'Submit Review'}
+            <Button type="submit" variant="bookingButton" disabled={isPending}>
+              {isPending ? 'Submitting...' : 'Submit Review'}
             </Button>
           </div>
         </form>

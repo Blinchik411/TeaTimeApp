@@ -1,41 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
-import { type RoomPreview } from './types'
 import { fetchRooms } from '../api/roomApi'
+import { useQuery } from '@tanstack/react-query'
 
 export const useRooms = () => {
-  const [rooms, setRooms] = useState<RoomPreview[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null)
+  const { data, error, isLoading, refetch } = useQuery({
+    queryKey: ['rooms'],
+    queryFn: fetchRooms,
+  })
 
-  const loadData = useCallback(() => {
-    let isMounted = true
-
-    fetchRooms()
-      .then((data) => {
-        if (!isMounted) return
-        setRooms(data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        if (!isMounted) return
-        setError(err instanceof Error ? err.message : 'Неизвестная ошибка')
-        setLoading(false)
-      })
-
-    return () => {
-      isMounted = false
-    }
-  }, [])
-
-  useEffect(() => {
-    return loadData()
-  }, [loadData])
-
-  const refetch = useCallback(() => {
-    setLoading(true)
-    setError(null)
-    loadData()
-  }, [loadData])
-
-  return { rooms, loading, error, refetch }
+  return { rooms: data ?? [], loading: isLoading, error: error?.message ?? null, refetch }
 }
