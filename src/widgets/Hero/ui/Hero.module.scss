@@ -1,5 +1,5 @@
 .hero {
-  background-image: url('src/shared/assets/images/result_hero-image3.png');
+  background-image: url('@/shared/assets/images/result_hero-image3.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -8,6 +8,19 @@
   position: relative;
   display: flex;
   align-items: center;
+
+  @include mq-down('desktop-lg') {
+    min-height: 75vh;
+  }
+
+  @include mq-down('desktop-sm') {
+    min-height: 60vh;
+  }
+
+  @include mq-down('tablet') {
+    min-height: 60vh;
+    background-position: 85% bottom;
+  }
 }
 
 .heroContent {
@@ -15,6 +28,10 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 51px;
+
+  @include mq-down('desktop-sm') {
+    gap: 40px;
+  }
 }
 
 .heroTitle {
@@ -25,6 +42,15 @@
   text-shadow:
     0 4px 24px rgb(0 0 0 / 75%),
     0 2px 6px rgb(0 0 0 / 50%);
+
+  @include mq-down('desktop-sm') {
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  @include mq-down('tablet') {
+    line-height: 1;
+  }
 }
 
 .heroText {
@@ -34,42 +60,8 @@
   text-shadow:
     0 2px 12px rgb(0 0 0 / 75%),
     0 1px 4px rgb(0 0 0 / 60%);
-}
 
-@media (width <= 1595px) {
-  .hero {
-    min-height: 75vh;
-  }
-}
-
-@media (width <= 1190px) {
-  .hero {
-    min-height: 60vh;
-  }
-
-  .heroTitle {
-    white-space: normal;
-    line-height: 1.2;
-  }
-
-  .heroContent {
-    gap: 40px;
-  }
-}
-
-@media (width <= 860px) {
-  .hero {
-    min-height: 60vh;
-    background-position: 85% bottom;
-  }
-
-  .heroTitle {
-    line-height: 1;
-  }
-}
-
-@media (width <= 430px) {
-  .heroText {
+  @include mq-down('mobile-sm') {
     max-width: 30ch;
   }
 }

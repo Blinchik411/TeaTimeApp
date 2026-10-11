@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   background-color: var(--color-alternate-white, var(--color-light-green));
-  box-sizing: border-box;
   font-weight: 700;
   font-family: var(--font-family), sans-serif;
   color: var(--color-dark, var(--color-white));
@@ -17,9 +16,9 @@
   cursor: pointer;
   user-select: none;
   transition:
-    filter 0.2s ease,
-    transform 0.1s ease,
-    opacity 0.2s ease;
+    filter $transition-base,
+    transform $transition-fast,
+    opacity $transition-base;
 
   &:hover {
     filter: brightness(0.92);
@@ -31,7 +30,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-light-green, #9be664);
+    outline: 2px solid var(--color-light-green, var(--color-accent-lime));
     outline-offset: 2px;
   }
 
@@ -62,7 +61,7 @@
   height: 61px;
   font-size: 18px;
 
-  @media (width <= 430px) {
+  @include mq-down('mobile-sm') {
     width: 195px;
     height: 48px;
     font-size: 15px;
@@ -70,7 +69,7 @@
 }
 
 .headerButton {
-  --color-dark: #131c0d;
+  --color-dark: var(--color-dark-green);
   --color-alternate-white: #eaeaea;
 
   width: clamp(94px, 2.656rem + 11.98vw, 215px);
@@ -95,11 +94,9 @@
 /* Кнопки мобильного меню (иконки без фона) */
 .openMobileMenuButton,
 .closeMobileMenuButton {
+  @include button-reset;
+
   display: flex;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
 
   &:hover {
     filter: none;

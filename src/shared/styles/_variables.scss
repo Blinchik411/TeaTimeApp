@@ -1,0 +1,17 @@
+// SCSS-константы времени компиляции (не генерируют CSS-код)
+
+// Шкала слоев Z-Index
+$z-layers: (
+  'under': -1,
+  'base': 1,
+  'above': 2,
+  'dropdown': 10,
+  'menu': 12,
+  'modal': 1000,
+  'toast': 1100,
+);
+
+// Длительности и плавность анимаций
+$transition-fast: 0.1s ease;
+$transition-base: 0.2s ease;
+$transition-slow: 0.3s ease;

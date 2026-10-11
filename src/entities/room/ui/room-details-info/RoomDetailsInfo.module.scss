@@ -4,27 +4,25 @@
 }
 
 .cardTitle {
-  color: #282828;
+  color: var(--color-text-dark);
   font-family: var(--second-family), sans-serif;
   font-weight: 500;
   margin-bottom: 38px;
   font-size: clamp(20px, 0.893rem + 1.786vw, 40px);
+
+  @include mq-down('desktop') {
+    margin-bottom: 25px;
+  }
 }
 
 .cardText {
-  color: #353535;
+  color: var(--color-text-secondary);
   font-size: clamp(13px, 0.6875rem + 0.625vw, 20px);
   margin-bottom: clamp(70px, 8vw, 191px);
 }
 
 .cardInfo {
   margin-bottom: 24px;
-}
-
-@media (width <= 1475px) {
-  .cardTitle {
-    margin-bottom: 25px;
-  }
 }
 
 .roomBooking {

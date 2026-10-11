@@ -24,5 +24,12 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/shared/styles" as *;\n`,
+        },
+      },
+    },
   }
 })

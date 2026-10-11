@@ -4,6 +4,12 @@
   justify-content: space-between;
   gap: 20px;
   padding-block: clamp(0.75rem, 0.443rem + 1.53vw, 2.563rem);
+
+  @include mq-down('laptop') {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 }
 
 .logo {
@@ -12,12 +18,4 @@
 
 .headerLogoImage {
   display: block;
-}
-
-@media (width <= 1000px) {
-  .header {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
 }

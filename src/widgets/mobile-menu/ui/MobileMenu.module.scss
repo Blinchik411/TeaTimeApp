@@ -1,8 +1,8 @@
-/* src/components/layout/MobileMenu/MobileMenu.module.css */
 .mobileMenu {
+  --menu-link-color: var(--color-black);
+
   border: none;
   padding: 24px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11,17 +11,16 @@
   left: 0;
   width: 313px;
   height: 433px;
-  z-index: 12;
   background-color: var(--color-white);
   transform: translateX(-100%);
-  transition: transform 0.3s ease;
+  transition: transform $transition-slow;
   border-bottom-right-radius: 12px;
 
-  --menu-link-color: var(--color-black);
-}
+  @include z-index('menu');
 
-.mobileMenu.isOpen {
-  transform: translateX(0);
+  &.isOpen {
+    transform: translateX(0);
+  }
 }
 
 .headerMobileMenu {
@@ -35,16 +34,14 @@
 }
 
 .closeMobileMenuButton {
+  @include button-reset;
+
   color: var(--menu-icon-color, var(--color-black));
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
 }
 
 .mobileLogo {
   display: inline-flex;
-  filter: var(--footer-icon-filter, none);
+  filter: var(--menu-icon-filter, none);
 }
 
 .logo {
@@ -60,9 +57,8 @@
 }
 
 .mobileMenuList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
+
   flex-direction: column;
   gap: 40px;
   font-weight: 500;

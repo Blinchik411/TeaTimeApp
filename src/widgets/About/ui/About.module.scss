@@ -1,5 +1,5 @@
 .about {
-  background-color: #fff;
+  background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   color: var(--color-black);
@@ -16,18 +16,30 @@
   font-size: clamp(32px, 1.574rem + 1.584vw, 48px);
   padding-bottom: 30px;
   font-family: var(--second-family);
+
+  @include mq-down('desktop-sm') {
+    text-align: center;
+  }
 }
 
 .aboutHeaderText {
   font-weight: 500;
   font-size: 18px;
   padding-bottom: 58px;
+
+  @include mq-down('desktop-sm') {
+    text-align: center;
+  }
 }
 
 .aboutImageWrapper {
   width: 100%;
   margin-bottom: clamp(32px, 1.28rem + 5.94vw, 102px);
   overflow: hidden;
+
+  @include mq-down('tablet') {
+    margin-inline: 0;
+  }
 }
 
 .aboutImage {
@@ -35,6 +47,10 @@
   object-fit: cover;
   height: clamp(220px, 5.76rem + 15.64vw, 430px);
   object-position: center;
+
+  @include mq-down('tablet') {
+    height: clamp(146px, 4.5rem + 17.2vw, 220px);
+  }
 }
 
 .aboutFooterText {
@@ -42,29 +58,9 @@
   font-weight: 400;
   max-width: 795px;
   font-size: 18px;
-}
 
-@media (width <= 1190px) {
-  .aboutTitle,
-  .aboutHeaderText,
-  .aboutFooterText {
+  @include mq-down('desktop-sm') {
     text-align: center;
-  }
-
-  .aboutFooterText {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media (width <= 860px) {
-  .aboutImageWrapper {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .aboutImage {
-    height: clamp(146px, 4.5rem + 17.2vw, 220px);
+    margin-inline: auto;
   }
 }

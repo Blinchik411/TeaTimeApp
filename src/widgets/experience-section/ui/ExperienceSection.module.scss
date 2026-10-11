@@ -9,7 +9,7 @@
   justify-content: space-between;
   padding-bottom: clamp(3rem, 2.495rem + 1.879vw, 4.75rem);
 
-  @media (width <= 1475px) {
+  @include mq-down('desktop') {
     flex-direction: column;
     gap: 49px;
   }

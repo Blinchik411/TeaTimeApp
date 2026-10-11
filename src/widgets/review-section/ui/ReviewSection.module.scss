@@ -4,11 +4,11 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  @media (width <= 1595px) {
+  @include mq-down('desktop-lg') {
     min-height: 75vh;
   }
 
-  @media (width <= 1190px) {
+  @include mq-down('desktop-sm') {
     min-height: 60vh;
   }
 }
@@ -37,10 +37,10 @@
 }
 
 .reviewItem {
-  background-color: #fff;
+  background-color: var(--color-white);
   display: flex;
   gap: 34px;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   width: 100%;
   max-width: 905px;
   align-items: flex-start;
@@ -58,7 +58,7 @@
   height: clamp(3.125rem, 3.83vw + 2.1rem, 6.6875rem);
   display: block;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
 }
 
 .reviewContent {

@@ -1,11 +1,19 @@
 @use '@/shared/assets/fonts/fonts';
+@use '@/shared/styles/animations';
 
 :root {
   --color-dark-green: #131c0d;
   --color-haki: #4e5531;
   --color-light-green: #56783d;
+  --color-accent-lime: #9be664;
   --color-white: #fff;
   --color-black: #000;
+  --color-error: #e53e3e;
+  --color-border: #ccc;
+  --color-placeholder: #999;
+  --color-text-muted: #666;
+  --color-text-secondary: #353535;
+  --color-text-dark: #282828;
   --font-family: 'Montserrat', sans-serif;
   --second-family: 'Montserrat Alternates', sans-serif;
   --border-radius: 8px;
@@ -34,6 +42,5 @@ body {
   max-width: 1365px;
   width: 100%;
   margin-inline: auto;
-  box-sizing: border-box;
   padding-inline: 20px;
 }

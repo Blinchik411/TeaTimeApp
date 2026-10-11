@@ -1,0 +1,53 @@
+@use 'sass:map';
+
+// Карта брейкпоинтов проекта
+$breakpoints: (
+  'mobile-sm': 430px,
+  'mobile': 480px,
+  'mobile-lg': 600px,
+  'tablet': 860px,
+  'laptop': 1000px,
+  'desktop-sm': 1190px,
+  'desktop': 1475px,
+  'desktop-lg': 1595px,
+);
+
+// Миксин для медиавыражений (max-width / width <= $width)
+@mixin mq-down($breakpoint) {
+  $width: map.get($breakpoints, $breakpoint);
+
+  @if $width {
+    @media (width <= $width) {
+      @content;
+    }
+  } @else {
+    @warn "Неизвестный брейкпоинт: #{$breakpoint}. Проверьте _breakpoints.scss";
+  }
+}
+
+// Миксин для медиавыражений (min-width / width > $width)
+@mixin mq-up($breakpoint) {
+  $width: map.get($breakpoints, $breakpoint);
+
+  @if $width {
+    @media (width > $width) {
+      @content;
+    }
+  } @else {
+    @warn "Неизвестный брейкпоинт: #{$breakpoint}. Проверьте _breakpoints.scss";
+  }
+}
+
+// Миксин для интервалов
+@mixin mq-between($from, $to) {
+  $from-width: map.get($breakpoints, $from);
+  $to-width: map.get($breakpoints, $to);
+
+  @if $from-width and $to-width {
+    @media ($from-width < width <= $to-width) {
+      @content;
+    }
+  } @else {
+    @warn "Неизвестный интервал: #{$from} - #{$to}. Проверьте _breakpoints.scss";
+  }
+}

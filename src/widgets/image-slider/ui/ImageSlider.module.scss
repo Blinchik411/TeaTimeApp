@@ -5,13 +5,13 @@
   max-height: 80dvh;
   overflow: hidden;
   border-radius: var(--border-radius, 8px);
-  background-color: #000;
+  background-color: var(--color-black);
 }
 
 .slideImage {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Сохраняет пропорции фото и аккуратно подрезает края */
+  object-fit: cover;
 }
 
 .overlay {
@@ -23,20 +23,19 @@
 
 /* Кнопки переключения */
 .arrowButton {
+  @include button-reset;
+  @include z-index('above');
+
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  color: #fff;
+  color: var(--color-white);
   font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1;
-  cursor: pointer;
   padding: 16px;
-  z-index: 2;
   transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+    opacity $transition-base,
+    transform $transition-base;
   user-select: none;
 
   &:hover {
@@ -55,6 +54,8 @@
 
 /* Нижний блок с заголовком и пагинацией */
 .contentOverlay {
+  @include z-index('above');
+
   position: absolute;
   bottom: 24px;
   left: 50%;
@@ -63,9 +64,8 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  z-index: 2;
   text-align: center;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .slideTitle {
@@ -82,16 +82,15 @@
 }
 
 .dot {
+  @include button-reset;
+
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background-color: rgb(255 255 255 / 40%);
-  border: none;
-  padding: 0;
-  cursor: pointer;
   transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
+    background-color $transition-slow,
+    transform $transition-slow;
 
   &:hover {
     background-color: rgb(255 255 255 / 80%);
@@ -99,7 +98,6 @@
 }
 
 .activeDot {
-  /* Зеленоватый цвет активной точки как на вашем скриншоте */
   background-color: #7a9a60;
   transform: scale(1.25);
 }

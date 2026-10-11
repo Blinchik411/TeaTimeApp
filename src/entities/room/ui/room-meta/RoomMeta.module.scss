@@ -3,6 +3,10 @@
   gap: 30px;
   align-items: center;
   min-width: 0;
+
+  @include mq-down('desktop') {
+    justify-content: center;
+  }
 }
 
 .roomPrice,
@@ -18,7 +22,6 @@
   display: inline-flex;
   gap: 7px;
   align-items: center;
-  white-space: nowrap;
   filter: var(--info-icon-filter, none);
 }
 
@@ -26,12 +29,6 @@
   width: auto;
   height: auto;
   filter: var(--info-icon-filter, none);
-}
-
-@media (width <= 1475px) {
-  .roomMeta {
-    justify-content: center;
-  }
 }
 
 .roomBooking {
@@ -44,7 +41,7 @@
     font-size: clamp(13px, 0.6875rem + 0.625vw, 20px);
   }
 
-  @media (width <= 1475px) {
+  @include mq-down('desktop') {
     justify-content: flex-start;
   }
 
@@ -54,7 +51,7 @@
 }
 
 .roomHeader {
-  --info-color: #fff;
+  --info-color: var(--color-white);
   --info-icon-filter: brightness(0) invert(1);
 
   gap: clamp(8px, 2vw, 17px);
@@ -63,7 +60,6 @@
   .roomPrice,
   .roomDuration,
   .roomGuestCount {
-    color: var(--info-color);
     font-weight: 500;
     font-size: clamp(14px, 4vw, 26px);
   }

@@ -4,12 +4,19 @@
 
 .cardContent {
   display: flex;
-  background-color: #fff;
+  background-color: var(--color-white);
   gap: 60px;
   align-items: center;
   padding: 60px;
-  box-sizing: border-box;
   border-radius: var(--border-radius);
+
+  @include mq-down('desktop') {
+    flex-direction: column;
+    gap: 30px;
+    padding: clamp(21px, 1.07rem + 0.89vw, 30px);
+    text-align: center;
+    max-width: 997px;
+  }
 }
 
 .cardLeft {
@@ -25,14 +32,4 @@
 .cardRight {
   display: flex;
   flex-direction: column;
-}
-
-@media (width <= 1475px) {
-  .cardContent {
-    flex-direction: column;
-    gap: 30px;
-    padding: clamp(21px, 1.07rem + 0.89vw, 30px);
-    text-align: center;
-    max-width: 997px;
-  }
 }

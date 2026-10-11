@@ -19,14 +19,16 @@
 
 .timeSlotBtn {
   background-color: #f2f2f2;
-  color: #000;
+  color: var(--color-black);
   font-family: inherit;
   font-size: 16px;
   padding: 7px 23px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    background-color $transition-base,
+    border-color $transition-base;
   outline: none;
 
   &:hover {
@@ -35,8 +37,8 @@
   }
 
   &.selected {
-    background-color: #fff;
-    border-color: #56783d;
+    background-color: var(--color-white);
+    border-color: var(--color-light-green);
     font-weight: 500;
   }
 }
