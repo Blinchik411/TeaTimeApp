@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useZodForm } from '@/shared/lib/hooks/useZodForm'
 import { reviewSchema, type ReviewFormData, createOptimisticReview } from '../model'
 import { createReview } from '../api/leaveReviewApi'
 import { Button } from '@/shared/ui/button'
+import { Icon } from '@/shared/ui/icon'
 import styles from './ReviewModal.module.scss'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { roomKeys, type Room } from '@/entities/room'
@@ -15,13 +16,21 @@ interface ReviewModalProps {
 
 export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
   const queryClient = useQueryClient()
+  const [rating, setRating] = useState(5)
+  const [hoverRating, setHoverRating] = useState(0)
+
+  const handleClose = useCallback(() => {
+    setRating(5)
+    setHoverRating(0)
+    onClose()
+  }, [onClose])
 
   useEffect(() => {
     if (!isOpen) return
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose()
+        handleClose()
       }
     }
 
@@ -32,7 +41,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [isOpen, onClose])
+  }, [isOpen, handleClose])
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: (data: ReviewFormData) => createReview({ ...data, roomId }),
@@ -62,7 +71,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
       return { previousRoom }
     },
     onError(_err, _newReview, context) {
-      // _ - err, newReview are unused here, потом можно сделать чтобы сохраняло в черновик
+      // _ - err, newReview are unused here, потом можно сделать чтобы сохраняло в черновик и показывало ошибку
       if (context?.previousRoom) {
         queryClient.setQueryData(roomKeys.byId(roomId), context.previousRoom)
       }
@@ -80,7 +89,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
   }
 
   return (
-    <div className={styles.overlay} onClick={onClose}>
+    <div className={styles.overlay} onClick={handleClose}>
       <div
         className={styles.modal}
         role="dialog"
@@ -97,44 +106,71 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
             </p>
             <button
               type="button"
-              onClick={onClose}
+              onClick={handleClose}
               className={styles.closeBtn}
               aria-label="Close modal"
             >
               ×
             </button>
           </div>
-          <div className={styles.field}>
-            <label>Rating</label>
-            <div className={styles.ratingInputWrapper}>
+
+          <div className={styles.topRow}>
+            <div className={styles.nameField}>
+              <label htmlFor="review-author" className={styles.fieldLabel}>
+                Your Name
+              </label>
               <input
-                type="number"
-                name="rating"
-                min="1"
-                max="5"
-                defaultValue="5"
+                id="review-author"
+                type="text"
+                name="authorName"
+                placeholder="Enter your name"
                 disabled={isPending}
-                className={errors.rating ? styles.inputError : ''}
+                className={errors.authorName ? styles.inputError : ''}
               />
+              {errors.authorName && <span className={styles.error}>{errors.authorName}</span>}
             </div>
-            {errors.rating && <span className={styles.error}>{errors.rating}</span>}
+
+            <div className={styles.ratingField}>
+              <span className={styles.fieldLabel}>Rating</span>
+              <input type="hidden" name="rating" value={rating} />
+              <div
+                className={styles.starsGroup}
+                role="radiogroup"
+                aria-label="Rating"
+                onMouseLeave={() => setHoverRating(0)}
+              >
+                {[1, 2, 3, 4, 5].map((starValue) => {
+                  const isFilled = starValue <= (hoverRating || rating)
+                  return (
+                    <button
+                      key={starValue}
+                      type="button"
+                      className={styles.starBtn}
+                      onClick={() => setRating(starValue)}
+                      onMouseEnter={() => setHoverRating(starValue)}
+                      aria-label={`Rate ${starValue} of 5 stars`}
+                      disabled={isPending}
+                    >
+                      <Icon
+                        name={isFilled ? 'FilledStar' : 'EmptyStar'}
+                        width={24}
+                        height={24}
+                        className={isFilled ? styles.starFilled : styles.starEmpty}
+                      />
+                    </button>
+                  )
+                })}
+              </div>
+              {errors.rating && <span className={styles.error}>{errors.rating}</span>}
+            </div>
           </div>
 
           <div className={styles.field}>
-            <label>Your Name</label>
-            <input
-              type="text"
-              name="authorName"
-              placeholder="Enter your name"
-              disabled={isPending}
-              className={errors.authorName ? styles.inputError : ''}
-            />
-            {errors.authorName && <span className={styles.error}>{errors.authorName}</span>}
-          </div>
-
-          <div className={styles.field}>
-            <label>Review</label>
+            <label htmlFor="review-text" className={styles.fieldLabel}>
+              Review
+            </label>
             <textarea
+              id="review-text"
               name="text"
               placeholder="Share your experience..."
               rows={4}

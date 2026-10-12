@@ -25,12 +25,7 @@ export const RoomDetailsPage = () => {
         {loading ? (
           <RoomDetailsSkeleton />
         ) : error ? (
-          <ErrorCard
-            icon="⚠️"
-            title="Failed to Load Room"
-            message={error}
-            onRetry={refetch}
-          />
+          <ErrorCard icon="⚠️" title="Failed to Load Room" message={error} onRetry={refetch} />
         ) : !room ? (
           <ErrorCard
             icon="🍵"

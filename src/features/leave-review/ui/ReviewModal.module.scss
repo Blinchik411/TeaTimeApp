@@ -13,7 +13,7 @@
   background-color: var(--color-white);
   padding: 24px;
   border-radius: 12px;
-  max-width: 450px;
+  max-width: 480px;
   width: 100%;
   box-shadow: 0 10px 25px rgb(0 0 0 / 15%);
 }
@@ -53,15 +53,91 @@
   }
 }
 
-.ratingInputWrapper {
+.topRow {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+
+  @include mq-down('mobile') {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.nameField {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
   width: 100%;
 
   input {
-    flex: 1;
+    @include input-field;
+
+    height: 42px;
   }
+}
+
+.ratingField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.starsGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 42px;
+}
+
+.starBtn {
+  @include button-reset;
+  @include flex-center;
+
+  cursor: pointer;
+  padding: 2px;
+  transition: transform $transition-fast;
+
+  &:hover:not(:disabled) {
+    transform: scale(1.18);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.starFilled {
+  color: #f59e0b;
+  filter: drop-shadow(0 1px 2px rgb(245 158 11 / 35%));
+  transition:
+    transform $transition-fast,
+    filter $transition-fast;
+
+  path {
+    fill: #f59e0b !important;
+  }
+}
+
+.starEmpty {
+  color: #94a3b8;
+  opacity: 0.35;
+  transition: opacity $transition-fast;
+
+  path {
+    fill: #64748b !important;
+  }
+}
+
+.fieldLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6px;
 }
 
 .field {
@@ -69,22 +145,16 @@
   flex-direction: column;
   width: 100%;
 
-  label {
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 6px;
-  }
-
-  input,
   textarea {
     @include input-field;
-  }
 
-  textarea {
     resize: vertical;
     min-height: 100px;
   }
+}
+
+.inputError {
+  border-color: var(--color-error) !important;
 }
 
 .error {
