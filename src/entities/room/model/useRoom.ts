@@ -7,7 +7,7 @@ export const useRoom = <TData = Room | null>(
   roomId?: string,
   select?: (room: Room | null) => TData,
 ) => {
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, isFetching, error, refetch } = useQuery({
     queryKey: roomKeys.byId(roomId),
     queryFn: () => fetchRoomById(roomId!),
     enabled: Boolean(roomId),
@@ -17,6 +17,7 @@ export const useRoom = <TData = Room | null>(
   return {
     room: data,
     loading: isLoading,
+    isFetching,
     error: error?.message ?? null,
     refetch: () => {
       void refetch()

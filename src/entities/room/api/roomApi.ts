@@ -2,6 +2,8 @@ import { supabase } from '@/shared/api/supabase'
 import type { Room, RoomPreview } from '../model/types'
 
 export const fetchRoomById = async (roomId: string): Promise<Room | null> => {
+
+
   const { data, error } = await supabase
     .from('tea_rooms')
     .select(

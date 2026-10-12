@@ -35,7 +35,7 @@ export const RoomCarousel = (props: PropType) => {
           {rooms.map((room) => (
             <div className="embla__slide" key={room.id}>
               <div className="embla__slide__number">
-                <RoomCard room={room}></RoomCard>
+                <RoomCard room={room}/>
               </div>
             </div>
           ))}

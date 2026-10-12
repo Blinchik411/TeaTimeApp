@@ -23,24 +23,41 @@ export const RoomDetailsPage = () => {
       <main className={styles.mainContent}>
         {loading ? (
           <RoomDetailsSkeleton />
-        ) : error || !room ? (
+        ) : error ? (
+          <div className={`container ${styles.errorWrapper}`}>
+            <div className={styles.errorCard} role="alert">
+              <span className={styles.errorIcon} aria-hidden="true">
+                ⚠️
+              </span>
+              <h2 className={styles.errorTitle}>Failed to Load Room</h2>
+              <p className={styles.errorText}>{error}</p>
+              <div className={styles.actions}>
+                <button
+                  type="button"
+                  onClick={refetch}
+                  className={styles.retryButton}
+                >
+                  Try Again
+                </button>
+                <Link to="/" className={styles.homeButton}>
+                  Back to Home
+                </Link>
+              </div>
+            </div>
+          </div>
+        ) : !room ? (
           <div className={`container ${styles.errorWrapper}`}>
             <div className={styles.errorCard} role="alert">
               <span className={styles.errorIcon} aria-hidden="true">
                 🍵
               </span>
-              <h2 className={styles.errorTitle}>Комната не найдена</h2>
+              <h2 className={styles.errorTitle}>Room Not Found</h2>
               <p className={styles.errorText}>
-                {error || 'К сожалению, запрашиваемая комната недоступна или не существует.'}
+                Unfortunately, the requested room is unavailable or does not exist.
               </p>
               <div className={styles.actions}>
-                {refetch && (
-                  <button type="button" onClick={refetch} className={styles.retryButton}>
-                    Попробовать снова
-                  </button>
-                )}
                 <Link to="/" className={styles.homeButton}>
-                  Вернуться на главную
+                  Back to Home
                 </Link>
               </div>
             </div>
