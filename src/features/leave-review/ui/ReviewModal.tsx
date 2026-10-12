@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useZodForm } from '@/shared/lib/hooks/useZodForm'
 import { reviewSchema, type ReviewFormData, createOptimisticReview } from '../model'
 import { createReview } from '../api/leaveReviewApi'
@@ -14,6 +15,24 @@ interface ReviewModalProps {
 
 export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
   const queryClient = useQueryClient()
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
+  }, [isOpen, onClose])
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: (data: ReviewFormData) => createReview({ ...data, roomId }),
@@ -62,12 +81,20 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
 
   return (
     <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={styles.modal}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="review-modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
         <form onSubmit={handleSubmit} className={styles.form} noValidate>
           {error && <div className={styles.error}>{error.message}</div>}
 
           <div className={styles.header}>
-            <p className={styles.title}>Add New Review </p>
+            <p id="review-modal-title" className={styles.title}>
+              Add New Review
+            </p>
             <button
               type="button"
               onClick={onClose}
