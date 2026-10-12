@@ -1,6 +1,8 @@
+import { Link } from '@tanstack/react-router'
 import { Icon } from '@/shared/ui/icon'
 import { Button } from '@/shared/ui/button'
 import { Logo } from '@/shared/ui/logo'
+import { NAV_ITEMS } from '@/shared/config/navigation'
 import styles from './Header.module.scss'
 
 interface HeaderProps {
@@ -28,26 +30,13 @@ export const Header = ({ onOpenMenu }: HeaderProps) => {
 
       <nav className={styles.headerMenu}>
         <ul className={styles.headerMenuList}>
-          <li>
-            <a href="#" className={styles.headerMenuLink}>
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#about" className={styles.headerMenuLink}>
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="#rooms" className={styles.headerMenuLink}>
-              Rooms
-            </a>
-          </li>
-          <li>
-            <a href="#contact" className={styles.headerMenuLink}>
-              Contact
-            </a>
-          </li>
+          {NAV_ITEMS.map((item) => (
+            <li key={item.label}>
+              <Link to={item.to} hash={item.hash} className={styles.headerMenuLink}>
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>

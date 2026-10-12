@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { SocialLinks } from '@/shared/ui/social-links'
 import { Logo } from '@/shared/ui/logo'
 import styles from './Footer.module.scss'
@@ -6,26 +7,26 @@ interface FooterProps {
   theme?: 'dark' | 'light'
 }
 
-export const Footer = ({ theme = 'dark' }: FooterProps) => {
-  const footerClass = `${styles.footer} ${theme === 'light' ? styles.footerLight : ''}`
+const FOOTER_CONTACTS = {
+  schedule: 'Open daily: 10:00–21:00',
+  address: {
+    label: '12 Green Street, Lviv',
+    mapUrl: 'https://maps.app.goo.gl/yd8SoGkCGjK5QSvn7',
+  },
+  email: 'SlowTeaHouse@gmail.com',
+  phones: [
+    { href: 'tel:+380671234567', label: '+380 67 123 4567' },
+    { href: 'tel:+380507654321', label: '+380 50 765 4321' },
+  ],
+  mapEmbedUrl:
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3395.257049656723!2d24.02457497239628!3d49.84014078184026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add6c26c0945f%3A0xa71e3148dcaac6d8!2zV2hpdGUgUmFiYml0IFNob3cgQmFyIC8g0JHRltC70LjQuSDQmtGA0L7Qu9C40Log0KjQvtGDINCR0LDRgA!5e0!3m2!1sru!2sru!4v1780760501677!5m2!1sru!2sru',
+}
 
-  const FOOTER_CONTACTS = {
-    schedule: 'Open daily: 10:00–21:00',
-    address: {
-      label: '12 Green Street, Lviv',
-      mapUrl: 'https://maps.app.goo.gl/yd8SoGkCGjK5QSvn7',
-    },
-    email: 'SlowTeaHouse@gmail.com',
-    phones: [
-      { href: 'tel:+380671234567', label: '+380 67 123 4567' },
-      { href: 'tel:+380671234567', label: '+380 67 123 4567' },
-    ],
-    mapEmbedUrl:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3395.257049656723!2d24.02457497239628!3d49.84014078184026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add6c26c0945f%3A0xa71e3148dcaac6d8!2zV2hpdGUgUmFiYml0IFNob3cgQmFyIC8g0JHRltC70LjQuSDQmtGA0L7Qu9C40Log0KjQvtGDINCR0LDRgA!5e0!3m2!1sru!2sru!4v1780760501677!5m2!1sru!2sru',
-  }
+export const Footer = ({ theme = 'dark' }: FooterProps) => {
+  const footerClass = clsx(styles.footer, theme === 'light' && styles.footerLight)
 
   return (
-    <footer id={'contact'} className={footerClass}>
+    <footer id="contact" className={footerClass}>
       <div className={`container ${styles.footerContainer}`}>
         <div className={styles.footerLeft}>
           <Logo className={styles.footerLogo} width={250} height={39} />
