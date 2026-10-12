@@ -31,6 +31,7 @@ export const Route = createFileRoute('/booking')({
         })
         .catch(() => {})
     }
+    return null
   },
   component: BookingPage,
 })

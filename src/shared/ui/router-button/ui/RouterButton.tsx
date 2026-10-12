@@ -25,16 +25,11 @@ const LinkButtonAnchor = ({
   ...props
 }: LinkButtonAnchorProps) => {
   return (
-    <a
-      ref={ref}
-      className={clsx(buttonStyles.button, buttonStyles[variant], className)}
-      {...props}
-    >
+    <a ref={ref} className={clsx(buttonStyles.button, buttonStyles[variant], className)} {...props}>
       {children}
     </a>
   )
 }
 
 export const RouterButton = createLink(LinkButtonAnchor)
-
 

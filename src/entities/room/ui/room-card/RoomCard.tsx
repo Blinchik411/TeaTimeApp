@@ -37,4 +37,3 @@ export const RoomCard = ({ room }: RoomCardProps) => {
     </section>
   )
 }
-

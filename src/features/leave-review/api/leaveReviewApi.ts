@@ -16,11 +16,11 @@ export const createReview = async ({ roomId, rating, authorName, text }: CreateR
     avatar_url: getAvatarUrl(authorName),
   }
 
-  const { data, error } = await supabase.from('reviews').insert([newReview]).select().single()
+  const { error } = await supabase.from('reviews').insert([newReview])
 
   if (error) {
     throw new Error(error.message)
   }
 
-  return data
+  return true
 }

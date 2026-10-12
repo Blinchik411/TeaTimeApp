@@ -20,6 +20,10 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
+      'react-refresh/only-export-components': [
+        'error',
+        { extraHOCs: ['createLink'] },
+      ],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       eqeqeq: 'warn',
       curly: 'warn',

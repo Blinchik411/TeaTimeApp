@@ -51,6 +51,7 @@ export interface Database {
           rating: number
           text: string
           avatar_url: string
+          is_approved?: boolean
           created_at?: string
         }
         Insert: {
@@ -61,6 +62,7 @@ export interface Database {
           rating: number
           text: string
           avatar_url: string
+          is_approved?: boolean
           created_at?: string
         }
         Update: {
@@ -71,6 +73,7 @@ export interface Database {
           rating?: number
           text?: string
           avatar_url?: string
+          is_approved?: boolean
           created_at?: string
         }
         Relationships: [
