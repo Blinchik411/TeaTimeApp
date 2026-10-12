@@ -7,23 +7,12 @@ import { Button } from '@/shared/ui/button'
 import { Logo } from '@/shared/ui/logo'
 import styles from './MobileMenu.module.scss'
 
+import { NAV_ITEMS } from '@/shared/config/navigation'
+
 interface MobileMenuProps {
   isOpen: boolean
   onClose: () => void
 }
-
-interface NavItem {
-  label: string
-  to: string
-  hash?: string
-}
-
-const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', to: '/' },
-  { label: 'About Us', to: '/', hash: 'about' },
-  { label: 'Rooms', to: '/', hash: 'rooms' },
-  { label: 'Contact', to: '/', hash: 'contact' },
-]
 
 export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   useEffect(() => {
