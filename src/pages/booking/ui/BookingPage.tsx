@@ -1,6 +1,7 @@
 import { BookingHeader } from '@/widgets/booking-header'
-import { Link, useNavigate, useSearch } from '@tanstack/react-router'
+import { useNavigate, useSearch } from '@tanstack/react-router'
 import { useRoom } from '@/entities/room'
+import { ErrorCard } from '@/shared/ui/error-card'
 import {
   RoomBookingWizard,
   RoomBookingWizardSkeleton,
@@ -48,27 +49,12 @@ export const BookingPage = () => {
         {loading ? (
           <RoomBookingWizardSkeleton />
         ) : error || !room ? (
-          <div className={`container ${styles.errorWrapper}`}>
-            <div className={styles.errorCard} role="alert">
-              <span className={styles.errorIcon} aria-hidden="true">
-                🍵
-              </span>
-              <h2 className={styles.errorTitle}>Комната не найдена</h2>
-              <p className={styles.errorText}>
-                {error || 'К сожалению, запрашиваемая комната недоступна для бронирования.'}
-              </p>
-              <div className={styles.actions}>
-                {refetch && (
-                  <button type="button" onClick={refetch} className={styles.retryButton}>
-                    Попробовать снова
-                  </button>
-                )}
-                <Link to="/" className={styles.homeButton}>
-                  На главную
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ErrorCard
+            icon="🍵"
+            title="Room Not Found"
+            message={error || 'Unfortunately, the requested room is unavailable for booking.'}
+            onRetry={refetch}
+          />
         ) : (
           <RoomBookingWizard
             room={room}

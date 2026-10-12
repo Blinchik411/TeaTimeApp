@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useParams } from '@tanstack/react-router'
+import { useParams } from '@tanstack/react-router'
 import { useRoom } from '@/entities/room'
 import { RoomHeader } from '@/widgets/room-header'
 import { MobileMenu } from '@/widgets/mobile-menu'
@@ -7,6 +7,7 @@ import { ExperienceSection } from '@/widgets/experience-section'
 import { Footer } from '@/widgets/footer'
 import { ReviewSection } from '@/widgets/review-section'
 import { ImageSlider } from '@/widgets/image-slider'
+import { ErrorCard } from '@/shared/ui/error-card'
 import { RoomDetailsSkeleton } from './RoomDetailsSkeleton'
 import styles from './RoomDetailsPage.module.scss'
 
@@ -24,44 +25,18 @@ export const RoomDetailsPage = () => {
         {loading ? (
           <RoomDetailsSkeleton />
         ) : error ? (
-          <div className={`container ${styles.errorWrapper}`}>
-            <div className={styles.errorCard} role="alert">
-              <span className={styles.errorIcon} aria-hidden="true">
-                ⚠️
-              </span>
-              <h2 className={styles.errorTitle}>Failed to Load Room</h2>
-              <p className={styles.errorText}>{error}</p>
-              <div className={styles.actions}>
-                <button
-                  type="button"
-                  onClick={refetch}
-                  className={styles.retryButton}
-                >
-                  Try Again
-                </button>
-                <Link to="/" className={styles.homeButton}>
-                  Back to Home
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ErrorCard
+            icon="⚠️"
+            title="Failed to Load Room"
+            message={error}
+            onRetry={refetch}
+          />
         ) : !room ? (
-          <div className={`container ${styles.errorWrapper}`}>
-            <div className={styles.errorCard} role="alert">
-              <span className={styles.errorIcon} aria-hidden="true">
-                🍵
-              </span>
-              <h2 className={styles.errorTitle}>Room Not Found</h2>
-              <p className={styles.errorText}>
-                Unfortunately, the requested room is unavailable or does not exist.
-              </p>
-              <div className={styles.actions}>
-                <Link to="/" className={styles.homeButton}>
-                  Back to Home
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ErrorCard
+            icon="🍵"
+            title="Room Not Found"
+            message="Unfortunately, the requested room is unavailable or does not exist."
+          />
         ) : (
           <>
             <ImageSlider images={room.detailImageUrl} title={room.title} />
