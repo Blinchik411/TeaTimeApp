@@ -1,4 +1,5 @@
 import { supabase } from '@/shared/api/supabase'
+import { getAvatarUrl } from '@/shared/lib/avatar'
 import type { ReviewFormData } from '../model/review.schema'
 import type { TablesInsert } from '@/shared/api/database.types'
 
@@ -12,7 +13,7 @@ export const createReview = async ({ roomId, rating, authorName, text }: CreateR
     text,
     author: authorName,
     room_id: roomId,
-    avatar_url: `https://ui-avatars.com/api/?name=${encodeURIComponent(authorName)}&background=random`,
+    avatar_url: getAvatarUrl(authorName),
   }
 
   const { data, error } = await supabase.from('reviews').insert([newReview]).select().single()

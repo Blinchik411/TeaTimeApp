@@ -10,11 +10,8 @@ interface RoomCardProps {
   room: RoomPreview
 }
 
-
 export const RoomCard = ({ room }: RoomCardProps) => {
-
-
- const queryClient = useQueryClient()
+  const queryClient = useQueryClient()
 
   const handlePrefetch = () => {
     queryClient.prefetchQuery({
@@ -22,7 +19,6 @@ export const RoomCard = ({ room }: RoomCardProps) => {
       queryFn: () => fetchRoomById(room.id),
     })
   }
-
 
   return (
     <section className={styles.roomCard}>
@@ -40,10 +36,11 @@ export const RoomCard = ({ room }: RoomCardProps) => {
 
         <div className={styles.cardRight}>
           <RoomDetailsInfo room={room} />
-          <RouterButton to="/room/$roomId" 
-          params={{ roomId: room.id }} 
-          variant="cardButton"
-          onMouseEnter={handlePrefetch}
+          <RouterButton
+            to="/room/$roomId"
+            params={{ roomId: room.id }}
+            variant="cardButton"
+            onMouseEnter={handlePrefetch}
           >
             Explore Room
           </RouterButton>

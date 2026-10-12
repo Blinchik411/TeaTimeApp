@@ -1,10 +1,10 @@
 import { useZodForm } from '@/shared/lib/hooks/useZodForm'
-import { reviewSchema, type ReviewFormData } from '../model/review.schema'
+import { reviewSchema, type ReviewFormData, createOptimisticReview } from '../model'
 import { createReview } from '../api/leaveReviewApi'
 import { Button } from '@/shared/ui/button'
 import styles from './ReviewModal.module.scss'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { roomKeys } from '@/entities/room'
+import { roomKeys, type Room } from '@/entities/room'
 
 interface ReviewModalProps {
   roomId: string
@@ -17,10 +17,36 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: (data: ReviewFormData) => createReview({ ...data, roomId }),
-    onSuccess: () => {
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: roomKeys.byId(roomId) })
+    },
+    onMutate: async (newReview) => {
+      await queryClient.cancelQueries({ queryKey: roomKeys.byId(roomId) })
+
+      const previousRoom = queryClient.getQueryData(roomKeys.byId(roomId))
+
+      queryClient.setQueryData<Room | null>(roomKeys.byId(roomId), (oldRoom) => {
+        if (!oldRoom) {
+          return oldRoom
+        }
+
+        const optimisticReview = createOptimisticReview(newReview)
+
+        return {
+          ...oldRoom,
+          reviews: [optimisticReview, ...oldRoom.reviews],
+        }
+      })
 
       onClose()
+
+      return { previousRoom }
+    },
+    onError(_err, _newReview, context) {
+      // _ - err, newReview are unused here, потом можно сделать чтобы сохраняло в черновик
+      if (context?.previousRoom) {
+        queryClient.setQueryData(roomKeys.byId(roomId), context.previousRoom)
+      }
     },
   })
 
