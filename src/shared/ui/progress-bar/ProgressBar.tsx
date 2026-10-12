@@ -12,32 +12,36 @@ interface ProgressBarProps {
   className?: string
 }
 
-const STEP_PERCENTAGES = ['0', '33', '70', '100']
-
 export const ProgressBar = ({ steps, activeStepIndex, className = '' }: ProgressBarProps) => {
-  const currentPercent = STEP_PERCENTAGES[activeStepIndex] ?? '0'
+  const maxStepIndex = Math.max(steps.length - 1, 1)
+  const currentPercent = Math.min(
+    100,
+    Math.max(0, Math.round((activeStepIndex / maxStepIndex) * 100)),
+  )
   const containerClassName = clsx(styles.bookingProgressBar, className)
 
   return (
     <nav className={containerClassName}>
-      <ul className={styles.progressSteps}>
+      <div className={styles.progressContainer}>
         <div className={styles.progressBar}>
           <div className={styles.progressFill} style={{ width: `${currentPercent}%` }} />
         </div>
 
-        {steps.map((step, index) => {
-          const isCompleted = index < activeStepIndex
+        <ul className={styles.progressSteps}>
+          {steps.map((step, index) => {
+            const isCompleted = index < activeStepIndex
 
-          const stepClasses = clsx(styles.progressStep, isCompleted && styles.completed)
+            const stepClasses = clsx(styles.progressStep, isCompleted && styles.completed)
 
-          return (
-            <li key={step.id} className={stepClasses}>
-              <span className={styles.stepNumber}>{isCompleted ? '✓' : index + 1}</span>
-              <span className={styles.stepLabel}>{step.label}</span>
-            </li>
-          )
-        })}
-      </ul>
+            return (
+              <li key={step.id} className={stepClasses}>
+                <span className={styles.stepNumber}>{isCompleted ? '✓' : index + 1}</span>
+                <span className={styles.stepLabel}>{step.label}</span>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </nav>
   )
 }
