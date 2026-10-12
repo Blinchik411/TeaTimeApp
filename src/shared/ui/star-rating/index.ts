@@ -1,1 +1,1 @@
-export { StarRating } from './ui/StarRating'
+export { StarRating, type StarRatingProps } from './ui/StarRating'

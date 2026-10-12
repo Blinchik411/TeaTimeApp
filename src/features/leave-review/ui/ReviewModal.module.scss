@@ -86,53 +86,6 @@
   flex-shrink: 0;
 }
 
-.starsGroup {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  height: 42px;
-}
-
-.starBtn {
-  @include button-reset;
-  @include flex-center;
-
-  cursor: pointer;
-  padding: 2px;
-  transition: transform $transition-fast;
-
-  &:hover:not(:disabled) {
-    transform: scale(1.18);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
-  }
-}
-
-.starFilled {
-  color: #f59e0b;
-  filter: drop-shadow(0 1px 2px rgb(245 158 11 / 35%));
-  transition:
-    transform $transition-fast,
-    filter $transition-fast;
-
-  path {
-    fill: #f59e0b !important;
-  }
-}
-
-.starEmpty {
-  color: #94a3b8;
-  opacity: 0.35;
-  transition: opacity $transition-fast;
-
-  path {
-    fill: #64748b !important;
-  }
-}
-
 .fieldLabel {
   font-size: 14px;
   font-weight: 500;

@@ -3,7 +3,7 @@ import { useZodForm } from '@/shared/lib/hooks/useZodForm'
 import { reviewSchema, type ReviewFormData, createOptimisticReview } from '../model'
 import { createReview } from '../api/leaveReviewApi'
 import { Button } from '@/shared/ui/button'
-import { Icon } from '@/shared/ui/icon'
+import { StarRating } from '@/shared/ui/star-rating'
 import styles from './ReviewModal.module.scss'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { roomKeys, type Room } from '@/entities/room'
@@ -17,11 +17,9 @@ interface ReviewModalProps {
 export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
   const queryClient = useQueryClient()
   const [rating, setRating] = useState(5)
-  const [hoverRating, setHoverRating] = useState(0)
 
   const handleClose = useCallback(() => {
     setRating(5)
-    setHoverRating(0)
     onClose()
   }, [onClose])
 
@@ -133,34 +131,13 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
             <div className={styles.ratingField}>
               <span className={styles.fieldLabel}>Rating</span>
               <input type="hidden" name="rating" value={rating} />
-              <div
-                className={styles.starsGroup}
-                role="radiogroup"
-                aria-label="Rating"
-                onMouseLeave={() => setHoverRating(0)}
-              >
-                {[1, 2, 3, 4, 5].map((starValue) => {
-                  const isFilled = starValue <= (hoverRating || rating)
-                  return (
-                    <button
-                      key={starValue}
-                      type="button"
-                      className={styles.starBtn}
-                      onClick={() => setRating(starValue)}
-                      onMouseEnter={() => setHoverRating(starValue)}
-                      aria-label={`Rate ${starValue} of 5 stars`}
-                      disabled={isPending}
-                    >
-                      <Icon
-                        name={isFilled ? 'FilledStar' : 'EmptyStar'}
-                        width={24}
-                        height={24}
-                        className={isFilled ? styles.starFilled : styles.starEmpty}
-                      />
-                    </button>
-                  )
-                })}
-              </div>
+              <StarRating
+                rating={rating}
+                onChange={setRating}
+                interactive
+                size={22}
+                disabled={isPending}
+              />
               {errors.rating && <span className={styles.error}>{errors.rating}</span>}
             </div>
           </div>
