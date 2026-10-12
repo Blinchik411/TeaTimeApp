@@ -1,9 +1,10 @@
+import clsx from 'clsx'
 import styles from './Hero.module.scss'
 
 export const Hero = () => {
   return (
-    <section id="#" className={styles.hero}>
-      <div className={`${styles.heroContent} container`}>
+    <section id="hero" className={styles.hero}>
+      <div className={clsx(styles.heroContent, 'container')}>
         <h1 className={styles.heroTitle}>Where time flows slower</h1>
         <p className={styles.heroText}>
           Discover the harmony of tea, nature,

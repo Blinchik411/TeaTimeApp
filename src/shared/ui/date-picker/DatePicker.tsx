@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { DayPicker } from '@daypicker/react'
 import '@daypicker/react/style.css'
 import styles from './DatePicker.module.scss'
@@ -10,7 +11,7 @@ interface DatePickerProps {
 
 export function DatePicker({ selectedDate, onSelectDate, className }: DatePickerProps) {
   return (
-    <div className={`${styles.datePickerContainer} ${className || ''}`}>
+    <div className={clsx(styles.datePickerContainer, className)}>
       <DayPicker
         animate
         mode="single"

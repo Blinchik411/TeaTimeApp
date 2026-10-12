@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import clsx from 'clsx'
 import { useNavigate } from '@tanstack/react-router'
 import { DateStep } from '../steps/date-step'
 import { ContactStep } from '../steps/contact-step'
@@ -64,7 +65,7 @@ export const RoomBookingWizard = ({
   const formId = step === 2 ? 'contact-form' : step === 3 ? 'payment-form' : undefined
 
   return (
-    <div className={`${styles.wizardLayout} container`}>
+    <div className={clsx(styles.wizardLayout, 'container')}>
       {step === 4 ? (
         <div className={styles.wizardSuccessWrapper}>
           <SuccessStep room={room} date={date} time={time} onGoHome={handleGoHome} />

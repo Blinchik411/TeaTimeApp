@@ -84,7 +84,7 @@ export const SuccessStep = ({ room, date, time, onGoHome }: SuccessStepProps) =>
 
         <div className={styles.totalRow}>
           <span className={styles.totalLabel}>Amount Paid</span>
-          <span className={styles.totalValue}>{room.price}$</span>
+          <span className={styles.totalValue}>${room.price}</span>
         </div>
       </div>
 
