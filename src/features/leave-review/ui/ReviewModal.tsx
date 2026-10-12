@@ -4,6 +4,7 @@ import { createReview } from '../api/leaveReviewApi'
 import { Button } from '@/shared/ui/button'
 import styles from './ReviewModal.module.scss'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { roomKeys } from '@/entities/room'
 
 interface ReviewModalProps {
   roomId: string
@@ -17,7 +18,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
   const { mutate, isPending, error } = useMutation({
     mutationFn: (data: ReviewFormData) => createReview({ ...data, roomId }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['room', roomId] })
+      queryClient.invalidateQueries({ queryKey: roomKeys.byId(roomId) })
 
       onClose()
     },

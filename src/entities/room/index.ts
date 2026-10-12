@@ -7,3 +7,5 @@ export type { Room, RoomPreview, RoomExperience, Review } from './model/types'
 export { fetchRoomById, fetchRooms } from './api/roomApi'
 export { useRoom } from './model/useRoom'
 export { useRooms } from './model/useRooms'
+
+export { roomKeys } from './model/roomKeys'
