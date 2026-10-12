@@ -32,4 +32,9 @@
 .cardRight {
   display: flex;
   flex-direction: column;
+  width: 100%;
+
+  @include mq-down('desktop') {
+    align-items: center;
+  }
 }
