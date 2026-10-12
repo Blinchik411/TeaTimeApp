@@ -119,6 +119,17 @@
   transform: scale(1.2);
 }
 
+@media (max-width: 1475px) {
+  .embla {
+    max-width: 1037px;
+  }
+
+  .embla__controls {
+    max-width: 997px;
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 768px) {
   .embla {
     --slide-spacing: 1rem;

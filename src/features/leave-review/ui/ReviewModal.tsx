@@ -60,7 +60,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
 
         return {
           ...oldRoom,
-          reviews: [optimisticReview, ...oldRoom.reviews],
+          reviews: [...oldRoom.reviews, optimisticReview],
         }
       })
 
