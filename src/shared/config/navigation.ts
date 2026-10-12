@@ -1,6 +1,8 @@
+import type { LinkProps } from "@tanstack/react-router"
+
 export interface NavItem {
   label: string
-  to: string
+  to: LinkProps['to']
   hash?: string
 }
 

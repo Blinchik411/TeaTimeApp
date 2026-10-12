@@ -1,9 +1,14 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router'
+import type { QueryClient } from '@tanstack/react-query'
 import { routeTree } from './routeTree.gen'
 
 const router = createRouter({
   routeTree,
   basepath: import.meta.env.BASE_URL,
+  scrollRestoration: true,
+  context: {
+    queryClient: undefined!,
+  },
 })
 
 declare module '@tanstack/react-router' {
@@ -12,6 +17,10 @@ declare module '@tanstack/react-router' {
   }
 }
 
-export const AppRouterProvider = () => {
-  return <RouterProvider router={router} />
+interface AppRouterProviderProps {
+  queryClient: QueryClient
+}
+
+export const AppRouterProvider = ({ queryClient }: AppRouterProviderProps) => {
+  return <RouterProvider router={router} context={{ queryClient }} />
 }
