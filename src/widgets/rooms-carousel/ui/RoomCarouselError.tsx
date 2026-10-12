@@ -12,13 +12,13 @@ export const RoomCarouselError = ({ error, onRetry }: RoomCarouselErrorProps) =>
         <span className={styles.errorIcon} aria-hidden="true">
           🍵
         </span>
-        <h3 className={styles.errorTitle}>Не удалось загрузить чайные комнаты</h3>
+        <h3 className={styles.errorTitle}>Failed to Load Tea Rooms</h3>
         <p className={styles.errorText}>
-          {error || 'Произошла ошибка при загрузке комнат. Пожалуйста, попробуйте еще раз.'}
+          {error || 'An error occurred while loading rooms. Please try again.'}
         </p>
         {onRetry && (
           <button type="button" onClick={onRetry} className={styles.retryButton}>
-            Попробовать снова
+            Try Again
           </button>
         )}
       </div>

@@ -3,7 +3,7 @@ import './embla-room.css'
 
 export const RoomCarouselSkeleton = () => {
   return (
-    <div id="rooms" className="embla" aria-busy="true" aria-label="Загрузка списка комнат">
+    <div id="rooms" className="embla" aria-busy="true" aria-label="Loading rooms list">
       <div className="embla__viewport">
         <div className="embla__container">
           <div className="embla__slide">

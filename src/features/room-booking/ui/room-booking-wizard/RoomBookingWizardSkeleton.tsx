@@ -7,7 +7,7 @@ export const RoomBookingWizardSkeleton = () => {
     <div
       className={`${wizardStyles.wizardLayout} container`}
       aria-busy="true"
-      aria-label="Загрузка формы бронирования"
+      aria-label="Loading booking form"
     >
       <div className={wizardStyles.wizardLayoutContent}>
         <div className={wizardStyles.wizardMain}>

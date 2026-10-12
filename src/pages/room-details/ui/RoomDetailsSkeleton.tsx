@@ -3,13 +3,13 @@ import styles from './RoomDetailsSkeleton.module.scss'
 
 export const RoomDetailsSkeleton = () => {
   return (
-    <div className={styles.detailsSkeleton} aria-busy="true" aria-label="Загрузка деталей комнаты">
-      {/* Скелетон слайдера фотографий */}
+    <div className={styles.detailsSkeleton} aria-busy="true" aria-label="Loading room details">
+    
       <div className={styles.sliderContainer}>
         <Skeleton variant="dark" className={styles.sliderSkeleton} />
       </div>
 
-      {/* Скелетон секции опыта / бронирования */}
+     
       <section className={styles.experienceSection}>
         <div className="container">
           <div className={styles.experienceRow}>

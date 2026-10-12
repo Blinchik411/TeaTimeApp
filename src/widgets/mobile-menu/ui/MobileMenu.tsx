@@ -63,7 +63,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
 
       <aside
         className={clsx(styles.mobileMenu, isOpen && styles.isOpen)}
-        aria-label="Мобильное меню"
+        aria-label="Mobile navigation menu"
         aria-hidden={!isOpen}
       >
         <div className={clsx(styles.headerMobileMenu, styles.mobileMenuLight)}>
@@ -72,7 +72,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             className={styles.closeMobileMenuButton}
             type="button"
             onClick={onClose}
-            aria-label="Закрыть меню"
+            aria-label="Close menu"
           >
             <Icon name="CloseButton" width={20} height={20} />
           </Button>
@@ -86,7 +86,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           />
         </div>
 
-        <nav className={styles.headerMenu} aria-label="Навигация по сайту">
+        <nav className={styles.headerMenu} aria-label="Main navigation">
           <ul className={styles.mobileMenuList}>
             {NAV_ITEMS.map((item) => (
               <li key={item.label}>

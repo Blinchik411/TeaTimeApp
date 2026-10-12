@@ -13,7 +13,7 @@ export const Header = ({ onOpenMenu }: HeaderProps) => {
       <Button
         variant="openMobileMenuButton"
         className={styles.menuButton}
-        aria-label="Открыть меню"
+        aria-label="Open menu"
         onClick={onOpenMenu}
       >
         <Icon name="BurgerMenu" width={24} height={24} />

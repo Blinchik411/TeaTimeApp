@@ -3,7 +3,7 @@ import styles from './RoomCardSkeleton.module.scss'
 
 export const RoomCardSkeleton = () => {
   return (
-    <section className={styles.roomCardSkeleton} aria-label="Загрузка карточки комнаты">
+    <section className={styles.roomCardSkeleton} aria-label="Loading room card">
       <div className={`${styles.cardContent} container`}>
         <div className={styles.cardLeft}>
           <Skeleton variant="light" className={styles.imageSkeleton} />

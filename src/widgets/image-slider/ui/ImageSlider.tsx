@@ -31,7 +31,7 @@ export const ImageSlider = ({ images, title }: ImageSliderProps) => {
     <div className={styles.sliderContainer}>
       <img
         src={currentPhotoUrl}
-        alt={`${title} - фото ${currentIndex + 1}`}
+        alt={`${title} - photo ${currentIndex + 1}`}
         className={styles.slideImage}
       />
 

@@ -49,7 +49,7 @@ export const fetchRooms = async (): Promise<RoomPreview[]> => {
         `)
 
   if (error) {
-    throw new Error(`Ошибка Supabase: ${error.message}`)
+    throw new Error(`Supabase error: ${error.message}`)
   }
 
   return (data as RoomPreview[]) || []

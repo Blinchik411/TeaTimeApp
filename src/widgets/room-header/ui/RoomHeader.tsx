@@ -13,7 +13,7 @@ interface RoomHeaderProps {
 export const RoomHeader = ({ room, onOpenMenu }: RoomHeaderProps) => {
   return (
     <header className={`${styles.header} container`}>
-      <button className={styles.menuButton} onClick={onOpenMenu} aria-label="Открыть меню">
+      <button className={styles.menuButton} onClick={onOpenMenu} aria-label="Open menu">
         <Icon name="BurgerMenu" width={24} height={24} />
       </button>
 
