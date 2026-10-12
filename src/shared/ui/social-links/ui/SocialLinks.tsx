@@ -1,5 +1,4 @@
 import { Icon } from '../../icon'
-import { Link } from '@tanstack/react-router'
 import styles from './SocialLinks.module.scss'
 
 interface SocialLinksProps {
@@ -9,18 +8,42 @@ interface SocialLinksProps {
 export const SocialLinks = ({ className }: SocialLinksProps) => {
   return (
     <div className={`${styles.socials} ${className || ''}`}>
-      <Link to="/" className={styles.socialLink} target="_blank" rel="noreferrer">
+      <a
+        href="https://instagram.com"
+        className={styles.socialLink}
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="Instagram"
+      >
         <Icon name="Instagram" />
-      </Link>
-      <Link to="/" className={styles.socialLink} target="_blank" rel="noreferrer">
+      </a>
+      <a
+        href="https://tiktok.com"
+        className={styles.socialLink}
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="TikTok"
+      >
         <Icon name="TikTok" />
-      </Link>
-      <Link to="/" className={styles.socialLink} target="_blank" rel="noreferrer">
+      </a>
+      <a
+        href="https://facebook.com"
+        className={styles.socialLink}
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="Facebook"
+      >
         <Icon name="Facebook" />
-      </Link>
-      <Link to="/" className={styles.socialLink} target="_blank" rel="noreferrer">
+      </a>
+      <a
+        href="https://t.me"
+        className={styles.socialLink}
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="Telegram"
+      >
         <Icon name="Telegram" />
-      </Link>
+      </a>
     </div>
   )
 }
