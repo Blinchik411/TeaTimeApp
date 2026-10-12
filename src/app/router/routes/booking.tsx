@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { z } from 'zod'
 import { BookingPage } from '@/pages/booking'
 
@@ -15,5 +15,10 @@ const bookingSearchSchema = z.object({
 
 export const Route = createFileRoute('/booking')({
   validateSearch: bookingSearchSchema,
+  beforeLoad: ({ search }) => {
+    if (!search.roomId) {
+      throw redirect({ to: '/' })
+    }
+  },
   component: BookingPage,
 })
