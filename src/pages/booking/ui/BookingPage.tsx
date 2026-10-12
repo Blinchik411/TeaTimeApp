@@ -20,6 +20,7 @@ export const BookingPage = () => {
         ...oldSearch,
         step: newStep,
       }),
+      replace: true,
     })
   }
 
@@ -29,6 +30,8 @@ export const BookingPage = () => {
         ...oldSearch,
         date: newDate,
       }),
+      replace: true,
+      resetScroll: false,
     })
   }
 
@@ -38,6 +41,8 @@ export const BookingPage = () => {
         ...oldSearch,
         time: newTime,
       }),
+      replace: true,
+      resetScroll: false,
     })
   }
 

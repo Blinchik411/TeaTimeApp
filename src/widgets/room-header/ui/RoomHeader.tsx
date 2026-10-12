@@ -24,7 +24,12 @@ export const RoomHeader = ({ room, onOpenMenu }: RoomHeaderProps) => {
           <>
             <RoomMeta room={room} variant="roomHeader" />
 
-            <RouterButton to={'/booking'} search={{ roomId: room.id }} variant="headerButton">
+            <RouterButton
+              to={'/booking'}
+              search={{ roomId: room.id }}
+              preload="intent"
+              variant="headerButton"
+            >
               Book now
             </RouterButton>
           </>

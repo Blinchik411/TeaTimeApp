@@ -58,7 +58,12 @@ export const ExperienceSection = ({ room }: ExperienceSectionProps) => {
           </p>
         </div>
 
-        <RouterButton to={'/booking'} search={{ roomId: room.id }} variant="experienceButton">
+        <RouterButton
+          to={'/booking'}
+          search={{ roomId: room.id }}
+          preload="intent"
+          variant="experienceButton"
+        >
           Book now
         </RouterButton>
       </div>

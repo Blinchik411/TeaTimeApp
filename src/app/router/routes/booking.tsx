@@ -1,6 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { z } from 'zod'
 import { BookingPage } from '@/pages/booking'
+import { fetchRoomById, roomKeys } from '@/entities/room'
 
 const bookingSearchSchema = z.object({
   roomId: z.string().optional(),
@@ -18,6 +19,17 @@ export const Route = createFileRoute('/booking')({
   beforeLoad: ({ search }) => {
     if (!search.roomId) {
       throw redirect({ to: '/' })
+    }
+  },
+  loaderDeps: ({ search: { roomId } }) => ({ roomId }),
+  loader: ({ context: { queryClient }, deps: { roomId } }) => {
+    if (roomId) {
+      return queryClient
+        .query({
+          queryKey: roomKeys.byId(roomId),
+          queryFn: () => fetchRoomById(roomId),
+        })
+        .catch(() => {})
     }
   },
   component: BookingPage,
