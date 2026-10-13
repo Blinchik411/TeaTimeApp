@@ -1,4 +1,4 @@
-import { useState, type SyntheticEvent } from 'react'
+import { useState, useId, type SyntheticEvent } from 'react'
 import { type z } from 'zod'
 
 export function useZodForm<T extends z.ZodTypeAny>(
@@ -8,7 +8,11 @@ export function useZodForm<T extends z.ZodTypeAny>(
   type FieldKey = keyof z.infer<T> & string
   type FormErrors = Partial<Record<FieldKey, string>>
 
+  const formId = useId()
   const [errors, setErrors] = useState<FormErrors>({})
+
+  const getFieldId = (fieldKey: FieldKey) => `${formId}-${fieldKey}`
+  const getErrorId = (fieldKey: FieldKey) => `${formId}-${fieldKey}-error`
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -40,5 +44,8 @@ export function useZodForm<T extends z.ZodTypeAny>(
     errors,
     handleSubmit,
     setErrors,
+    formId,
+    getFieldId,
+    getErrorId,
   }
 }

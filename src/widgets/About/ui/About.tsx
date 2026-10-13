@@ -23,7 +23,7 @@ export const About = () => {
 
       <div className={styles.aboutImageWrapper}>
         <picture>
-          <source srcSet={`${aboutWrapper} 1x, ${aboutWrapper2x} 2x`} />
+          <source type="image/webp" srcSet={`${aboutWrapper} 1x, ${aboutWrapper2x} 2x`} />
           <img
             src={aboutWrapper}
             alt="Slow Tea House ambiance"

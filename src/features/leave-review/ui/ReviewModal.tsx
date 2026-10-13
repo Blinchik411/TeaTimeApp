@@ -53,11 +53,16 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
     mutate(data)
   }
 
-  const { errors, handleSubmit } = useZodForm(reviewSchema, handleSuccess)
+  const { errors, handleSubmit, formId, getFieldId, getErrorId } = useZodForm(
+    reviewSchema,
+    handleSuccess,
+  )
 
   if (!isOpen) {
     return null
   }
+
+  const titleId = `${formId}-title`
 
   return (
     <div className={styles.overlay} onClick={handleClose}>
@@ -65,12 +70,12 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
         className={styles.modal}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="review-modal-title"
+        aria-labelledby={titleId}
         onClick={(e) => e.stopPropagation()}
       >
         {isSuccess ? (
           <div className={styles.successState}>
-            <h3 id="review-modal-title" className={styles.successTitle}>
+            <h3 id={titleId} className={styles.successTitle}>
               Thank You!
             </h3>
             <p className={styles.successMessage}>
@@ -86,7 +91,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
             {error && <div className={styles.error}>{error.message}</div>}
 
             <div className={styles.header}>
-              <p id="review-modal-title" className={styles.title}>
+              <p id={titleId} className={styles.title}>
                 Add New Review
               </p>
               <button
@@ -101,18 +106,24 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
 
             <div className={styles.topRow}>
               <div className={styles.nameField}>
-                <label htmlFor="review-author" className={styles.fieldLabel}>
+                <label htmlFor={getFieldId('authorName')} className={styles.fieldLabel}>
                   Your Name
                 </label>
                 <input
-                  id="review-author"
+                  id={getFieldId('authorName')}
                   type="text"
                   name="authorName"
                   placeholder="Enter your name"
                   disabled={isPending}
+                  aria-invalid={Boolean(errors.authorName)}
+                  aria-describedby={errors.authorName ? getErrorId('authorName') : undefined}
                   className={errors.authorName ? styles.inputError : ''}
                 />
-                {errors.authorName && <span className={styles.error}>{errors.authorName}</span>}
+                {errors.authorName && (
+                  <span id={getErrorId('authorName')} className={styles.error} role="alert">
+                    {errors.authorName}
+                  </span>
+                )}
               </div>
 
               <div className={styles.ratingField}>
@@ -125,23 +136,33 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
                   size={22}
                   disabled={isPending}
                 />
-                {errors.rating && <span className={styles.error}>{errors.rating}</span>}
+                {errors.rating && (
+                  <span id={getErrorId('rating')} className={styles.error} role="alert">
+                    {errors.rating}
+                  </span>
+                )}
               </div>
             </div>
 
             <div className={styles.field}>
-              <label htmlFor="review-text" className={styles.fieldLabel}>
+              <label htmlFor={getFieldId('text')} className={styles.fieldLabel}>
                 Review
               </label>
               <textarea
-                id="review-text"
+                id={getFieldId('text')}
                 name="text"
                 placeholder="Share your experience..."
                 rows={4}
                 disabled={isPending}
+                aria-invalid={Boolean(errors.text)}
+                aria-describedby={errors.text ? getErrorId('text') : undefined}
                 className={errors.text ? styles.inputError : ''}
               />
-              {errors.text && <span className={styles.error}>{errors.text}</span>}
+              {errors.text && (
+                <span id={getErrorId('text')} className={styles.error} role="alert">
+                  {errors.text}
+                </span>
+              )}
             </div>
 
             <div className={styles.actions}>

@@ -11,7 +11,7 @@ interface PaymentStepProps {
 }
 
 export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) => {
-  const { errors, handleSubmit } = useZodForm(paymentSchema, onPay)
+  const { errors, handleSubmit, getFieldId, getErrorId } = useZodForm(paymentSchema, onPay)
 
   const [cardholderName, setCardholderName] = useState('')
   const [cardNumber, setCardNumber] = useState('')
@@ -48,7 +48,7 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
         <div className={styles.field}>
           <input
             type="text"
-            id="cardholder-name"
+            id={getFieldId('cardholderName')}
             name="cardholderName"
             value={cardholderName}
             onChange={(e) => setCardholderName(e.target.value)}
@@ -56,12 +56,12 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
             autoComplete="cc-name"
             aria-label="Cardholder's name"
             aria-invalid={Boolean(errors.cardholderName)}
-            aria-describedby={errors.cardholderName ? 'cardholder-name-error' : undefined}
+            aria-describedby={errors.cardholderName ? getErrorId('cardholderName') : undefined}
             disabled={isProcessing}
             className={errors.cardholderName ? styles.inputError : ''}
           />
           {errors.cardholderName && (
-            <span id="cardholder-name-error" className={styles.errorMessage} role="alert">
+            <span id={getErrorId('cardholderName')} className={styles.errorMessage} role="alert">
               {errors.cardholderName}
             </span>
           )}
@@ -70,7 +70,7 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
         <div className={styles.field}>
           <input
             type="text"
-            id="card-number"
+            id={getFieldId('cardNumber')}
             name="cardNumber"
             value={cardNumber}
             onChange={handleCardNumberChange}
@@ -80,12 +80,12 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
             autoComplete="cc-number"
             aria-label="Card number (16 digits)"
             aria-invalid={Boolean(errors.cardNumber)}
-            aria-describedby={errors.cardNumber ? 'card-number-error' : undefined}
+            aria-describedby={errors.cardNumber ? getErrorId('cardNumber') : undefined}
             disabled={isProcessing}
             className={errors.cardNumber ? styles.inputError : ''}
           />
           {errors.cardNumber && (
-            <span id="card-number-error" className={styles.errorMessage} role="alert">
+            <span id={getErrorId('cardNumber')} className={styles.errorMessage} role="alert">
               {errors.cardNumber}
             </span>
           )}
@@ -95,7 +95,7 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
           <div className={styles.field}>
             <input
               type="text"
-              id="expiry"
+              id={getFieldId('expiry')}
               name="expiry"
               value={expiry}
               onChange={handleExpiryChange}
@@ -105,12 +105,12 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
               autoComplete="cc-exp"
               aria-label="Expiration date (MM/YY)"
               aria-invalid={Boolean(errors.expiry)}
-              aria-describedby={errors.expiry ? 'expiry-error' : undefined}
+              aria-describedby={errors.expiry ? getErrorId('expiry') : undefined}
               disabled={isProcessing}
               className={errors.expiry ? styles.inputError : ''}
             />
             {errors.expiry && (
-              <span id="expiry-error" className={styles.errorMessage} role="alert">
+              <span id={getErrorId('expiry')} className={styles.errorMessage} role="alert">
                 {errors.expiry}
               </span>
             )}
@@ -120,7 +120,7 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
             <div className={styles.cvcWrapper}>
               <input
                 type={showCvc ? 'text' : 'password'}
-                id="cvc"
+                id={getFieldId('cvc')}
                 name="cvc"
                 value={cvc}
                 onChange={handleCvcChange}
@@ -130,7 +130,7 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
                 autoComplete="cc-csc"
                 aria-label="CVC security code"
                 aria-invalid={Boolean(errors.cvc)}
-                aria-describedby={errors.cvc ? 'cvc-error' : undefined}
+                aria-describedby={errors.cvc ? getErrorId('cvc') : undefined}
                 disabled={isProcessing}
                 className={`${errors.cvc ? styles.inputError : ''} ${styles.cvcInput}`}
               />
@@ -145,7 +145,7 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
               </button>
             </div>
             {errors.cvc && (
-              <span id="cvc-error" className={styles.errorMessage} role="alert">
+              <span id={getErrorId('cvc')} className={styles.errorMessage} role="alert">
                 {errors.cvc}
               </span>
             )}
