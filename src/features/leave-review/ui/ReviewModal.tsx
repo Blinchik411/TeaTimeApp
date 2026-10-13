@@ -108,66 +108,60 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
               </button>
             </div>
 
-            <div className={styles.topRow}>
-              <div className={styles.nameField}>
-                <label htmlFor={getFieldId('authorName')} className={styles.fieldLabel}>
-                  Your Name
+            <fieldset disabled={isPending} className={styles.fieldset}>
+              <div className={styles.topRow}>
+                <div className={styles.nameField}>
+                  <label htmlFor={getFieldId('authorName')} className={styles.fieldLabel}>
+                    Your Name
+                  </label>
+                  <input
+                    id={getFieldId('authorName')}
+                    type="text"
+                    name="authorName"
+                    placeholder="Enter your name"
+                    aria-invalid={Boolean(errors.authorName)}
+                    aria-describedby={errors.authorName ? getErrorId('authorName') : undefined}
+                    className={errors.authorName ? styles.inputError : ''}
+                  />
+                  {errors.authorName && (
+                    <span id={getErrorId('authorName')} className={styles.error} role="alert">
+                      {errors.authorName}
+                    </span>
+                  )}
+                </div>
+
+                <div className={styles.ratingField}>
+                  <span className={styles.fieldLabel}>Rating</span>
+                  <input type="hidden" name="rating" value={rating} />
+                  <StarRating rating={rating} onChange={setRating} interactive size={22} />
+                  {errors.rating && (
+                    <span id={getErrorId('rating')} className={styles.error} role="alert">
+                      {errors.rating}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className={styles.field}>
+                <label htmlFor={getFieldId('text')} className={styles.fieldLabel}>
+                  Review
                 </label>
-                <input
-                  id={getFieldId('authorName')}
-                  type="text"
-                  name="authorName"
-                  placeholder="Enter your name"
-                  disabled={isPending}
-                  aria-invalid={Boolean(errors.authorName)}
-                  aria-describedby={errors.authorName ? getErrorId('authorName') : undefined}
-                  className={errors.authorName ? styles.inputError : ''}
+                <textarea
+                  id={getFieldId('text')}
+                  name="text"
+                  placeholder="Share your experience..."
+                  rows={4}
+                  aria-invalid={Boolean(errors.text)}
+                  aria-describedby={errors.text ? getErrorId('text') : undefined}
+                  className={errors.text ? styles.inputError : ''}
                 />
-                {errors.authorName && (
-                  <span id={getErrorId('authorName')} className={styles.error} role="alert">
-                    {errors.authorName}
+                {errors.text && (
+                  <span id={getErrorId('text')} className={styles.error} role="alert">
+                    {errors.text}
                   </span>
                 )}
               </div>
-
-              <div className={styles.ratingField}>
-                <span className={styles.fieldLabel}>Rating</span>
-                <input type="hidden" name="rating" value={rating} />
-                <StarRating
-                  rating={rating}
-                  onChange={setRating}
-                  interactive
-                  size={22}
-                  disabled={isPending}
-                />
-                {errors.rating && (
-                  <span id={getErrorId('rating')} className={styles.error} role="alert">
-                    {errors.rating}
-                  </span>
-                )}
-              </div>
-            </div>
-
-            <div className={styles.field}>
-              <label htmlFor={getFieldId('text')} className={styles.fieldLabel}>
-                Review
-              </label>
-              <textarea
-                id={getFieldId('text')}
-                name="text"
-                placeholder="Share your experience..."
-                rows={4}
-                disabled={isPending}
-                aria-invalid={Boolean(errors.text)}
-                aria-describedby={errors.text ? getErrorId('text') : undefined}
-                className={errors.text ? styles.inputError : ''}
-              />
-              {errors.text && (
-                <span id={getErrorId('text')} className={styles.error} role="alert">
-                  {errors.text}
-                </span>
-              )}
-            </div>
+            </fieldset>
 
             <div className={styles.actions}>
               <SubmitButton variant="bookingButton" loadingText="Submitting...">

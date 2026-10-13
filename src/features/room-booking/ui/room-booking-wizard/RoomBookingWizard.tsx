@@ -107,15 +107,11 @@ export const RoomBookingWizard = ({
                 form={formId}
                 variant="bookingButton"
                 onClick={isSubmitStep ? undefined : handleNextStep}
-                disabled={isNextDisabled || isProcessing}
+                disabled={isNextDisabled}
+                isLoading={step === 3 && isProcessing}
+                loadingText="Processing..."
               >
-                {step === 2
-                  ? 'Go to Payment'
-                  : step === 3
-                    ? isProcessing
-                      ? 'Processing...'
-                      : 'Pay Now'
-                    : 'Next'}
+                {step === 2 ? 'Go to Payment' : step === 3 ? 'Pay Now' : 'Next'}
               </Button>
             </div>
           </aside>

@@ -45,112 +45,109 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
           </div>
         )}
 
-        <div className={styles.field}>
-          <input
-            type="text"
-            id={getFieldId('cardholderName')}
-            name="cardholderName"
-            value={cardholderName}
-            onChange={(e) => setCardholderName(e.target.value)}
-            placeholder="Cardholder's name"
-            autoComplete="cc-name"
-            aria-label="Cardholder's name"
-            aria-invalid={Boolean(errors.cardholderName)}
-            aria-describedby={errors.cardholderName ? getErrorId('cardholderName') : undefined}
-            disabled={isProcessing}
-            className={errors.cardholderName ? styles.inputError : ''}
-          />
-          {errors.cardholderName && (
-            <span id={getErrorId('cardholderName')} className={styles.errorMessage} role="alert">
-              {errors.cardholderName}
-            </span>
-          )}
-        </div>
-
-        <div className={styles.field}>
-          <input
-            type="text"
-            id={getFieldId('cardNumber')}
-            name="cardNumber"
-            value={cardNumber}
-            onChange={handleCardNumberChange}
-            placeholder="Card number (16 digits)"
-            maxLength={16}
-            inputMode="numeric"
-            autoComplete="cc-number"
-            aria-label="Card number (16 digits)"
-            aria-invalid={Boolean(errors.cardNumber)}
-            aria-describedby={errors.cardNumber ? getErrorId('cardNumber') : undefined}
-            disabled={isProcessing}
-            className={errors.cardNumber ? styles.inputError : ''}
-          />
-          {errors.cardNumber && (
-            <span id={getErrorId('cardNumber')} className={styles.errorMessage} role="alert">
-              {errors.cardNumber}
-            </span>
-          )}
-        </div>
-
-        <div className={styles.formRow}>
+        <fieldset disabled={isProcessing} className={styles.fieldset}>
           <div className={styles.field}>
             <input
               type="text"
-              id={getFieldId('expiry')}
-              name="expiry"
-              value={expiry}
-              onChange={handleExpiryChange}
-              placeholder="MM/YY"
-              maxLength={5}
-              inputMode="numeric"
-              autoComplete="cc-exp"
-              aria-label="Expiration date (MM/YY)"
-              aria-invalid={Boolean(errors.expiry)}
-              aria-describedby={errors.expiry ? getErrorId('expiry') : undefined}
-              disabled={isProcessing}
-              className={errors.expiry ? styles.inputError : ''}
+              id={getFieldId('cardholderName')}
+              name="cardholderName"
+              value={cardholderName}
+              onChange={(e) => setCardholderName(e.target.value)}
+              placeholder="Cardholder's name"
+              autoComplete="cc-name"
+              aria-label="Cardholder's name"
+              aria-invalid={Boolean(errors.cardholderName)}
+              aria-describedby={errors.cardholderName ? getErrorId('cardholderName') : undefined}
+              className={errors.cardholderName ? styles.inputError : ''}
             />
-            {errors.expiry && (
-              <span id={getErrorId('expiry')} className={styles.errorMessage} role="alert">
-                {errors.expiry}
+            {errors.cardholderName && (
+              <span id={getErrorId('cardholderName')} className={styles.errorMessage} role="alert">
+                {errors.cardholderName}
               </span>
             )}
           </div>
 
           <div className={styles.field}>
-            <div className={styles.cvcWrapper}>
-              <input
-                type={showCvc ? 'text' : 'password'}
-                id={getFieldId('cvc')}
-                name="cvc"
-                value={cvc}
-                onChange={handleCvcChange}
-                placeholder="CVC"
-                maxLength={4}
-                inputMode="numeric"
-                autoComplete="cc-csc"
-                aria-label="CVC security code"
-                aria-invalid={Boolean(errors.cvc)}
-                aria-describedby={errors.cvc ? getErrorId('cvc') : undefined}
-                disabled={isProcessing}
-                className={`${errors.cvc ? styles.inputError : ''} ${styles.cvcInput}`}
-              />
-              <button
-                type="button"
-                className={styles.eyeButton}
-                onClick={() => setShowCvc((prev) => !prev)}
-                disabled={isProcessing}
-                aria-label={showCvc ? 'Hide CVC' : 'Show CVC'}
-              >
-                <Icon name={showCvc ? 'EyeOff' : 'Eye'} />
-              </button>
-            </div>
-            {errors.cvc && (
-              <span id={getErrorId('cvc')} className={styles.errorMessage} role="alert">
-                {errors.cvc}
+            <input
+              type="text"
+              id={getFieldId('cardNumber')}
+              name="cardNumber"
+              value={cardNumber}
+              onChange={handleCardNumberChange}
+              placeholder="Card number (16 digits)"
+              maxLength={16}
+              inputMode="numeric"
+              autoComplete="cc-number"
+              aria-label="Card number (16 digits)"
+              aria-invalid={Boolean(errors.cardNumber)}
+              aria-describedby={errors.cardNumber ? getErrorId('cardNumber') : undefined}
+              className={errors.cardNumber ? styles.inputError : ''}
+            />
+            {errors.cardNumber && (
+              <span id={getErrorId('cardNumber')} className={styles.errorMessage} role="alert">
+                {errors.cardNumber}
               </span>
             )}
           </div>
-        </div>
+
+          <div className={styles.formRow}>
+            <div className={styles.field}>
+              <input
+                type="text"
+                id={getFieldId('expiry')}
+                name="expiry"
+                value={expiry}
+                onChange={handleExpiryChange}
+                placeholder="MM/YY"
+                maxLength={5}
+                inputMode="numeric"
+                autoComplete="cc-exp"
+                aria-label="Expiration date (MM/YY)"
+                aria-invalid={Boolean(errors.expiry)}
+                aria-describedby={errors.expiry ? getErrorId('expiry') : undefined}
+                className={errors.expiry ? styles.inputError : ''}
+              />
+              {errors.expiry && (
+                <span id={getErrorId('expiry')} className={styles.errorMessage} role="alert">
+                  {errors.expiry}
+                </span>
+              )}
+            </div>
+
+            <div className={styles.field}>
+              <div className={styles.cvcWrapper}>
+                <input
+                  type={showCvc ? 'text' : 'password'}
+                  id={getFieldId('cvc')}
+                  name="cvc"
+                  value={cvc}
+                  onChange={handleCvcChange}
+                  placeholder="CVC"
+                  maxLength={4}
+                  inputMode="numeric"
+                  autoComplete="cc-csc"
+                  aria-label="CVC security code"
+                  aria-invalid={Boolean(errors.cvc)}
+                  aria-describedby={errors.cvc ? getErrorId('cvc') : undefined}
+                  className={`${errors.cvc ? styles.inputError : ''} ${styles.cvcInput}`}
+                />
+                <button
+                  type="button"
+                  className={styles.eyeButton}
+                  onClick={() => setShowCvc((prev) => !prev)}
+                  aria-label={showCvc ? 'Hide CVC' : 'Show CVC'}
+                >
+                  <Icon name={showCvc ? 'EyeOff' : 'Eye'} />
+                </button>
+              </div>
+              {errors.cvc && (
+                <span id={getErrorId('cvc')} className={styles.errorMessage} role="alert">
+                  {errors.cvc}
+                </span>
+              )}
+            </div>
+          </div>
+        </fieldset>
         <div className={styles.paymentMethods}>
           <Icon name={'Visa'} />
           <Icon name={'Stripe'} />

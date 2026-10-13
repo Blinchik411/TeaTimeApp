@@ -12,6 +12,8 @@ export interface ButtonProps extends ComponentProps<'button'> {
     | 'experienceButton'
     | 'openMobileMenuButton'
     | 'closeMobileMenuButton'
+  isLoading?: boolean
+  loadingText?: string
 }
 
 export const Button = ({
@@ -19,6 +21,9 @@ export const Button = ({
   variant = 'heroButton',
   type = 'button',
   className: externalClassName,
+  isLoading = false,
+  loadingText,
+  disabled,
   ref,
   ...props
 }: ButtonProps) => {
@@ -26,10 +31,11 @@ export const Button = ({
     <button
       ref={ref}
       type={type}
+      disabled={disabled || isLoading}
       className={clsx(styles.button, styles[variant], externalClassName)}
       {...props}
     >
-      {children}
+      {isLoading && loadingText ? loadingText : children}
     </button>
   )
 }
