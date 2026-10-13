@@ -2,7 +2,7 @@ import type { ComponentProps, ReactNode } from 'react'
 import clsx from 'clsx'
 import styles from './Button.module.scss'
 
-interface ButtonProps extends ComponentProps<'button'> {
+export interface ButtonProps extends ComponentProps<'button'> {
   children: ReactNode
   variant?:
     | 'heroButton'

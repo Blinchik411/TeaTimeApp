@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useZodForm } from '@/shared/lib/hooks/useZodForm'
 import { reviewSchema, type ReviewFormData } from '../model'
 import { createReview } from '../api/leaveReviewApi'
-import { Button } from '@/shared/ui/button'
+import { Button, SubmitButton } from '@/shared/ui/button'
 import { StarRating } from '@/shared/ui/star-rating'
 import styles from './ReviewModal.module.scss'
 import { useMutation } from '@tanstack/react-query'
@@ -17,7 +17,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
   const [rating, setRating] = useState(5)
   const [isSuccess, setIsSuccess] = useState(false)
 
-  const { mutate, isPending, error, reset } = useMutation({
+  const { mutateAsync, isPending, error, reset } = useMutation({
     mutationFn: (data: ReviewFormData) => createReview({ ...data, roomId }),
     onSuccess: () => {
       setIsSuccess(true)
@@ -49,11 +49,15 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
     }
   }, [isOpen, handleClose])
 
-  const handleSuccess = (data: ReviewFormData) => {
-    mutate(data)
+  const handleSuccess = async (data: ReviewFormData) => {
+    try {
+      await mutateAsync(data)
+    } catch {
+      // error handled by useMutation state
+    }
   }
 
-  const { errors, handleSubmit, formId, getFieldId, getErrorId } = useZodForm(
+  const { errors, handleAction, formId, getFieldId, getErrorId } = useZodForm(
     reviewSchema,
     handleSuccess,
   )
@@ -87,7 +91,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
             </Button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className={styles.form} noValidate>
+          <form action={handleAction} className={styles.form} noValidate>
             {error && <div className={styles.error}>{error.message}</div>}
 
             <div className={styles.header}>
@@ -166,9 +170,9 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
             </div>
 
             <div className={styles.actions}>
-              <Button type="submit" variant="bookingButton" disabled={isPending}>
-                {isPending ? 'Submitting...' : 'Submit Review'}
-              </Button>
+              <SubmitButton variant="bookingButton" loadingText="Submitting...">
+                Submit Review
+              </SubmitButton>
             </div>
           </form>
         )}

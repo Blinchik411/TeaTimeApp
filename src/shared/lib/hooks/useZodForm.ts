@@ -3,7 +3,7 @@ import { type z } from 'zod'
 
 export function useZodForm<T extends z.ZodTypeAny>(
   schema: T,
-  onSuccess?: (data: z.infer<T>) => void,
+  onSuccess?: (data: z.infer<T>) => void | Promise<void>,
 ) {
   type FieldKey = keyof z.infer<T> & string
   type FormErrors = Partial<Record<FieldKey, string>>
@@ -14,12 +14,8 @@ export function useZodForm<T extends z.ZodTypeAny>(
   const getFieldId = (fieldKey: FieldKey) => `${formId}-${fieldKey}`
   const getErrorId = (fieldKey: FieldKey) => `${formId}-${fieldKey}-error`
 
-  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    const formData = new FormData(e.currentTarget)
+  const validate = (formData: FormData): z.infer<T> | null => {
     const rawData = Object.fromEntries(formData.entries())
-
     const result = schema.safeParse(rawData)
 
     if (!result.success) {
@@ -33,16 +29,32 @@ export function useZodForm<T extends z.ZodTypeAny>(
       })
 
       setErrors(parsedErrors)
-      return
+      return null
     }
 
     setErrors({})
-    onSuccess?.(result.data)
+    return result.data
+  }
+
+  const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const data = validate(new FormData(e.currentTarget))
+    if (data) {
+      await onSuccess?.(data)
+    }
+  }
+
+  const handleAction = async (formData: FormData) => {
+    const data = validate(formData)
+    if (data) {
+      await onSuccess?.(data)
+    }
   }
 
   return {
     errors,
     handleSubmit,
+    handleAction,
     setErrors,
     formId,
     getFieldId,
