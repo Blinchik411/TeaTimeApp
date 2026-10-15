@@ -5,7 +5,7 @@ export const paymentSchema = z.object({
   cardNumber: z
     .string()
     .trim()
-    .transform((val) => val.replace(/\s+/g, '')) // Удаляем пробелы перед валидацией
+    .transform((val) => val.replace(/\s+/g, '')) 
     .refine((val) => /^\d{16}$/.test(val), {
       message: 'Card number must be 16 digits',
     }),
