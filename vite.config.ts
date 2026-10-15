@@ -1,4 +1,5 @@
-import { defineConfig, type ConfigEnv } from 'vite'
+import { defineConfig } from 'vitest/config'
+import type { ConfigEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
 import svgr from 'vite-plugin-svgr'
@@ -27,6 +28,12 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './src/shared/config/tests/setup.ts',
+      css: true,
     },
     css: {
       preprocessorOptions: {

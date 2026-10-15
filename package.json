@@ -11,7 +11,9 @@
     "lint:style:fix": "stylelint \"src/**/*.scss\" --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
     "@daypicker/react": "^10.0.1",
@@ -31,6 +33,9 @@
     "@tanstack/react-query-devtools": "^5.104.1",
     "@tanstack/react-router-devtools": "^1.167.0",
     "@tanstack/router-plugin": "^1.168.23",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
     "@types/node": "^24.13.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
@@ -40,6 +45,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.7.0",
+    "jsdom": "^29.1.1",
     "prettier": "^3.9.9",
     "sass-embedded": "^1.100.0",
     "sharp": "^0.35.5",
@@ -49,6 +55,7 @@
     "typescript-eslint": "^8.62.0",
     "typescript-plugin-css-modules": "^5.2.0",
     "vite": "^8.1.1",
-    "vite-plugin-svgr": "^5.2.0"
+    "vite-plugin-svgr": "^5.2.0",
+    "vitest": "^5.0.4"
   }
 }

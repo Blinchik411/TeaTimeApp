@@ -7,7 +7,7 @@
     "target": "es2023",
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
-    "types": ["vite/client"],
+    "types": ["vitest/globals", "vite/client"],
     "plugins": [
       {
         "name": "typescript-plugin-css-modules",
