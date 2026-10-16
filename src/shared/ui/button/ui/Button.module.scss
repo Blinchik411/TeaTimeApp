@@ -4,13 +4,13 @@
   align-items: center;
   justify-content: center;
   background-color: var(--color-alternate-white, var(--color-light-green));
-  font-weight: 700;
-  font-family: var(--font-family), sans-serif;
+
+  @include font($weight: 700, $line-height: 1.4, $family: 'main');
+
   color: var(--color-dark, var(--color-white));
   border-radius: var(--border-radius);
   padding-left: 10px;
   padding-right: 10px;
-  line-height: 1.4;
   border: none;
   white-space: nowrap;
   cursor: pointer;
@@ -43,7 +43,7 @@
 
 .cardButton,
 .heroButton {
-  font-size: clamp(15px, 0.804rem + 0.495vw, 20px);
+  @include font(clamp(15px, 0.804rem + 0.495vw, 20px));
 }
 
 .cardButton {
@@ -59,12 +59,14 @@
 .bookingButton {
   width: 215px;
   height: 61px;
-  font-size: 18px;
+
+  @include font(18px);
 
   @include mq-down('mobile-sm') {
     width: 195px;
     height: 48px;
-    font-size: 15px;
+
+    @include font(15px);
   }
 }
 
@@ -88,7 +90,7 @@
 
 .headerButton,
 .experienceButton {
-  font-size: clamp(14px, 0.715rem + 0.594vw, 20px);
+  @include font(clamp(14px, 0.715rem + 0.594vw, 20px));
 }
 
 /* Кнопки мобильного меню (иконки без фона) */

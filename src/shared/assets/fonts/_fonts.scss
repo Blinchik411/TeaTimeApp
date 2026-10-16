@@ -1,71 +1,37 @@
-@font-face {
-  font-family: 'Montserrat Alternates';
-  src: url('./MontserratAlternates-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+@mixin font-face($family, $file-name, $weight, $style: normal) {
+  @font-face {
+    font-family: '#{$family}';
+    src: url('./#{$file-name}.woff2') format('woff2');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
 }
 
-@font-face {
-  font-family: 'Montserrat Alternates';
-  src: url('./MontserratAlternates-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+$fonts: (
+  'Montserrat Alternates': (
+    'Bold': 700,
+    'SemiBold': 600,
+    'Medium': 500,
+    'Regular': 400,
+  ),
+  'Montserrat': (
+    'Bold': 700,
+    'SemiBold': 600,
+    'Medium': 500,
+    'Regular': 400,
+    'ExtraLight': 200,
+  ),
+);
 
-@font-face {
-  font-family: 'Montserrat Alternates';
-  src: url('./MontserratAlternates-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+@each $family, $weights in $fonts {
+  $file-prefix: $family;
 
-@font-face {
-  font-family: 'Montserrat Alternates';
-  src: url('./MontserratAlternates-SemiBold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
+  @if $family == 'Montserrat Alternates' {
+    $file-prefix: 'MontserratAlternates';
+  }
 
-@font-face {
-  font-family: Montserrat;
-  src: url('./Montserrat-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url('./Montserrat-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url('./Montserrat-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url('./Montserrat-SemiBold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url('./Montserrat-ExtraLight.woff2') format('woff2');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
+  @each $variant, $weight in $weights {
+    @include font-face($family, '#{$file-prefix}-#{$variant}', $weight);
+  }
 }

@@ -10,6 +10,29 @@
   appearance: none;
 }
 
+// Типографика: размер, насыщенность, высота строки и семейство шрифта
+@mixin font($size: null, $weight: null, $line-height: null, $family: null) {
+  @if $size {
+    font-size: $size;
+  }
+
+  @if $weight {
+    font-weight: $weight;
+  }
+
+  @if $line-height {
+    line-height: $line-height;
+  }
+
+  @if $family == 'second' or $family == 'alt' {
+    font-family: var(--second-family), sans-serif;
+  } @else if $family == 'main' {
+    font-family: var(--font-family), sans-serif;
+  } @else if $family {
+    font-family: $family;
+  }
+}
+
 // Быстрое flex-центрирование
 @mixin flex-center {
   display: flex;

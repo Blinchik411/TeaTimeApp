@@ -42,19 +42,17 @@
 }
 
 .title {
-  font-family: var(--second-family), sans-serif;
-  font-size: 20px;
-  font-weight: 600;
+  @include font(20px, 600, $family: 'second');
+
   color: var(--color-black);
 }
 
 .closeBtn {
   @include button-reset;
   @include flex-center;
+  @include font(28px, $line-height: 1);
 
-  font-size: 28px;
   color: var(--color-text-muted);
-  line-height: 1;
   flex-shrink: 0;
   transition: color $transition-base;
 
@@ -97,8 +95,8 @@
 }
 
 .fieldLabel {
-  font-size: 14px;
-  font-weight: 500;
+  @include font(14px, 500);
+
   color: #333;
   margin-bottom: 6px;
 }
@@ -121,7 +119,8 @@
 }
 
 .error {
-  font-size: 12px;
+  @include font(12px);
+
   color: var(--color-error);
   margin-top: 4px;
 }
@@ -146,17 +145,16 @@
 }
 
 .successTitle {
-  font-family: var(--second-family), sans-serif;
-  font-size: 22px;
-  font-weight: 600;
+  @include font(22px, 600, $family: 'second');
+
   color: var(--color-black);
   margin: 0;
 }
 
 .successMessage {
-  font-size: 14px;
+  @include font(14px, $line-height: 1.5);
+
   color: var(--color-text-muted);
-  line-height: 1.5;
   margin: 0 0 12px;
   max-width: 360px;
 }
