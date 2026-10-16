@@ -1,5 +1,7 @@
-import clsx from 'clsx'
 import type { CSSProperties } from 'react'
+
+import clsx from 'clsx'
+
 import styles from './Skeleton.module.scss'
 
 export interface SkeletonProps {

@@ -1,6 +1,8 @@
 import clsx from 'clsx'
-import { SocialLinks } from '@/shared/ui/social-links'
+
 import { Logo } from '@/shared/ui/logo'
+import { SocialLinks } from '@/shared/ui/social-links'
+
 import styles from './Footer.module.scss'
 
 interface FooterProps {

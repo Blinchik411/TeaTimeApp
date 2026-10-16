@@ -1,4 +1,5 @@
 import { Icon } from '../../icon'
+
 import styles from './SocialLinks.module.scss'
 
 interface SocialLinksProps {

@@ -1,5 +1,6 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { z } from 'zod'
+
 import { BookingPage } from '@/pages/booking'
 import { fetchRoomById, roomKeys } from '@/entities/room'
 

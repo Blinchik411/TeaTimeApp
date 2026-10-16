@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+
 import styles from './ProgressBar.module.scss'
 
 export type StepItem = {

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent, { PointerEventsCheckLevel } from '@testing-library/user-event'
+
 import { Button } from './Button'
 
 describe('Button', () => {
@@ -25,10 +26,13 @@ describe('Button', () => {
     const user = userEvent.setup({ pointerEventsCheck: PointerEventsCheckLevel.Never })
     const handleClick = vi.fn()
 
-    render(<Button disabled onClick={handleClick}>Заблокировано</Button>)
+    render(
+      <Button disabled onClick={handleClick}>
+        Заблокировано
+      </Button>,
+    )
 
     const button = screen.getByRole('button', { name: /заблокировано/i })
-    
 
     expect(button).toBeDisabled()
 
@@ -38,9 +42,13 @@ describe('Button', () => {
   })
 
   it('должен показывать loadingText и быть заблокированным, когда isLoading={true}', () => {
-    render(<Button isLoading={true} loadingText='Загрузка...'>Отправить</Button>)
+    render(
+      <Button isLoading={true} loadingText="Загрузка...">
+        Отправить
+      </Button>,
+    )
 
-    const button = screen.getByRole('button', { name: /загрузка/i})
+    const button = screen.getByRole('button', { name: /загрузка/i })
     expect(button).toBeInTheDocument()
     expect(button).toBeDisabled()
     expect(button).toHaveTextContent('Загрузка...')

@@ -1,9 +1,10 @@
-import { defineConfig } from 'vitest/config'
-import type { ConfigEnv } from 'vite'
-import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
+
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
+import react from '@vitejs/plugin-react'
+import type { ConfigEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig(({ mode }: ConfigEnv) => {
   const isProd = mode === 'production'
@@ -15,7 +16,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       port: 5173,
     },
     plugins: [
-      TanStackRouterVite({
+      tanstackRouter({
         target: 'react',
         autoCodeSplitting: true,
         routesDirectory: './src/app/router/routes',

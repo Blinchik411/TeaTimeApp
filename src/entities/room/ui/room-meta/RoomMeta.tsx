@@ -1,6 +1,9 @@
 import clsx from 'clsx'
+
 import { Icon } from '@/shared/ui/icon'
+
 import type { RoomPreview } from '../../model/types'
+
 import styles from './RoomMeta.module.scss'
 
 export interface RoomMetaProps {

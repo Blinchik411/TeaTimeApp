@@ -1,4 +1,5 @@
 import { aboutWrapper, aboutWrapper2x } from '@/shared/assets/images'
+
 import styles from './About.module.scss'
 
 export const About = () => {

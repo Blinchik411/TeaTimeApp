@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+
 import { StarRating } from './StarRating'
 
 describe('StarRating', () => {
@@ -27,19 +28,18 @@ describe('StarRating', () => {
     expect(handleChange).toHaveBeenCalledWith(4)
   })
 
- it('не должен вызывать onChange при клике, если disabled={true}', async () => {
-  const user = userEvent.setup()
-  const handleChange = vi.fn()
+  it('не должен вызывать onChange при клике, если disabled={true}', async () => {
+    const user = userEvent.setup()
+    const handleChange = vi.fn()
 
-  render(<StarRating interactive rating={2} disabled onChange={handleChange} />)
+    render(<StarRating interactive rating={2} disabled onChange={handleChange} />)
 
-  const firstStar = screen.getByRole('button', { name: /rate 1 of 5 stars/i })
-  
-  expect(firstStar).toBeDisabled()
+    const firstStar = screen.getByRole('button', { name: /rate 1 of 5 stars/i })
 
-  await user.click(firstStar)
+    expect(firstStar).toBeDisabled()
 
-  expect(handleChange).not.toHaveBeenCalled()
-})
+    await user.click(firstStar)
 
+    expect(handleChange).not.toHaveBeenCalled()
+  })
 })

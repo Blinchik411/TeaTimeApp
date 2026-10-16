@@ -1,6 +1,8 @@
-import clsx from 'clsx'
 import { DayPicker } from '@daypicker/react'
+import clsx from 'clsx'
+
 import '@daypicker/react/style.css'
+
 import styles from './DatePicker.module.scss'
 
 interface DatePickerProps {

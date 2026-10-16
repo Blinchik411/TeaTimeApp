@@ -1,4 +1,5 @@
 import { Skeleton } from '@/shared/ui/skeleton'
+
 import styles from './RoomCardSkeleton.module.scss'
 
 export const RoomCardSkeleton = () => {

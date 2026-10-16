@@ -1,5 +1,6 @@
-import { fetchRoomById } from '../api/roomApi'
 import { useQuery } from '@tanstack/react-query'
+
+import { fetchRoomById } from '../api/roomApi'
 import { roomKeys } from './roomKeys'
 import type { Room } from './types'
 

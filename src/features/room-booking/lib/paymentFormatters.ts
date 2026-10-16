@@ -21,11 +21,9 @@ export const formatExpiryDate = (value: string, prevValue: string): string => {
   return digits
 }
 
-
 export const formatCardNumber = (value: string): string => {
   return value.replace(/\D/g, '').slice(0, 16)
 }
-
 
 export const formatCvc = (value: string): string => {
   return value.replace(/\D/g, '').slice(0, 4)

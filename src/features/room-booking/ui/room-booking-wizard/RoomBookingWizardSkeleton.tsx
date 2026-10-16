@@ -1,4 +1,5 @@
 import { Skeleton } from '@/shared/ui/skeleton'
+
 import wizardStyles from './RoomBookingWizard.module.scss'
 import styles from './RoomBookingWizardSkeleton.module.scss'
 

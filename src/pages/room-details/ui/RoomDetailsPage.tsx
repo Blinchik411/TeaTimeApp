@@ -1,14 +1,18 @@
 import { useState } from 'react'
+
 import { useParams } from '@tanstack/react-router'
-import { useRoom } from '@/entities/room'
-import { RoomHeader } from '@/widgets/room-header'
-import { MobileMenu } from '@/widgets/mobile-menu'
+
 import { ExperienceSection } from '@/widgets/experience-section'
 import { Footer } from '@/widgets/footer'
-import { ReviewSection } from '@/widgets/review-section'
 import { ImageSlider } from '@/widgets/image-slider'
+import { MobileMenu } from '@/widgets/mobile-menu'
+import { ReviewSection } from '@/widgets/review-section'
+import { RoomHeader } from '@/widgets/room-header'
+import { useRoom } from '@/entities/room'
 import { ErrorCard } from '@/shared/ui/error-card'
+
 import { RoomDetailsSkeleton } from './RoomDetailsSkeleton'
+
 import styles from './RoomDetailsPage.module.scss'
 
 export const RoomDetailsPage = () => {

@@ -1,13 +1,17 @@
 import { useState } from 'react'
-import clsx from 'clsx'
+
 import { useNavigate } from '@tanstack/react-router'
-import { DateStep } from '../steps/date-step'
-import { ContactStep } from '../steps/contact-step'
-import { PaymentStep } from '../steps/payment-step'
-import { SuccessStep } from '../steps/success-step'
-import { type BookingStep, getNextStep, getPrevStep } from '../../model'
+import clsx from 'clsx'
+
 import { RoomDetailsInfo, type Room } from '@/entities/room'
 import { Button } from '@/shared/ui/button'
+
+import { getNextStep, getPrevStep, type BookingStep } from '../../model'
+import { ContactStep } from '../steps/contact-step'
+import { DateStep } from '../steps/date-step'
+import { PaymentStep } from '../steps/payment-step'
+import { SuccessStep } from '../steps/success-step'
+
 import styles from './RoomBookingWizard.module.scss'
 
 interface RoomBookingWizardProps {

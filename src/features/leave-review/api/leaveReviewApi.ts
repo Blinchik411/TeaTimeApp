@@ -1,7 +1,8 @@
+import type { TablesInsert } from '@/shared/api/database.types'
 import { supabase } from '@/shared/api/supabase'
 import { getAvatarUrl } from '@/shared/lib/avatar'
+
 import type { ReviewFormData } from '../model/review.schema'
-import type { TablesInsert } from '@/shared/api/database.types'
 
 export interface CreateReviewParams extends ReviewFormData {
   roomId: string

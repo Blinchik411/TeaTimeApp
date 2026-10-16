@@ -1,6 +1,8 @@
 import clsx from 'clsx'
+
 import type { RoomPreview } from '../../model/types'
 import { RoomMeta } from '../room-meta'
+
 import styles from './RoomDetailsInfo.module.scss'
 
 interface RoomDetailsInfoProps {

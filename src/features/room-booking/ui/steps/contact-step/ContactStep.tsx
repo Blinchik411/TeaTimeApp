@@ -1,5 +1,7 @@
-import { contactSchema } from '../../../model'
 import { useZodForm } from '@/shared/lib/hooks/useZodForm'
+
+import { contactSchema } from '../../../model'
+
 import styles from './ContactStep.module.scss'
 
 interface ContactStepProps {

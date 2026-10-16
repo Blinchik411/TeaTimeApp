@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+
 import { type EmblaCarouselType } from 'embla-carousel'
 
 export type UseDotButtonType = {

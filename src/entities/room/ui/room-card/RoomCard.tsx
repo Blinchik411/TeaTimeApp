@@ -1,6 +1,8 @@
 import { RouterButton } from '@/shared/ui/router-button'
+
 import type { RoomPreview } from '../../model/types'
 import { RoomDetailsInfo } from '../room-details-info'
+
 import styles from './RoomCard.module.scss'
 
 interface RoomCardProps {

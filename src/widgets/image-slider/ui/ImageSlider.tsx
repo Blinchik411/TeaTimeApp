@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import styles from './ImageSlider.module.scss'
 
 interface ImageSliderProps {

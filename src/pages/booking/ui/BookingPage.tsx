@@ -1,12 +1,14 @@
-import { BookingHeader } from '@/widgets/booking-header'
 import { useNavigate, useSearch } from '@tanstack/react-router'
-import { useRoom } from '@/entities/room'
-import { ErrorCard } from '@/shared/ui/error-card'
+
+import { BookingHeader } from '@/widgets/booking-header'
 import {
   RoomBookingWizard,
   RoomBookingWizardSkeleton,
   type BookingStep,
 } from '@/features/room-booking'
+import { useRoom } from '@/entities/room'
+import { ErrorCard } from '@/shared/ui/error-card'
+
 import styles from './BookingPage.module.scss'
 
 export const BookingPage = () => {

@@ -1,9 +1,12 @@
 import { useState } from 'react'
-import { paymentSchema, type PaymentFormData } from '../../../model'
-import { formatCardNumber, formatExpiryDate, formatCvc } from '../../../lib/paymentFormatters'
-import styles from './PaymentStep.module.scss'
-import { Icon } from '@/shared/ui/icon'
+
 import { useZodForm } from '@/shared/lib/hooks/useZodForm'
+import { Icon } from '@/shared/ui/icon'
+
+import { formatCardNumber, formatCvc, formatExpiryDate } from '../../../lib/paymentFormatters'
+import { paymentSchema, type PaymentFormData } from '../../../model'
+
+import styles from './PaymentStep.module.scss'
 
 interface PaymentStepProps {
   onPay?: (data: PaymentFormData) => void

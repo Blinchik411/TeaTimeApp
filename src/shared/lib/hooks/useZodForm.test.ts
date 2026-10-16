@@ -1,5 +1,6 @@
-import { renderHook, act } from '@testing-library/react'
+import { act, renderHook } from '@testing-library/react'
 import { z } from 'zod'
+
 import { useZodForm } from './useZodForm'
 
 describe('useZodForm', () => {
@@ -18,8 +19,7 @@ describe('useZodForm', () => {
     const { result } = renderHook(() => useZodForm(testSchema, onSuccess))
 
     const formData = new FormData()
-    formData.append('name', 'Ya') 
-
+    formData.append('name', 'Ya')
 
     await act(async () => {
       await result.current.handleAction(formData)
@@ -30,20 +30,18 @@ describe('useZodForm', () => {
   })
 
   it('должен вызывать onSuccess и очищать ошибки при валидных данных', async () => {
-
     const onSuccess = vi.fn()
-     const { result } = renderHook(() => useZodForm(testSchema, onSuccess))
+    const { result } = renderHook(() => useZodForm(testSchema, onSuccess))
     const formData = new FormData()
     formData.append('name', 'Ivan')
-    
-    await act(async() => {
-        await result.current.handleAction(formData)
+
+    await act(async () => {
+      await result.current.handleAction(formData)
     })
 
     expect(result.current.errors).toEqual({})
 
     expect(onSuccess).toHaveBeenCalledTimes(1)
     expect(onSuccess).toHaveBeenCalledWith({ name: 'Ivan' })
-
   })
 })

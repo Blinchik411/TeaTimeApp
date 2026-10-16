@@ -1,8 +1,9 @@
+import { RoomMeta, type Room } from '@/entities/room'
 import { Icon } from '@/shared/ui/icon'
-import { type Room, RoomMeta } from '@/entities/room'
-import { RouterButton } from '@/shared/ui/router-button'
 import { Logo } from '@/shared/ui/logo'
+import { RouterButton } from '@/shared/ui/router-button'
 import { Skeleton } from '@/shared/ui/skeleton'
+
 import styles from './RoomHeader.module.scss'
 
 interface RoomHeaderProps {

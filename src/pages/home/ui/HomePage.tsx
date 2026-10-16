@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { Header } from '@/widgets/header'
-import { MobileMenu } from '@/widgets/mobile-menu'
-import { Hero } from '@/widgets/hero'
+
 import { About } from '@/widgets/about'
 import { Footer } from '@/widgets/footer'
-import { RoomCarousel, RoomCarouselSkeleton, RoomCarouselError } from '@/widgets/rooms-carousel'
+import { Header } from '@/widgets/header'
+import { Hero } from '@/widgets/hero'
+import { MobileMenu } from '@/widgets/mobile-menu'
+import { RoomCarousel, RoomCarouselError, RoomCarouselSkeleton } from '@/widgets/rooms-carousel'
 import { useRooms } from '@/entities/room'
 
 export const HomePage = () => {

@@ -1,10 +1,11 @@
+import type { ReactNode } from 'react'
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import type { ReactNode } from 'react'
-import { ReviewModal } from './ReviewModal'
-import { createReview } from '../api/leaveReviewApi'
 
+import { createReview } from '../api/leaveReviewApi'
+import { ReviewModal } from './ReviewModal'
 
 vi.mock('../api/leaveReviewApi', () => ({
   createReview: vi.fn(),
@@ -24,7 +25,6 @@ const renderWithClient = (ui: ReactNode) => {
 describe('ReviewModal', () => {
   it('не должен ничего рендерить, если isOpen={false}', () => {
     renderWithClient(<ReviewModal roomId="room-1" isOpen={false} onClose={vi.fn()} />)
-
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
@@ -59,39 +59,35 @@ describe('ReviewModal', () => {
     expect(handleClose).toHaveBeenCalledTimes(1)
   })
 
-    it('должен отображать ошибки валидации при попытке отправить пустую форму', async () => {
+  it('должен отображать ошибки валидации при попытке отправить пустую форму', async () => {
     const user = userEvent.setup()
     renderWithClient(<ReviewModal roomId="room-1" isOpen={true} onClose={vi.fn()} />)
 
-    // Кликаем по кнопке Submit на пустой форме
     const submitBtn = screen.getByRole('button', { name: /submit review/i })
     await user.click(submitBtn)
 
-    // Ждем появления ошибок валидации от Zod:
     expect(await screen.findByText(/name is too short/i)).toBeInTheDocument()
-    expect(await screen.findByText(/review must be at least 10 characters long/i)).toBeInTheDocument()
+    expect(
+      await screen.findByText(/review must be at least 10 characters long/i),
+    ).toBeInTheDocument()
   })
 
-    it('должен успешно отправлять отзыв и показывать сообщение об успехе', async () => {
+  it('должен успешно отправлять отзыв и показывать сообщение об успехе', async () => {
     const user = userEvent.setup()
-    // Настраиваем, чтобы наш мок успешно возвращал промис
-    vi.mocked(createReview).mockResolvedValueOnce({ id: 'test-id' } as any)
+
+    vi.mocked(createReview).mockResolvedValueOnce(true)
 
     renderWithClient(<ReviewModal roomId="room-1" isOpen={true} onClose={vi.fn()} />)
 
-    // 1. Заполняем поле "Your Name"
     const nameInput = screen.getByPlaceholderText(/enter your name/i)
     await user.type(nameInput, 'Иван')
 
-    // 2. Заполняем поле "Review"
     const reviewInput = screen.getByPlaceholderText(/share your experience/i)
     await user.type(reviewInput, 'Отличная чайная церемония, всё понравилось!')
 
-    // 3. Отправляем форму
     const submitBtn = screen.getByRole('button', { name: /submit review/i })
     await user.click(submitBtn)
 
-    // 4. Проверяем, что API был вызван с нашими данными
     expect(createReview).toHaveBeenCalledWith({
       authorName: 'Иван',
       text: 'Отличная чайная церемония, всё понравилось!',
@@ -99,9 +95,6 @@ describe('ReviewModal', () => {
       roomId: 'room-1',
     })
 
-    // 5. Проверяем, что появилось окно благодарности
     expect(await screen.findByText(/thank you!/i)).toBeInTheDocument()
   })
-
-
 })

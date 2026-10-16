@@ -1,4 +1,5 @@
 import { useFormStatus } from 'react-dom'
+
 import { Button, type ButtonProps } from './Button'
 
 export type SubmitButtonProps = Omit<ButtonProps, 'type' | 'isLoading'>

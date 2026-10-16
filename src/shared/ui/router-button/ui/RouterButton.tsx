@@ -1,6 +1,8 @@
 import type { ComponentProps, ReactNode } from 'react'
+
 import { createLink } from '@tanstack/react-router'
 import clsx from 'clsx'
+
 import buttonStyles from '@/shared/ui/button/ui/Button.module.scss'
 
 export type ButtonVariant =
@@ -32,4 +34,3 @@ const LinkButtonAnchor = ({
 }
 
 export const RouterButton = createLink(LinkButtonAnchor)
-

@@ -1,8 +1,10 @@
 import { Link } from '@tanstack/react-router'
-import { Icon } from '@/shared/ui/icon'
-import { Button } from '@/shared/ui/button'
-import { Logo } from '@/shared/ui/logo'
+
 import { NAV_ITEMS } from '@/shared/config/navigation'
+import { Button } from '@/shared/ui/button'
+import { Icon } from '@/shared/ui/icon'
+import { Logo } from '@/shared/ui/logo'
+
 import styles from './Header.module.scss'
 
 interface HeaderProps {

@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import clsx from 'clsx'
+
 import styles from './ErrorCard.module.scss'
 
 export interface ErrorCardProps {

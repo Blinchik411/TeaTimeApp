@@ -1,7 +1,9 @@
+import { format } from 'date-fns'
+
+import { type Room } from '@/entities/room'
 import { DatePicker } from '@/shared/ui/date-picker'
 import { TimePicker } from '@/shared/ui/time-picker'
-import { type Room } from '@/entities/room'
-import { format } from 'date-fns'
+
 import styles from './DateStep.module.scss'
 
 interface DateStepProps {

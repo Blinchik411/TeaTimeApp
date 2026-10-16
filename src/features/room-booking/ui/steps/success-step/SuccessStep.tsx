@@ -1,8 +1,11 @@
 import { useMemo } from 'react'
+
 import { format, parseISO } from 'date-fns'
+
+import type { Room } from '@/entities/room'
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
-import type { Room } from '@/entities/room'
+
 import styles from './SuccessStep.module.scss'
 
 interface SuccessStepProps {

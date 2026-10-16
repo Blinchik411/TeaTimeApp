@@ -1,5 +1,6 @@
-import { fetchRooms } from '../api/roomApi'
 import { useQuery } from '@tanstack/react-query'
+
+import { fetchRooms } from '../api/roomApi'
 import { roomKeys } from './roomKeys'
 
 export const useRooms = () => {

@@ -1,4 +1,5 @@
 import { RoomCardSkeleton } from '@/entities/room'
+
 import './embla-room.css'
 
 export const RoomCarouselSkeleton = () => {

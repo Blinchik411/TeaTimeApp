@@ -1,4 +1,5 @@
 import React from 'react'
+
 import * as icons from '@/shared/assets/icons'
 
 export type IconName = keyof typeof icons

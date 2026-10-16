@@ -1,6 +1,7 @@
 import { type Room } from '@/entities/room'
-import styles from './ExperienceSection.module.scss'
 import { RouterButton } from '@/shared/ui/router-button'
+
+import styles from './ExperienceSection.module.scss'
 
 interface ExperienceSectionProps {
   room: Room

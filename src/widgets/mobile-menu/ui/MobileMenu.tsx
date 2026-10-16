@@ -1,13 +1,15 @@
 import { useEffect } from 'react'
+
 import { Link } from '@tanstack/react-router'
 import clsx from 'clsx'
-import { SocialLinks } from '@/shared/ui/social-links'
-import { Icon } from '@/shared/ui/icon'
-import { Button } from '@/shared/ui/button'
-import { Logo } from '@/shared/ui/logo'
-import styles from './MobileMenu.module.scss'
 
 import { NAV_ITEMS } from '@/shared/config/navigation'
+import { Button } from '@/shared/ui/button'
+import { Icon } from '@/shared/ui/icon'
+import { Logo } from '@/shared/ui/logo'
+import { SocialLinks } from '@/shared/ui/social-links'
+
+import styles from './MobileMenu.module.scss'
 
 interface MobileMenuProps {
   isOpen: boolean

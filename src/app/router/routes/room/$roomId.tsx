@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+
 import { RoomDetailsPage } from '@/pages/room-details'
 import { fetchRoomById, roomKeys } from '@/entities/room'
 

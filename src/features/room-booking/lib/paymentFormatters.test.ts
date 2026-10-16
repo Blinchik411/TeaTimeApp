@@ -1,4 +1,4 @@
-import { formatCardNumber } from "./paymentFormatters";
+import { formatCardNumber } from './paymentFormatters'
 
 describe('formatCardNumber', () => {
   it.each([
@@ -21,5 +21,3 @@ describe('formatCardNumber', () => {
     expect(formatCardNumber(input)).toBe(expected)
   })
 })
-
-
