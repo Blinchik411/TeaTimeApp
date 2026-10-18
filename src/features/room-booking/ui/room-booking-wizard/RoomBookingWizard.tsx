@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useNavigate } from '@tanstack/react-router'
 import clsx from 'clsx'
@@ -36,6 +36,14 @@ export const RoomBookingWizard = ({
   const navigate = useNavigate()
   const [isProcessing, setIsProcessing] = useState(false)
   const [contactData, setContactData] = useState<ContactFormData | null>(null)
+
+  useEffect(() => {
+    if (step === 3 && !contactData) {
+      onStepChange(2)
+    } else if (step === 4 && !contactData) {
+      onStepChange(1)
+    }
+  }, [step, contactData, onStepChange])
 
   const isNextDisabled = step === 1 && (!date || !time)
 

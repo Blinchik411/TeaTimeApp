@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { BookingPage } from '@/pages/booking'
 import { fetchRoomById, roomKeys } from '@/entities/room'
 
-const bookingSearchSchema = z.object({
+export const bookingSearchSchema = z.object({
   roomId: z.string().optional(),
   date: z.string().optional(),
   time: z.string().optional(),
@@ -21,18 +21,28 @@ export const Route = createFileRoute('/booking')({
     if (!search.roomId) {
       throw redirect({ to: '/' })
     }
+    if (search.step > 1 && (!search.date || !search.time)) {
+      throw redirect({
+        to: '/booking',
+        search: {
+          roomId: search.roomId,
+          step: 1,
+        },
+      })
+    }
   },
   loaderDeps: ({ search: { roomId } }) => ({ roomId }),
-  loader: ({ context: { queryClient }, deps: { roomId } }) => {
-    if (roomId) {
-      return queryClient
-        .query({
-          queryKey: roomKeys.byId(roomId),
-          queryFn: () => fetchRoomById(roomId),
-        })
-        .catch(() => {})
+  loader: async ({ context: { queryClient }, deps: { roomId } }) => {
+    if (!roomId) return null
+
+    try {
+      return await queryClient.query({
+        queryKey: roomKeys.byId(roomId),
+        queryFn: () => fetchRoomById(roomId),
+      })
+    } catch {
+      return null
     }
-    return null
   },
   component: BookingPage,
 })
