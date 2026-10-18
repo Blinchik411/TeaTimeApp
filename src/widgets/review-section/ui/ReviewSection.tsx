@@ -1,9 +1,8 @@
 import { useState } from 'react'
 
-import { format, parseISO } from 'date-fns'
-
 import { ReviewModal } from '@/features/leave-review'
 import { type Review } from '@/entities/room'
+import { formatSafeDate } from '@/shared/lib/date'
 import { Button } from '@/shared/ui/button'
 import { List } from '@/shared/ui/list'
 import { StarRating } from '@/shared/ui/star-rating'
@@ -17,13 +16,14 @@ interface ReviewSectionProps {
 
 export const ReviewSection = ({ roomId, reviews }: ReviewSectionProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const reviewsList = reviews ?? []
 
   return (
     <section className={styles.reviews}>
       <div className="container">
         <div className={styles.reviewsHeader}>
           <div className={styles.reviewCounter}>
-            <span id="reviewsLeft">{reviews.length}</span> Reviews
+            <span id="reviewsLeft">{reviewsList.length}</span> Reviews
           </div>
 
           <Button
@@ -36,7 +36,7 @@ export const ReviewSection = ({ roomId, reviews }: ReviewSectionProps) => {
         </div>
 
         <List
-          items={reviews}
+          items={reviewsList}
           keyExtractor={(review) => review.id}
           className={styles.reviewsList}
           emptyFallback={
@@ -59,7 +59,7 @@ export const ReviewSection = ({ roomId, reviews }: ReviewSectionProps) => {
 
                   <StarRating rating={review.rating} />
                   <time dateTime={review.date} className={styles.reviewTime}>
-                    {format(parseISO(review.date), 'dd.MM.yy')}
+                    {formatSafeDate(review.date, 'dd.MM.yy')}
                   </time>
                 </div>
 

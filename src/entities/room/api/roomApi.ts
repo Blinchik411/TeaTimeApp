@@ -27,6 +27,7 @@ export const fetchRoomById = async (roomId: string): Promise<Room | null> => {
         `,
     )
     .eq('id', roomId)
+    .eq('reviews.is_approved', true)
     .maybeSingle()
 
   if (error) {

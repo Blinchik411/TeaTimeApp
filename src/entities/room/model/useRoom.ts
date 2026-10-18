@@ -10,7 +10,12 @@ export const useRoom = <TData = Room | null>(
 ) => {
   const { data, isLoading, isFetching, error, refetch } = useQuery({
     queryKey: roomKeys.byId(roomId),
-    queryFn: () => fetchRoomById(roomId!),
+    queryFn: () => {
+      if (!roomId) {
+        throw new Error('Room ID is required to fetch room details')
+      }
+      return fetchRoomById(roomId)
+    },
     enabled: Boolean(roomId),
     select,
   })

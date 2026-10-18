@@ -1,8 +1,7 @@
 import { useMemo } from 'react'
 
-import { format, parseISO } from 'date-fns'
-
 import type { Room } from '@/entities/room'
+import { formatSafeDate } from '@/shared/lib/date'
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
 
@@ -19,16 +18,10 @@ interface SuccessStepProps {
 }
 
 export const SuccessStep = ({ room, date, time, contact, onGoHome }: SuccessStepProps) => {
-  const formattedDate = useMemo(() => {
-    if (!date) {
-      return 'Selected Date'
-    }
-    try {
-      return format(parseISO(date), 'MMMM dd, yyyy')
-    } catch {
-      return date
-    }
-  }, [date])
+  const formattedDate = useMemo(
+    () => formatSafeDate(date, 'MMMM dd, yyyy', 'Selected Date'),
+    [date],
+  )
 
   const bookingRef = useMemo(() => {
     const idPart = (room.id || 'BOOKING')
