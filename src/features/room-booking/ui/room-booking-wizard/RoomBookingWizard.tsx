@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import { RoomDetailsInfo, type Room } from '@/entities/room'
 import { Button } from '@/shared/ui/button'
 
-import { getNextStep, getPrevStep, type BookingStep } from '../../model'
+import { getNextStep, getPrevStep, type BookingStep, type ContactFormData } from '../../model'
 import { ContactStep } from '../steps/contact-step'
 import { DateStep } from '../steps/date-step'
 import { PaymentStep } from '../steps/payment-step'
@@ -35,6 +35,7 @@ export const RoomBookingWizard = ({
 }: RoomBookingWizardProps) => {
   const navigate = useNavigate()
   const [isProcessing, setIsProcessing] = useState(false)
+  const [contactData, setContactData] = useState<ContactFormData | null>(null)
 
   const isNextDisabled = step === 1 && (!date || !time)
 
@@ -43,6 +44,11 @@ export const RoomBookingWizard = ({
     if (nextStep) {
       onStepChange(nextStep)
     }
+  }
+
+  const handleContactSuccess = (data: ContactFormData) => {
+    setContactData(data)
+    handleNextStep()
   }
 
   const handleBack = () => {
@@ -72,7 +78,13 @@ export const RoomBookingWizard = ({
     <div className={clsx(styles.wizardLayout, 'container')}>
       {step === 4 ? (
         <div className={styles.wizardSuccessWrapper}>
-          <SuccessStep room={room} date={date} time={time} onGoHome={handleGoHome} />
+          <SuccessStep
+            room={room}
+            date={date}
+            time={time}
+            contact={contactData}
+            onGoHome={handleGoHome}
+          />
         </div>
       ) : (
         <div className={styles.wizardLayoutContent}>
@@ -86,7 +98,9 @@ export const RoomBookingWizard = ({
                 onSelectTime={onTimeChange}
               />
             )}
-            {step === 2 && <ContactStep onSuccess={handleNextStep} />}
+            {step === 2 && (
+              <ContactStep initialValues={contactData} onSuccess={handleContactSuccess} />
+            )}
             {step === 3 && <PaymentStep onPay={handlePaymentSubmit} isProcessing={isProcessing} />}
           </div>
 

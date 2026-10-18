@@ -6,16 +6,19 @@ import type { Room } from '@/entities/room'
 import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
 
+import type { ContactFormData } from '../../../model'
+
 import styles from './SuccessStep.module.scss'
 
 interface SuccessStepProps {
   room: Room
   date?: string
   time?: string
+  contact?: ContactFormData | null
   onGoHome?: () => void
 }
 
-export const SuccessStep = ({ room, date, time, onGoHome }: SuccessStepProps) => {
+export const SuccessStep = ({ room, date, time, contact, onGoHome }: SuccessStepProps) => {
   const formattedDate = useMemo(() => {
     if (!date) {
       return 'Selected Date'
@@ -85,6 +88,15 @@ export const SuccessStep = ({ room, date, time, onGoHome }: SuccessStepProps) =>
           <span className={styles.detailValue}>{room.maxGuests} guests</span>
         </div>
 
+        {contact && (
+          <div className={styles.detailRow}>
+            <span className={styles.detailLabel}>Guest</span>
+            <span className={styles.detailValue}>
+              {contact.firstName} {contact.lastName}
+            </span>
+          </div>
+        )}
+
         <div className={styles.totalRow}>
           <span className={styles.totalLabel}>Amount Paid</span>
           <span className={styles.totalValue}>${room.price}</span>
@@ -92,8 +104,9 @@ export const SuccessStep = ({ room, date, time, onGoHome }: SuccessStepProps) =>
       </div>
 
       <div className={styles.notice}>
-        A confirmation email with full ceremony instructions and receipt has been sent to your email
-        address. Please arrive 10 minutes prior to your reserved time.
+        A confirmation email with full ceremony instructions and receipt has been sent to{' '}
+        {contact?.email ? <strong>{contact.email}</strong> : 'your email address'}. Please arrive 10
+        minutes prior to your reserved time.
       </div>
 
       {onGoHome && (
