@@ -97,4 +97,20 @@ describe('ReviewModal', () => {
 
     expect(await screen.findByText(/thank you!/i)).toBeInTheDocument()
   })
+
+  it('должен удерживать фокус внутри модального окна и зацикливать Tab', async () => {
+    const user = userEvent.setup()
+    renderWithClient(<ReviewModal roomId="room-1" isOpen={true} onClose={vi.fn()} />)
+
+    const closeBtn = screen.getByRole('button', { name: /close modal/i })
+    const submitBtn = screen.getByRole('button', { name: /submit review/i })
+
+    expect(document.activeElement).toBe(closeBtn)
+
+    await user.tab({ shift: true })
+    expect(document.activeElement).toBe(submitBtn)
+
+    await user.tab()
+    expect(document.activeElement).toBe(closeBtn)
+  })
 })

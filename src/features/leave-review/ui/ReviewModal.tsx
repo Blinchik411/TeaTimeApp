@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useMutation } from '@tanstack/react-query'
 
+import { useFocusTrap } from '@/shared/lib/hooks/useFocusTrap'
 import { useZodForm } from '@/shared/lib/hooks/useZodForm'
 import { Button, SubmitButton } from '@/shared/ui/button'
 import { StarRating } from '@/shared/ui/star-rating'
@@ -20,6 +21,9 @@ interface ReviewModalProps {
 export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
   const [rating, setRating] = useState(5)
   const [isSuccess, setIsSuccess] = useState(false)
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  useFocusTrap(modalRef, isOpen)
 
   const { mutateAsync, isPending, error, reset } = useMutation({
     mutationFn: (data: ReviewFormData) => createReview({ ...data, roomId }),
@@ -75,6 +79,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
   return (
     <div className={styles.overlay} onClick={handleClose}>
       <div
+        ref={modalRef}
         className={styles.modal}
         role="dialog"
         aria-modal="true"
