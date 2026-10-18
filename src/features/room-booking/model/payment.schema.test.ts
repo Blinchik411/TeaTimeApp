@@ -40,4 +40,14 @@ describe('paymentSchema', () => {
       expect(result.error.issues[0]?.message).toBe('CVC must be 3 or 4 digits')
     }
   })
+
+  it('должен возвращать ошибку, если имя держателя карты превышает 50 символов', () => {
+    const longName = 'A'.repeat(51)
+    const result = paymentSchema.safeParse({ ...validPaymentData, cardholderName: longName })
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      expect(result.error.issues[0]?.path).toContain('cardholderName')
+      expect(result.error.issues[0]?.message).toBe('Name must be at most 50 characters')
+    }
+  })
 })

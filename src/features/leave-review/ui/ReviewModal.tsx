@@ -123,6 +123,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
                     type="text"
                     name="authorName"
                     placeholder="Enter your name"
+                    maxLength={50}
                     aria-invalid={Boolean(errors.authorName)}
                     aria-describedby={errors.authorName ? getErrorId('authorName') : undefined}
                     className={errors.authorName ? styles.inputError : ''}
@@ -154,6 +155,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
                   id={getFieldId('text')}
                   name="text"
                   placeholder="Share your experience..."
+                  maxLength={1000}
                   rows={4}
                   aria-invalid={Boolean(errors.text)}
                   aria-describedby={errors.text ? getErrorId('text') : undefined}

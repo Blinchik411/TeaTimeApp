@@ -83,4 +83,13 @@ describe('ContactStep', () => {
     expect(screen.getByText('Surname must be at least 2 characters')).toBeInTheDocument()
     expect(screen.getByText('Invalid email address')).toBeInTheDocument()
   })
+
+  it('имеет корректные атрибуты maxLength на всех полях ввода', () => {
+    render(<ContactStep onSuccess={vi.fn()} />)
+
+    expect(screen.getByPlaceholderText('Name')).toHaveAttribute('maxLength', '50')
+    expect(screen.getByPlaceholderText('Surname')).toHaveAttribute('maxLength', '50')
+    expect(screen.getByPlaceholderText('Phone')).toHaveAttribute('maxLength', '20')
+    expect(screen.getByPlaceholderText('Email')).toHaveAttribute('maxLength', '100')
+  })
 })

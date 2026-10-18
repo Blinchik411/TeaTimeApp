@@ -6,8 +6,12 @@ export const reviewSchema = z.object({
     .string()
     .trim()
     .min(2, 'Name is too short')
-    .max(12, 'Name is too long (max 12 characters)'),
-  text: z.string().trim().min(10, 'Review must be at least 10 characters long'),
+    .max(50, 'Name must be at most 50 characters'),
+  text: z
+    .string()
+    .trim()
+    .min(10, 'Review must be at least 10 characters long')
+    .max(1000, 'Review must be at most 1000 characters'),
 })
 
 export type ReviewFormData = z.infer<typeof reviewSchema>

@@ -46,6 +46,7 @@ export const ContactStep = ({ initialValues, onSuccess }: ContactStepProps) => {
               value={values.firstName}
               onChange={handleChange}
               placeholder="Name"
+              maxLength={50}
               autoComplete="given-name"
               aria-label="Name"
               aria-invalid={Boolean(errors.firstName)}
@@ -67,6 +68,7 @@ export const ContactStep = ({ initialValues, onSuccess }: ContactStepProps) => {
               value={values.lastName}
               onChange={handleChange}
               placeholder="Surname"
+              maxLength={50}
               autoComplete="family-name"
               aria-label="Surname"
               aria-invalid={Boolean(errors.lastName)}
@@ -89,6 +91,7 @@ export const ContactStep = ({ initialValues, onSuccess }: ContactStepProps) => {
             value={values.phone}
             onChange={handleChange}
             placeholder="Phone"
+            maxLength={20}
             autoComplete="tel"
             aria-label="Phone"
             aria-invalid={Boolean(errors.phone)}
@@ -110,6 +113,7 @@ export const ContactStep = ({ initialValues, onSuccess }: ContactStepProps) => {
             value={values.email}
             onChange={handleChange}
             placeholder="Email"
+            maxLength={100}
             autoComplete="email"
             aria-label="Email"
             aria-invalid={Boolean(errors.email)}

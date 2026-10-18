@@ -57,6 +57,7 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
               value={cardholderName}
               onChange={(e) => setCardholderName(e.target.value)}
               placeholder="Cardholder's name"
+              maxLength={50}
               autoComplete="cc-name"
               aria-label="Cardholder's name"
               aria-invalid={Boolean(errors.cardholderName)}
