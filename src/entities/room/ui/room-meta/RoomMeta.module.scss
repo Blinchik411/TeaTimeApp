@@ -31,6 +31,14 @@
   filter: var(--info-icon-filter, none);
 }
 
+.roomCarousel {
+  justify-content: flex-start;
+
+  @include mq-down('desktop') {
+    justify-content: center;
+  }
+}
+
 .roomBooking {
   justify-content: flex-start;
   margin-bottom: 0;

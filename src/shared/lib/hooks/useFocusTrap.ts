@@ -1,4 +1,4 @@
-import { type RefObject, useEffect } from 'react'
+import { useEffect, type RefObject } from 'react'
 
 const FOCUSABLE_SELECTOR = [
   'button:not([disabled])',
@@ -39,8 +39,9 @@ export const useFocusTrap = (
 
     if (autoFocus && !container.contains(document.activeElement)) {
       const focusable = container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
-      if (focusable.length > 0) {
-        focusable[0].focus()
+      const first = focusable[0]
+      if (first) {
+        first.focus()
       } else {
         container.focus()
       }
@@ -49,9 +50,7 @@ export const useFocusTrap = (
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== 'Tab') return
 
-      const focusable = Array.from(
-        container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
-      )
+      const focusable = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
 
       if (focusable.length === 0) {
         e.preventDefault()
@@ -60,6 +59,11 @@ export const useFocusTrap = (
 
       const firstElement = focusable[0]
       const lastElement = focusable[focusable.length - 1]
+
+      if (!firstElement || !lastElement) {
+        e.preventDefault()
+        return
+      }
 
       if (e.shiftKey) {
         if (
@@ -70,10 +74,7 @@ export const useFocusTrap = (
           lastElement.focus()
         }
       } else {
-        if (
-          document.activeElement === lastElement ||
-          !container.contains(document.activeElement)
-        ) {
+        if (document.activeElement === lastElement || !container.contains(document.activeElement)) {
           e.preventDefault()
           firstElement.focus()
         }
