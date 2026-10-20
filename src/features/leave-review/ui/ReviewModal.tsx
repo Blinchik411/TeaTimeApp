@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 
 import { useFocusTrap } from '@/shared/lib/hooks/useFocusTrap'
 import { useZodForm } from '@/shared/lib/hooks/useZodForm'
-import { Button, SubmitButton } from '@/shared/ui/button'
+import { Button } from '@/shared/ui/button'
 import { StarRating } from '@/shared/ui/star-rating'
 
 import { createReview } from '../api/leaveReviewApi'
@@ -20,6 +20,10 @@ interface ReviewModalProps {
 
 export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
   const [rating, setRating] = useState(5)
+  const [values, setValues] = useState({
+    authorName: '',
+    text: '',
+  })
   const [isSuccess, setIsSuccess] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
 
@@ -29,15 +33,41 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
     mutationFn: (data: ReviewFormData) => createReview({ ...data, roomId }),
     onSuccess: () => {
       setIsSuccess(true)
+      setRating(5)
+      setValues({ authorName: '', text: '' })
     },
   })
 
+  const handleSuccess = async (data: ReviewFormData) => {
+    try {
+      await mutateAsync(data)
+    } catch {
+      // error handled by useMutation state
+    }
+  }
+
+  const { errors, handleSubmit, setErrors, formId, getFieldId, getErrorId } = useZodForm(
+    reviewSchema,
+    handleSuccess,
+  )
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setValues((prev) => ({ ...prev, [name]: value }))
+
+    if (errors[name as keyof ReviewFormData]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }))
+    }
+  }
+
   const handleClose = useCallback(() => {
     setRating(5)
+    setValues({ authorName: '', text: '' })
+    setErrors({})
     setIsSuccess(false)
     reset()
     onClose()
-  }, [onClose, reset])
+  }, [onClose, reset, setErrors])
 
   useEffect(() => {
     if (!isOpen) return
@@ -56,19 +86,6 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
       document.body.style.overflow = ''
     }
   }, [isOpen, handleClose])
-
-  const handleSuccess = async (data: ReviewFormData) => {
-    try {
-      await mutateAsync(data)
-    } catch {
-      // error handled by useMutation state
-    }
-  }
-
-  const { errors, handleAction, formId, getFieldId, getErrorId } = useZodForm(
-    reviewSchema,
-    handleSuccess,
-  )
 
   if (!isOpen) {
     return null
@@ -100,7 +117,7 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
             </Button>
           </div>
         ) : (
-          <form action={handleAction} className={styles.form} noValidate>
+          <form onSubmit={handleSubmit} className={styles.form} noValidate>
             {error && <div className={styles.error}>{error.message}</div>}
 
             <div className={styles.header}>
@@ -127,6 +144,8 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
                     id={getFieldId('authorName')}
                     type="text"
                     name="authorName"
+                    value={values.authorName}
+                    onChange={handleChange}
                     placeholder="Enter your name"
                     maxLength={50}
                     aria-invalid={Boolean(errors.authorName)}
@@ -159,6 +178,8 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
                 <textarea
                   id={getFieldId('text')}
                   name="text"
+                  value={values.text}
+                  onChange={handleChange}
                   placeholder="Share your experience..."
                   maxLength={1000}
                   rows={4}
@@ -175,9 +196,14 @@ export const ReviewModal = ({ roomId, isOpen, onClose }: ReviewModalProps) => {
             </fieldset>
 
             <div className={styles.actions}>
-              <SubmitButton variant="bookingButton" loadingText="Submitting...">
+              <Button
+                type="submit"
+                variant="bookingButton"
+                isLoading={isPending}
+                loadingText="Submitting..."
+              >
                 Submit Review
-              </SubmitButton>
+              </Button>
             </div>
           </form>
         )}

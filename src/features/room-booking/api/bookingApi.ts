@@ -37,11 +37,7 @@ export const createBooking = async (
     status: 'confirmed',
   }
 
-  const { data, error } = await supabase
-    .from('bookings')
-    .insert([newBooking])
-    .select('id')
-    .single()
+  const { data, error } = await supabase.from('bookings').insert([newBooking]).select('id').single()
 
   if (error) {
     throw new Error(error.message || 'Failed to save booking to database')

@@ -113,4 +113,25 @@ describe('ReviewModal', () => {
     await user.tab()
     expect(document.activeElement).toBe(closeBtn)
   })
+
+  it('должен сохранять введенные данные в полях при ошибке валидации', async () => {
+    const user = userEvent.setup()
+    renderWithClient(<ReviewModal roomId="room-1" isOpen={true} onClose={vi.fn()} />)
+
+    const nameInput = screen.getByPlaceholderText(/enter your name/i)
+    await user.type(nameInput, 'Алексей')
+
+    const reviewInput = screen.getByPlaceholderText(/share your experience/i)
+    await user.type(reviewInput, 'Коротко')
+
+    const submitBtn = screen.getByRole('button', { name: /submit review/i })
+    await user.click(submitBtn)
+
+    expect(
+      await screen.findByText(/review must be at least 10 characters long/i),
+    ).toBeInTheDocument()
+
+    expect(nameInput).toHaveValue('Алексей')
+    expect(reviewInput).toHaveValue('Коротко')
+  })
 })

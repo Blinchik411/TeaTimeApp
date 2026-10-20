@@ -3,11 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { supabase } from '@/shared/api/supabase'
 
 import type { CreateBookingPayload } from '../model/booking.types'
-import {
-  clearLatestBookingReceipt,
-  createBooking,
-  getLatestBookingReceipt,
-} from './bookingApi'
+import { clearLatestBookingReceipt, createBooking, getLatestBookingReceipt } from './bookingApi'
 
 vi.mock('@/shared/api/supabase', () => ({
   supabase: {

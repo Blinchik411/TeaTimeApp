@@ -14,11 +14,7 @@ interface PaymentStepProps {
   errorMessage?: string | null
 }
 
-export const PaymentStep = ({
-  onPay,
-  isProcessing = false,
-  errorMessage,
-}: PaymentStepProps) => {
+export const PaymentStep = ({ onPay, isProcessing = false, errorMessage }: PaymentStepProps) => {
   const { errors, handleSubmit, getFieldId, getErrorId } = useZodForm(paymentSchema, onPay)
 
   const [cardholderName, setCardholderName] = useState('')

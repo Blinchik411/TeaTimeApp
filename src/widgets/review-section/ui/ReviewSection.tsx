@@ -20,7 +20,7 @@ export const ReviewSection = ({ roomId, reviews }: ReviewSectionProps) => {
 
   return (
     <section className={styles.reviews}>
-      <div className="container">
+      <div className={`${styles.reviewsContainer} container`}>
         <div className={styles.reviewsHeader}>
           <div className={styles.reviewTitleGroup}>
             <h2 className={styles.reviewTitle}>Reviews</h2>
