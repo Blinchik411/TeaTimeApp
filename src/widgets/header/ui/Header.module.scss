@@ -2,11 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: clamp(5.3125rem, 4.6985rem + 3.06vw, 8.9385rem);
   padding-block: clamp(0.75rem, 0.443rem + 1.53vw, 2.563rem);
 
   @include mq-between('mobile-sm', 'tablet') {
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
   }
 }
 

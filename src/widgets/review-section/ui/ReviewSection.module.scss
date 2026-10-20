@@ -104,13 +104,13 @@
 }
 
 .cardAuthor {
-  font-weight: 500;
-  font-size: inherit;
+  @include font(inherit, 500);
+
   margin: 0;
 }
 
 .reviewTime {
-  font-weight: 300;
+  @include font(inherit, 300);
 }
 
 .reviewText {
