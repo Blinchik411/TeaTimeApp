@@ -2,15 +2,12 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import react from '@vitejs/plugin-react'
-import type { ConfigEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
 import { defineConfig } from 'vitest/config'
 
-export default defineConfig(({ mode }: ConfigEnv) => {
-  const isProd = mode === 'production'
-
+export default defineConfig(() => {
   return {
-    base: isProd ? '/tea-time-app/' : '/',
+    base: '/',
     server: {
       host: '127.0.0.1',
       port: 5173,
