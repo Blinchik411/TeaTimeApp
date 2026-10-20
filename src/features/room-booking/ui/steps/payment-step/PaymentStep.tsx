@@ -11,9 +11,14 @@ import styles from './PaymentStep.module.scss'
 interface PaymentStepProps {
   onPay?: (data: PaymentFormData) => void
   isProcessing?: boolean
+  errorMessage?: string | null
 }
 
-export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) => {
+export const PaymentStep = ({
+  onPay,
+  isProcessing = false,
+  errorMessage,
+}: PaymentStepProps) => {
   const { errors, handleSubmit, getFieldId, getErrorId } = useZodForm(paymentSchema, onPay)
 
   const [cardholderName, setCardholderName] = useState('')
@@ -39,6 +44,14 @@ export const PaymentStep = ({ onPay, isProcessing = false }: PaymentStepProps) =
       <h1 className={styles.cardTitle}>Card details</h1>
 
       <form id="payment-form" className={styles.paymentForm} onSubmit={handleSubmit} noValidate>
+        {errorMessage && (
+          <div className={styles.errorBanner} role="alert">
+            <span className={styles.errorBannerIcon} aria-hidden="true">
+              ⚠️
+            </span>
+            <p className={styles.errorBannerText}>{errorMessage}</p>
+          </div>
+        )}
         {isProcessing && (
           <div className={styles.processingContainer}>
             <div className={styles.processingBar}>

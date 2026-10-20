@@ -14,22 +14,32 @@ interface SuccessStepProps {
   date?: string
   time?: string
   contact?: ContactFormData | null
+  bookingRef?: string
   onGoHome?: () => void
 }
 
-export const SuccessStep = ({ room, date, time, contact, onGoHome }: SuccessStepProps) => {
+export const SuccessStep = ({
+  room,
+  date,
+  time,
+  contact,
+  bookingRef: propBookingRef,
+  onGoHome,
+}: SuccessStepProps) => {
   const formattedDate = useMemo(
     () => formatSafeDate(date, 'MMMM dd, yyyy', 'Selected Date'),
     [date],
   )
 
   const bookingRef = useMemo(() => {
+    if (propBookingRef) return propBookingRef
+
     const idPart = (room.id || 'BOOKING')
       .replace(/[^a-zA-Z0-9]/g, '')
       .slice(-6)
       .toUpperCase()
     return `TEA-${idPart || '749201'}`
-  }, [room.id])
+  }, [propBookingRef, room.id])
 
   return (
     <section className={styles.successLayout}>

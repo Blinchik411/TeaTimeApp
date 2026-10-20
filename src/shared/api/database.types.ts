@@ -86,6 +86,62 @@ export interface Database {
           },
         ]
       }
+      bookings: {
+        Row: {
+          id: string
+          booking_ref: string
+          room_id: string
+          booking_date: string
+          booking_time: string
+          first_name: string
+          last_name: string
+          email: string
+          phone: string
+          cardholder_name: string | null
+          card_last_four: string | null
+          status: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          booking_ref: string
+          room_id: string
+          booking_date: string
+          booking_time: string
+          first_name: string
+          last_name: string
+          email: string
+          phone: string
+          cardholder_name?: string | null
+          card_last_four?: string | null
+          status?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          booking_ref?: string
+          room_id?: string
+          booking_date?: string
+          booking_time?: string
+          first_name?: string
+          last_name?: string
+          email?: string
+          phone?: string
+          cardholder_name?: string | null
+          card_last_four?: string | null
+          status?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'bookings_room_id_fkey'
+            columns: ['room_id']
+            isOneToOne: false
+            referencedRelation: 'tea_rooms'
+            referencedColumns: ['id']
+          },
+        ]
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>

@@ -6,7 +6,16 @@ import clsx from 'clsx'
 import { RoomDetailsInfo, type Room } from '@/entities/room'
 import { Button } from '@/shared/ui/button'
 
-import { getNextStep, getPrevStep, type BookingStep, type ContactFormData } from '../../model'
+import { getLatestBookingReceipt } from '../../api/bookingApi'
+import {
+  getNextStep,
+  getPrevStep,
+  useCreateBooking,
+  type BookingReceipt,
+  type BookingStep,
+  type ContactFormData,
+  type PaymentFormData,
+} from '../../model'
 import { ContactStep } from '../steps/contact-step'
 import { DateStep } from '../steps/date-step'
 import { PaymentStep } from '../steps/payment-step'
@@ -34,16 +43,26 @@ export const RoomBookingWizard = ({
   onTimeChange,
 }: RoomBookingWizardProps) => {
   const navigate = useNavigate()
-  const [isProcessing, setIsProcessing] = useState(false)
-  const [contactData, setContactData] = useState<ContactFormData | null>(null)
+  const {
+    mutateAsync: submitBooking,
+    isPending: isProcessing,
+    error: bookingError,
+    reset: resetBookingError,
+  } = useCreateBooking()
+  const [bookingReceipt, setBookingReceipt] = useState<BookingReceipt | null>(() =>
+    getLatestBookingReceipt(room.id),
+  )
+  const [contactData, setContactData] = useState<ContactFormData | null>(
+    () => getLatestBookingReceipt(room.id)?.contact ?? null,
+  )
 
   useEffect(() => {
     if (step === 3 && !contactData) {
       onStepChange(2)
-    } else if (step === 4 && !contactData) {
+    } else if (step === 4 && !contactData && !bookingReceipt) {
       onStepChange(1)
     }
-  }, [step, contactData, onStepChange])
+  }, [step, contactData, bookingReceipt, onStepChange])
 
   const isNextDisabled = step === 1 && (!date || !time)
 
@@ -60,18 +79,29 @@ export const RoomBookingWizard = ({
   }
 
   const handleBack = () => {
+    resetBookingError()
     const prevStep = getPrevStep(step)
     if (prevStep) {
       onStepChange(prevStep)
     }
   }
 
-  const handlePaymentSubmit = () => {
-    setIsProcessing(true)
-    setTimeout(() => {
-      setIsProcessing(false)
+  const handlePaymentSubmit = async (paymentData: PaymentFormData) => {
+    if (!date || !time || !contactData) return
+
+    try {
+      const receipt = await submitBooking({
+        roomId: room.id,
+        date,
+        time,
+        contact: contactData,
+        payment: paymentData,
+      })
+      setBookingReceipt(receipt)
       onStepChange(4)
-    }, 1200)
+    } catch {
+      // Error is stored in bookingError mutation state and shown in PaymentStep
+    }
   }
 
   const handleGoHome = () => {
@@ -88,9 +118,10 @@ export const RoomBookingWizard = ({
         <div className={styles.wizardSuccessWrapper}>
           <SuccessStep
             room={room}
-            date={date}
-            time={time}
-            contact={contactData}
+            date={date || bookingReceipt?.date}
+            time={time || bookingReceipt?.time}
+            contact={contactData || bookingReceipt?.contact}
+            bookingRef={bookingReceipt?.bookingRef}
             onGoHome={handleGoHome}
           />
         </div>
@@ -109,7 +140,17 @@ export const RoomBookingWizard = ({
             {step === 2 && (
               <ContactStep initialValues={contactData} onSuccess={handleContactSuccess} />
             )}
-            {step === 3 && <PaymentStep onPay={handlePaymentSubmit} isProcessing={isProcessing} />}
+            {step === 3 && (
+              <PaymentStep
+                onPay={handlePaymentSubmit}
+                isProcessing={isProcessing}
+                errorMessage={
+                  bookingError
+                    ? 'Payment could not be processed. Please check your card details and try again.'
+                    : null
+                }
+              />
+            )}
           </div>
 
           <aside className={styles.wizardSidebar}>
