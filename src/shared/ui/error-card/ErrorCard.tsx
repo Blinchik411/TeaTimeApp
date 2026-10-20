@@ -1,6 +1,8 @@
 import { Link } from '@tanstack/react-router'
 import clsx from 'clsx'
 
+import { Button } from '@/shared/ui/button'
+
 import styles from './ErrorCard.module.scss'
 
 export interface ErrorCardProps {
@@ -34,9 +36,9 @@ export const ErrorCard = ({
         <p className={styles.errorText}>{message}</p>
         <div className={styles.actions}>
           {onRetry && (
-            <button type="button" onClick={onRetry} className={styles.retryButton}>
+            <Button variant="retryButton" onClick={onRetry}>
               {retryText}
-            </button>
+            </Button>
           )}
           {showHome && (
             <Link to="/" className={styles.homeButton}>

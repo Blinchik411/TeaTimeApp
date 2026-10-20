@@ -43,30 +43,6 @@
   justify-content: center;
 }
 
-.retryButton {
-  padding: 12px 24px;
-  border-radius: 6px;
-  background-color: var(--color-accent-lime);
-  color: var(--color-black);
-  border: none;
-  cursor: pointer;
-
-  @include font(15px, 600);
-
-  transition:
-    transform $transition-fast,
-    filter $transition-fast;
-
-  &:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.08);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-}
-
 .homeButton {
   padding: 12px 24px;
   border-radius: 6px;

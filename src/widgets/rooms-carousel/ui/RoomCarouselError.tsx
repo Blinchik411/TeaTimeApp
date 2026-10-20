@@ -1,3 +1,5 @@
+import { Button } from '@/shared/ui/button'
+
 import styles from './RoomCarouselError.module.scss'
 
 interface RoomCarouselErrorProps {
@@ -17,9 +19,9 @@ export const RoomCarouselError = ({ error, onRetry }: RoomCarouselErrorProps) =>
           {error || 'An error occurred while loading rooms. Please try again.'}
         </p>
         {onRetry && (
-          <button type="button" onClick={onRetry} className={styles.retryButton}>
+          <Button variant="retryButton" onClick={onRetry}>
             Try Again
-          </button>
+          </Button>
         )}
       </div>
     </div>

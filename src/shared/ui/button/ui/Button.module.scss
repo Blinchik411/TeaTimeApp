@@ -93,7 +93,6 @@
   @include font(clamp(14px, 0.715rem + 0.594vw, 20px));
 }
 
-/* Кнопки мобильного меню (иконки без фона) */
 .openMobileMenuButton,
 .closeMobileMenuButton {
   @include button-reset;
@@ -112,4 +111,20 @@
 
 .closeMobileMenuButton {
   color: var(--menu-icon-color, var(--color-black));
+}
+
+.reviewButton {
+  width: clamp(160px, 9.8rem + 4vw, 215px);
+  padding-block: clamp(10px, 0.55rem + 0.4vw, 15px);
+
+  @include font(clamp(14px, 0.8rem + 0.35vw, 18px));
+}
+
+.retryButton {
+  background-color: var(--color-accent-lime);
+  color: var(--color-black);
+  padding: 12px 28px;
+  border-radius: var(--border-radius, 6px);
+
+  @include font(15px, 600);
 }

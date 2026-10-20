@@ -11,6 +11,8 @@ export type ButtonVariant =
   | 'headerButton'
   | 'bookingButton'
   | 'experienceButton'
+  | 'reviewButton'
+  | 'retryButton'
   | 'openMobileMenuButton'
   | 'closeMobileMenuButton'
 

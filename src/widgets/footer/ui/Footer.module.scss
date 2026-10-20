@@ -39,7 +39,7 @@
 
 .footerLogo {
   display: inline-block;
-  margin-bottom: clamp(8px, -0.669rem + 4.356vw, 52px);
+  margin-bottom: clamp(25px, -0.669rem + 4.356vw, 52px);
   width: clamp(200px, 7.55rem + 9.604vw, 259px);
   filter: var(--footer-icon-filter);
 }

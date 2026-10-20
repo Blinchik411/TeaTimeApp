@@ -12,6 +12,8 @@ export interface ButtonProps extends ComponentProps<'button'> {
     | 'headerButton'
     | 'bookingButton'
     | 'experienceButton'
+    | 'reviewButton'
+    | 'retryButton'
     | 'openMobileMenuButton'
     | 'closeMobileMenuButton'
   isLoading?: boolean

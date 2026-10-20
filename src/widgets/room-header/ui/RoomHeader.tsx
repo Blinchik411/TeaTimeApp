@@ -1,4 +1,5 @@
 import { RoomMeta, type Room } from '@/entities/room'
+import { Button } from '@/shared/ui/button'
 import { Icon } from '@/shared/ui/icon'
 import { Logo } from '@/shared/ui/logo'
 import { RouterButton } from '@/shared/ui/router-button'
@@ -14,9 +15,14 @@ interface RoomHeaderProps {
 export const RoomHeader = ({ room, onOpenMenu }: RoomHeaderProps) => {
   return (
     <header className={`${styles.header} container`}>
-      <button className={styles.menuButton} onClick={onOpenMenu} aria-label="Open menu">
+      <Button
+        variant="openMobileMenuButton"
+        className={styles.menuButton}
+        onClick={onOpenMenu}
+        aria-label="Open menu"
+      >
         <Icon name="BurgerMenu" width={24} height={24} />
-      </button>
+      </Button>
 
       <Logo className={styles.headerLogo} />
 

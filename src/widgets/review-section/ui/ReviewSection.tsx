@@ -22,15 +22,18 @@ export const ReviewSection = ({ roomId, reviews }: ReviewSectionProps) => {
     <section className={styles.reviews}>
       <div className="container">
         <div className={styles.reviewsHeader}>
-          <div className={styles.reviewCounter}>
-            <span id="reviewsLeft">{reviewsList.length}</span> Reviews
+          <div className={styles.reviewTitleGroup}>
+            <h2 className={styles.reviewTitle}>Reviews</h2>
+            <span
+              id="reviewsLeft"
+              className={styles.reviewBadge}
+              aria-label={`${reviewsList.length} reviews`}
+            >
+              {reviewsList.length}
+            </span>
           </div>
 
-          <Button
-            variant="cardButton"
-            className={styles.reviewButton}
-            onClick={() => setIsModalOpen(true)}
-          >
+          <Button variant="reviewButton" onClick={() => setIsModalOpen(true)}>
             Leave a Review
           </Button>
         </div>
